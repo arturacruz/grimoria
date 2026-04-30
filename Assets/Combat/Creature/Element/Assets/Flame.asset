@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0da9b727ca838479d1b11f7fcad665, type: 3}
   m_Name: Flame
   m_EditorClassIdentifier: Assembly-CSharp::ElementObject
-  elementName: Blood
+  elementName: Flame

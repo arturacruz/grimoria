@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEditor.UI;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 

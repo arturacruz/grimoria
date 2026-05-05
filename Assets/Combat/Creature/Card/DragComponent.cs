@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     private bool isMouseOver = false;
     private bool selected = false;
+    [SerializeField] private Transform parent;
 
     private void Update()
     {
@@ -19,7 +21,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         // Unity fucking converts the position to -10 since that is the camera Z.
         mousePos.z = 0;
 
-        transform.position = mousePos;
+        parent.position = mousePos;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

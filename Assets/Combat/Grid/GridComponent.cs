@@ -7,7 +7,7 @@ public class GridComponent : MonoBehaviour
 {
     [SerializeField] private byte height = 3;
     [SerializeField] private byte width = 3;
-    public CreatureComponent[,] grid { get; private set; }
+    public Creature[,] grid { get; private set; }
     public bool[,] occupances { get; private set; }
 
     [SerializeField] private GameObject tilePrefab;
@@ -22,7 +22,7 @@ public class GridComponent : MonoBehaviour
     
     private void Start()
     {
-        grid = new CreatureComponent[height, width];
+        grid = new Creature[height, width];
         occupances = new bool[height, width];
 
         for (var y = 0; y < height; y++)
@@ -55,7 +55,7 @@ public class GridComponent : MonoBehaviour
             return;
         
         var tileMousePos = GetMouseTilePosition();
-        var creature = selectedCreature.GetComponent<CreatureComponent>();
+        var creature = selectedCreature.GetComponent<Creature>();
 
         // If the creature is not on this grid
         if (!IsPositionInGrid(tileMousePos))
@@ -120,10 +120,10 @@ public class GridComponent : MonoBehaviour
 
         int i = creatureTilePos.y, j = creatureTilePos.x;
         
-        var creature = selectedCreature.GetComponent<CreatureComponent>();
+        var creature = selectedCreature.GetComponent<Creature>();
         byte width = creature.width, height = creature.height;
 
-        CreatureComponent init = null;
+        Creature init = null;
         if (placed)
             init = creature;
 

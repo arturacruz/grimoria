@@ -12,4 +12,6 @@ public class Casa : MonoBehaviour
     public List<Casa> lista_casa = new List<Casa>();
 
     public CategoriaCasa Type = CategoriaCasa.Combate;
+
+    
 }

@@ -6,9 +6,11 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] public int floors;
     [SerializeField] public int columns;
     [SerializeField] public float scale;
+    [SerializeField] private float randomOffset = 1f;
     [SerializeField] private GameObject Casa_combate;
     [SerializeField] private GameObject linha;
     [SerializeField] private SpriteRenderer background;
+    
 
     private Casa[,] matrix;
     private int startX;
@@ -29,8 +31,8 @@ public class MapGenerator : MonoBehaviour
     public Vector2 GetRoomDrawPosition(int x, int y)
     {
         // This math is only to center the map as much as possible for the camera
-        var xOffset = (x - (columns - 1) / 2.0f) * scale;
-        var yOffset = (y - (floors - 1) / 2.0f) * scale;
+        var xOffset = (x - (columns - 1) / 2.0f) * scale + Random.Range(-randomOffset, randomOffset);
+        var yOffset = (y - (floors - 1) / 2.0f) * scale + Random.Range(-randomOffset, randomOffset);;
         return new Vector2(xOffset, yOffset);
     }
 
@@ -40,15 +42,12 @@ public class MapGenerator : MonoBehaviour
     private void AddLine(Casa previous, Casa current)
     {
         var line = Instantiate(linha).GetComponent<LineRenderer>();
-
-        float offset = 0.43f;
-
-        Vector3 dir = (current.transform.position - previous.transform.position).normalized;
-
-        Vector3 start = previous.transform.position + dir * offset;
-        Vector3 end = current.transform.position - dir * offset;
-
-        line.SetPositions(new Vector3[] { start, end });
+        Vector3[] linePositions = {
+            previous.transform.position,
+            current.transform.position
+        };
+            
+        line.SetPositions(linePositions);
 
     }
     

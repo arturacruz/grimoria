@@ -7,7 +7,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     private bool isMouseOver = false;
     private bool selected = false;
-    [SerializeField] private Transform parent;
+    [SerializeField] private GameObject parent;
 
     private void Update()
     {
@@ -21,7 +21,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         // Unity fucking converts the position to -10 since that is the camera Z.
         mousePos.z = 0;
 
-        parent.position = mousePos;
+        parent.transform.position = mousePos;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -29,12 +29,30 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         isMouseOver = true;
     }
 
+    private void ChangeChildrenSortingLayer(bool above)
+    {
+        foreach (var rend in parent.transform.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (above)
+                rend.sortingLayerID = SortingLayer.NameToID("SelectedCards");
+            else
+                rend.sortingLayerID = SortingLayer.NameToID("Cards");
+        }
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (isMouseOver && !selected)
-            selected = true;
-        else 
-            selected = false;
+        selected = isMouseOver && !selected;
+
+        if (isMouseOver)
+        {
+            if (selected)
+                GridComponent.CreatureSelected.Invoke(parent, true);
+            else
+                GridComponent.CreatureSelected.Invoke(parent, false);
+            ChangeChildrenSortingLayer(selected);
+        }
+        else GridComponent.CreatureSelected.Invoke(null, false);
     }
 
     public void OnPointerExit(PointerEventData eventData)

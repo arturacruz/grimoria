@@ -16,7 +16,6 @@ public class GridComponent : MonoBehaviour
     [SerializeField] private GameObject tilePrefab;
     private float tileSize = 2f;
     private GameObject selectedCreature;
-    private bool canBePlaced;
     
     private void Start()
     {
@@ -48,13 +47,20 @@ public class GridComponent : MonoBehaviour
 
     private void Update()
     {
-        canBePlaced = false;
         if (selectedCreature == null)
             return;
-
+        
         var tileMousePos = GetMouseTilePosition();
         
         var creature = selectedCreature.GetComponent<CreatureComponent>();
+
+        if (!IsPositionInGrid(tileMousePos))
+        {
+            creature.canBePlaced = true;
+            return;
+        }
+        
+        creature.canBePlaced = false;
         for (var y = 0; y < creature.height; y++)
         {
             for (var x = 0; x < creature.width; x++)
@@ -69,9 +75,9 @@ public class GridComponent : MonoBehaviour
 
         var creatureSizeOffset = new Vector2Int(creature.width - 1, creature.height - 1);
         selectedCreature.transform.localPosition = tiledWorldPos - creatureSizeOffset;
-        canBePlaced = true;
+        creature.canBePlaced = true;
     }
-
+    
     public Vector2 GetWorldPosition(Vector2Int tilePos)
     {
         var negTilePos = new Vector2Int(tilePos.x, -tilePos.y);
@@ -115,11 +121,23 @@ public class GridComponent : MonoBehaviour
         var x = tile.x;
         var y = tile.y;
 
-        // It was selected so it should be removed from the grid
-        if (selected)
-            grid[y, x] = null;
-        else
-            grid[y, x] = creature.GetComponent<CreatureComponent>();
+        var creatureComponent = creature.GetComponent<CreatureComponent>();
+        var height = creatureComponent.height;
+        var width = creatureComponent.width;
 
+        CreatureComponent init = null;
+        // It was deselected so it should be put in the grid
+        if (!selected)
+            init = creatureComponent;
+
+        for (var i = 0; i < height; i++)
+        {
+            for (var j = 0; j < width; j++)
+            {
+                var pos = new Vector2Int(x + j, y + i);
+                if (IsPositionInGrid(pos))
+                    grid[pos.y, pos.x] = init;
+            }
+        }
     }
 }

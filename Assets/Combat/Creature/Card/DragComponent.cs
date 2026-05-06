@@ -7,8 +7,16 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     private bool isMouseOver = false;
     private bool selected = false;
+    
+    // For cases of overlapping
+    private bool otherCreatureSelected = false;
     [SerializeField] private GameObject parent;
 
+    private void Start()
+    {
+        GridComponent.CreatureSelected.AddListener(OnCreatureSelected);
+    }
+    
     private void Update()
     {
         if (!selected)
@@ -22,6 +30,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         mousePos.z = 0;
 
         parent.transform.position = mousePos;
+        Debug.Log($"isMouseOver {isMouseOver}, selected: {selected}, can be placed {parent.GetComponent<CreatureComponent>().canBePlaced}");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -42,21 +51,34 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        selected = isMouseOver && !selected;
-
+        if (otherCreatureSelected)
+            return;
+        
+        var component = parent.GetComponent<CreatureComponent>();
         if (isMouseOver)
         {
-            if (selected)
-                GridComponent.CreatureSelected.Invoke(parent, true);
-            else
-                GridComponent.CreatureSelected.Invoke(parent, false);
-            ChangeChildrenSortingLayer(selected);
+            if (!component.canBePlaced && selected)
+                return;
+
+            selected = !selected;
+            GridComponent.CreatureSelected.Invoke(parent, selected);
         }
-        else GridComponent.CreatureSelected.Invoke(null, false);
+        else
+        {
+            component.canBePlaced = false;
+            selected = false;
+            GridComponent.CreatureSelected.Invoke(null, false);
+        }
+        ChangeChildrenSortingLayer(selected);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         isMouseOver = false;
+    }
+
+    private void OnCreatureSelected(GameObject creature, bool selection)
+    {
+        otherCreatureSelected = creature != parent && selection;
     }
 }

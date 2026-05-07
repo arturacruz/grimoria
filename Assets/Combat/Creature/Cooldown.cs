@@ -8,15 +8,12 @@ public class Cooldown
     public Cooldown(float timeSeconds)
     {
         this.timeSeconds = timeSeconds;
+        Restart();
     }
 
-    public bool IsDone()
-    {
-        return Time.time - startTime >= timeSeconds; 
-    }
+    public float ElapsedTimeSec() => Time.time - startTime;
 
-    public void Restart()
-    {
-        startTime = Time.time;
-    }
+    public bool IsDone() => ElapsedTimeSec() >= timeSeconds; 
+
+    public void Restart() => startTime = Time.time;
 }

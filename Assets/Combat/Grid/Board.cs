@@ -6,9 +6,13 @@ public class Board : MonoBehaviour
     [SerializeField] private GridComponent gridComponent;
 
     public bool reflect;
-    public Creature[,] grid => gridComponent.grid;
     public byte width => gridComponent.width;
     public byte height => gridComponent.height;
+
+    public Creature[,] GetGrid()
+    {
+        return gridComponent.grid;
+    }
 
     public uint CreaturesAlive
     {
@@ -17,10 +21,18 @@ public class Board : MonoBehaviour
             uint count = 0;
             for (var y = 0; y < height; y++)
                 for (var x = 0; x < width; x++)
-                    if (grid[y, x] != null)
+                    if (GetGrid()[y, x] != null)
                         count++;
             return count;
         }
+    }
+
+    public bool ContainsCreature(Creature creature)
+    {
+        foreach (var c in GetGrid())
+            if (c != null && c.Equals(creature))
+                return true;
+        return false;
     }
 
     public Vector2Int GetPositionOfCreature(Creature creature)
@@ -35,8 +47,11 @@ public class Board : MonoBehaviour
     {
         if (reflect)
             x = width - x - 1;
+        
+        if (y < 0 || y >= height || x < 0 || x >= width)
+            return null;
 
-        return grid[y, x];
+        return GetGrid()[y, x];
     }
 
     public Creature GetMeleeTargetAt(int y)

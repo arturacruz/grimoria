@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,26 +13,41 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
     public abstract string description { get; }
     protected abstract Element element { get; }
     protected abstract List<Ability> abilities { get; }
+    [SerializeField] private LifeBarComponent lifeBar;
     public int level = 1;
+
+    private void Start()
+    {
+        lifeBar.Init(health.maxHealth);
+    }
 
     public void DoOnStart(Board allies, Board enemies)
     {
         element.DoOnStart(allies, enemies);
         foreach (var ability in abilities)
-            ability.DoOnStart(allies, enemies);
+            ability?.DoOnStart(allies, enemies);
+        
+        cooldown.Restart();
     }
 
-    public void DoAbility(Board allies, Board enemies) 
+    public void DoAbility(Board allies, Board enemies)
     {
+        if (!cooldown.IsDone())
+            return;
+        
         element.DoAbility(allies, enemies);
         foreach (var ability in abilities)
-            ability.DoAbility(allies, enemies);
+            ability?.DoAbility(allies, enemies);
+
+        cooldown.Restart();
     }
 
     public void TakeDamage(uint damage)
     {
         if (health.TakeDamage(damage))
             BattleManager.Instance.CreatureDied.Invoke(this);
+
+        lifeBar.UpdateValue(health.health);
     }
 }
 

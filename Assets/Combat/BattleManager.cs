@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,7 +8,7 @@ public class BattleManager : MonoBehaviour
     public static BattleManager Instance;
 
     public readonly UnityEvent<Creature> CooldownEnded;
-    public readonly UnityEvent<Creature> CreatureDied;
+    public readonly UnityEvent<Creature> CreatureDied = new();
 
     [SerializeField] private Board player;
     [SerializeField] private Board enemy;
@@ -25,6 +26,11 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Instance.CreatureDied.AddListener(OnCreatureDeath);
+    }
+
     private void FixedUpdate()
     {
         if (battleOngoing)
@@ -33,26 +39,28 @@ public class BattleManager : MonoBehaviour
 
     public void StartBattle()
     {
-        foreach (var creature in player.grid)
-            creature.DoOnStart(player, enemy);
+        Debug.Log("battle start");
+        foreach (var creature in player.GetGrid())
+            creature?.DoOnStart(player, enemy);
         
-        foreach (var creature in enemy.grid)
-            creature.DoOnStart(enemy, player);
+        foreach (var creature in enemy.GetGrid())
+            creature?.DoOnStart(enemy, player);
 
         battleOngoing = true;
     }
 
     private void BattleLoop()
     {
-        foreach (var creature in player.grid)
-            creature.DoAbility(player, enemy);
+        foreach (var creature in player.GetGrid())
+            creature?.DoAbility(player, enemy);
         
-        foreach (var creature in enemy.grid)
-            creature.DoAbility(enemy, player);
+        foreach (var creature in enemy.GetGrid())
+            creature?.DoAbility(player, enemy);
     }
     
-    public Creature GetTarget(Creature attacker, bool isPlayerAttacking)
+    public Creature GetTarget(Creature attacker)
     {
+        var isPlayerAttacking = player.ContainsCreature(attacker);
         var attackingBoard = isPlayerAttacking ? player : enemy;
         var targetBoard = isPlayerAttacking ? enemy : player;
 
@@ -69,5 +77,12 @@ public class BattleManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void OnCreatureDeath(Creature creature)
+    {
+        Destroy(creature.gameObject);
+        battleOngoing = false;
+        Debug.Log("battle ended");
     }
 }

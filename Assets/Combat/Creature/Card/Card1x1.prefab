@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65959ba649784db198c05fb3d98bab19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spider
+  lifeBar: {fileID: 7791984377608875981}
   level: 1
 --- !u!1 &2089707066453671125
 GameObject:
@@ -393,6 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8105692415132594610}
   - component: {fileID: 4027620639113749699}
+  - component: {fileID: 7791984377608875981}
   m_Layer: 0
   m_Name: LifeFill
   m_TagString: Untagged
@@ -474,3 +476,16 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &7791984377608875981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8867941003756449328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ac6802f8504e7ab3c7759f028b73f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LifeBarComponent
+  rend: {fileID: 4027620639113749699}

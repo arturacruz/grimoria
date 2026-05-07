@@ -131,6 +131,5 @@ public class GridComponent : MonoBehaviour
         for (var y = 0; y < height; y++)
             for (var x = 0; x < width; x++)
                 occupances[y + i, x + j] = placed;
-        
     }
 }

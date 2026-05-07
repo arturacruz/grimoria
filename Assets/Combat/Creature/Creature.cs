@@ -4,10 +4,11 @@ using UnityEngine;
 public abstract class Creature : MonoBehaviour, IBattleBehaviour
 {
     public abstract string name { get; }
+    public abstract BattleClass battleClass { get; } 
     public abstract byte height { get; }
     public abstract byte width { get;  }
     public abstract HealthComponent health { get; }
-    public abstract float cooldown { get; }
+    public abstract Cooldown cooldown { get; }
     public abstract string description { get; }
     protected abstract Element element { get; }
     protected abstract List<Ability> abilities { get; }
@@ -26,4 +27,15 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
         foreach (var ability in abilities)
             ability.DoAbility(allies, enemies);
     }
+
+    public void TakeDamage(uint damage)
+    {
+        if (health.TakeDamage(damage))
+            BattleManager.Instance.CreatureDied.Invoke(this);
+    }
+}
+
+public enum BattleClass
+{
+    Meele, Flank, AOE
 }

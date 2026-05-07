@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 
 public class GridComponent : MonoBehaviour
 {
-    [SerializeField] private byte height = 3;
-    [SerializeField] private byte width = 3;
+    public byte height = 3;
+    public byte width = 3;
     public Creature[,] grid { get; private set; }
-    public bool[,] occupances { get; private set; }
+    private bool[,] occupances;
 
     [SerializeField] private GameObject tilePrefab;
     private float tileSize = 2f;
@@ -86,7 +86,7 @@ public class GridComponent : MonoBehaviour
         return (Vector2) negTilePos * tileSize + (Vector2) transform.position + new Vector2(tileSize, tileSize) / 2;
     }
 
-    private Vector2Int GetTilePosition(Vector2 worldPos)
+    public Vector2Int GetTilePosition(Vector2 worldPos)
     {
         var pos = (worldPos - (Vector2)transform.position) / tileSize;
         var x = (int) Math.Floor(pos.x);
@@ -131,6 +131,5 @@ public class GridComponent : MonoBehaviour
         for (var y = 0; y < height; y++)
             for (var x = 0; x < width; x++)
                 occupances[y + i, x + j] = placed;
-        
     }
 }

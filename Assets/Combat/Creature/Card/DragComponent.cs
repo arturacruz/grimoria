@@ -7,7 +7,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     private bool isMouseOver = false;
     private bool selected = false;
-    
+
     // For cases of overlapping
     private bool otherCreatureSelected = false;
     [SerializeField] private GameObject parent;
@@ -30,7 +30,6 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         mousePos.z = 0;
 
         parent.transform.position = mousePos;
-        Debug.Log($"isMouseOver {isMouseOver}, selected: {selected}, can be placed {parent.GetComponent<CreatureComponent>().canBePlaced}");
     }
 
     public void OnPointerEnter(PointerEventData eventData)

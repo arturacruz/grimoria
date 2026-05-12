@@ -9,8 +9,8 @@ using UnityEngine.UIElements;
 public class GridComponent : MonoBehaviour
 {
     public static readonly UnityEvent<GameObject, bool> CreatureSelected = new();
-    public byte height { get; private set; } = 3;
-    public byte width { get; private set; } = 3;
+    public byte height = 3;
+    public byte width = 3;
     public CreatureComponent[,] grid { get; private set; }
 
     [SerializeField] private GameObject tilePrefab;
@@ -21,7 +21,7 @@ public class GridComponent : MonoBehaviour
     {
         grid = new CreatureComponent[height, width];
 
-        for (var y = 0; y < height; y++)
+        for (var y = 0; y < height; y++)    
         {
             for (var x = 0; x < width; x++)
             {
@@ -29,6 +29,7 @@ public class GridComponent : MonoBehaviour
                     tilePrefab,
                     GetWorldPosition(new Vector2Int(x, y)),
                     transform.rotation);
+                tile.transform.SetParent(transform);
                 tile.transform.localScale = new Vector3(tileSize, tileSize, 1);
             }
         }

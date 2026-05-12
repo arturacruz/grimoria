@@ -827,7 +827,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1253457155}
   - component: {fileID: 1253457154}
-  - component: {fileID: 1253457156}
   m_Layer: 0
   m_Name: PlayerGrid
   m_TagString: Untagged

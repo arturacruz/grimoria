@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 
 public class GridComponent : MonoBehaviour
 {
-    public static readonly UnityEvent<GameObject, bool> CreatureSelected = new();
     public byte height = 3;
     public byte width = 3;
-    public CreatureComponent[,] grid { get; private set; }
+    public Creature[,] grid { get; private set; }
+    private bool[,] occupances;
 
     [SerializeField] private GameObject tilePrefab;
     private float tileSize = 2f;

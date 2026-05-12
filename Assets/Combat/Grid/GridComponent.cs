@@ -1,10 +1,7 @@
 using System;
-using NUnit.Framework;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class GridComponent : MonoBehaviour
 {
@@ -15,11 +12,18 @@ public class GridComponent : MonoBehaviour
 
     [SerializeField] private GameObject tilePrefab;
     private float tileSize = 2f;
-    private GameObject selectedCreature;
+    private GameObject selectedCreature => GameManager.Instance.SelectedCreature;
+
+    private bool canCreatureBePlaced
+    {
+        get => GameManager.Instance.CanBePlaced;
+        set => GameManager.Instance.CanBePlaced = value;
+    }
     
     private void Start()
     {
-        grid = new CreatureComponent[height, width];
+        grid = new Creature[height, width];
+        occupances = new bool[height, width];
 
         for (var y = 0; y < height; y++)    
         {
@@ -33,8 +37,8 @@ public class GridComponent : MonoBehaviour
                 tile.transform.localScale = new Vector3(tileSize, tileSize, 1);
             }
         }
-
-        CreatureSelected.AddListener(OnCreatureSelected);
+        
+        GameManager.Instance.PlaceCreature.AddListener(OnPlaceCreature);
     }
 
     private Vector2Int GetMouseTilePosition()
@@ -52,16 +56,13 @@ public class GridComponent : MonoBehaviour
             return;
         
         var tileMousePos = GetMouseTilePosition();
-        
-        var creature = selectedCreature.GetComponent<CreatureComponent>();
+        var creature = selectedCreature.GetComponent<Creature>();
 
+        // If the creature is not on this grid
         if (!IsPositionInGrid(tileMousePos))
-        {
-            creature.canBePlaced = true;
             return;
-        }
-        
-        creature.canBePlaced = false;
+
+        canCreatureBePlaced = false;
         for (var y = 0; y < creature.height; y++)
         {
             for (var x = 0; x < creature.width; x++)
@@ -71,15 +72,15 @@ public class GridComponent : MonoBehaviour
                     return;
             }
         }
-
+        
         var tiledWorldPos = GetWorldPosition(tileMousePos);
 
         var creatureSizeOffset = new Vector2Int(creature.width - 1, creature.height - 1);
         selectedCreature.transform.localPosition = tiledWorldPos - creatureSizeOffset;
-        creature.canBePlaced = true;
+        canCreatureBePlaced = true;
     }
     
-    public Vector2 GetWorldPosition(Vector2Int tilePos)
+    private Vector2 GetWorldPosition(Vector2Int tilePos)
     {
         var negTilePos = new Vector2Int(tilePos.x, -tilePos.y);
         // The tileSize / 2 is to correctly centralize the tiles. Rest is self-explanatory.
@@ -97,48 +98,39 @@ public class GridComponent : MonoBehaviour
         return new Vector2Int(x, -y);
     }
 
-    public bool IsPositionOccupied(Vector2Int tilePos)
+    private bool IsPositionOccupied(Vector2Int tilePos)
     {
-        return grid[tilePos.y, tilePos.x] != null;
+        return occupances[tilePos.y, tilePos.x];
     }
 
-    public bool IsPositionInGrid(Vector2Int tilePos)
+    private bool IsPositionInGrid(Vector2Int tilePos)
     {
         return tilePos.x >= 0 && tilePos.x < width && tilePos.y >= 0 && tilePos.y < height;
     }
 
-    private void OnCreatureSelected(GameObject creature, bool selected)
+    private void OnPlaceCreature(bool placed)
     {
-        selectedCreature = creature;
-        if (creature == null)
-            return;
-        
-        selectedCreature = selected ? creature : null;
-        
-        var tile = GetTilePosition(creature.transform.position);
-        if (!IsPositionInGrid(tile))
+        if (!canCreatureBePlaced)
             return;
 
-        var x = tile.x;
-        var y = tile.y;
+        var creatureTilePos = GetTilePosition(selectedCreature.transform.position);
 
-        var creatureComponent = creature.GetComponent<CreatureComponent>();
-        var height = creatureComponent.height;
-        var width = creatureComponent.width;
+        // If this placing was outside this grid, do nothing
+        if (!IsPositionInGrid(creatureTilePos))
+            return;
 
-        CreatureComponent init = null;
-        // It was deselected so it should be put in the grid
-        if (!selected)
-            init = creatureComponent;
+        int i = creatureTilePos.y, j = creatureTilePos.x;
+        
+        var creature = selectedCreature.GetComponent<Creature>();
+        byte width = creature.width, height = creature.height;
 
-        for (var i = 0; i < height; i++)
-        {
-            for (var j = 0; j < width; j++)
-            {
-                var pos = new Vector2Int(x + j, y + i);
-                if (IsPositionInGrid(pos))
-                    grid[pos.y, pos.x] = init;
-            }
-        }
+        Creature init = null;
+        if (placed)
+            init = creature;
+
+        grid[i, j] = init;
+        for (var y = 0; y < height; y++)
+            for (var x = 0; x < width; x++)
+                occupances[y + i, x + j] = placed;
     }
 }

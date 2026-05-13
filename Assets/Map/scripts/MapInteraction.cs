@@ -12,17 +12,23 @@ public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         isMouseOver = true;
     }
     public void OnPointerDown(PointerEventData eventData) {
-        CategoriaCasa tipo_casa = gameObject.GetComponent<Casa>().tipo_casa;
-        if (tipo_casa == CategoriaCasa.Combate || tipo_casa == CategoriaCasa.Boss)
-        {
-            SceneManager.LoadScene("CombatScene");
-        }
+        Casa casa_click = gameObject.GetComponent<Casa>();
 
-        else if (tipo_casa == CategoriaCasa.Shop)
-        {
-            SceneManager.LoadScene("StoreScene");
+        if (MapGenerator.casa_atual.lista_casa.Contains(casa_click)) {
+            CategoriaCasa tipo_casa = casa_click.tipo_casa;
+            
+            if (tipo_casa == CategoriaCasa.Combate || tipo_casa == CategoriaCasa.Boss)
+            {
+                SceneManager.LoadScene("CombatScene");
+            }
+
+            else if (tipo_casa == CategoriaCasa.Shop)
+            {
+                SceneManager.LoadScene("StoreScene");
+            }
+
+            MapGenerator.casa_atual = casa_click;
         }
-        print("teste");
     }
 
     public void OnPointerExit(PointerEventData eventData)

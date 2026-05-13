@@ -13,6 +13,8 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private GameObject linha;
     [SerializeField] private SpriteRenderer background;
 
+    public static Casa casa_atual;
+
     private Casa[,] matrix;
 
     private int startX;
@@ -262,6 +264,8 @@ public class MapGenerator : MonoBehaviour
                     sprite.color = Color.magenta;
                     room.gameObject.name = "Inicio";
                     room.tipo_casa = CategoriaCasa.Inicio;
+                    casa_atual = room;
+
                     continue;
                 }
 

@@ -136,9 +136,6 @@ public class GridComponent : MonoBehaviour
 
     private void OnPlaceCreature(bool placed)
     {
-        if (!canCreatureBePlaced)
-            return;
-
         var creatureTilePos = GetTilePosition(selectedCreature.transform.position);
 
         // If this placing was outside this grid, do nothing

@@ -48,7 +48,6 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log(1);
         isMouseOver = true;
     }
 
@@ -72,7 +71,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             if (!canBePlaced && isSelected)
                 return;
-
+            
             // Order of invoking event has to be this, or else the creature will be null
             if (isSelected)
             {

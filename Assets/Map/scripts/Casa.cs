@@ -7,7 +7,9 @@ public enum CategoriaCasa
 {
     Combate,
     Shop,
-    Boss
+    Boss,
+    
+    Inicio
 }
 
 public class Casa : MonoBehaviour

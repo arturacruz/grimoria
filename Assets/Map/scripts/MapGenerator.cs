@@ -237,14 +237,14 @@ public class MapGenerator : MonoBehaviour
                 if (room == null)
                     continue;
 
-                SpriteRenderer sprite =
-                    room.GetComponent<SpriteRenderer>();
+                SpriteRenderer sprite = room.GetComponent<SpriteRenderer>();
 
                 // Boss
                 if (y == floors - 1 && x == endX)
                 {
                     sprite.color = Color.red;
                     room.tipo_casa = CategoriaCasa.Boss;
+                    room.gameObject.name = "Boss";
                     continue;
                 }
 
@@ -260,6 +260,8 @@ public class MapGenerator : MonoBehaviour
                 if (y == 0)
                 {
                     sprite.color = Color.magenta;
+                    room.gameObject.name = "Inicio";
+                    room.tipo_casa = CategoriaCasa.Inicio;
                     continue;
                 }
 
@@ -267,17 +269,15 @@ public class MapGenerator : MonoBehaviour
                 if (room.tipo_casa == CategoriaCasa.Shop)
                 {
                     sprite.color = Color.green;
+                    room.gameObject.name = "Loja";
 
                     foreach (Casa nextRoom in room.lista_casa)
                     {
-                        if (nextRoom.tipo_casa ==
-                            CategoriaCasa.Shop)
+                        if (nextRoom.tipo_casa == CategoriaCasa.Shop)
                         {
-                            nextRoom.tipo_casa =
-                                CategoriaCasa.Combate;
+                            nextRoom.tipo_casa = CategoriaCasa.Combate;
 
-                            SpriteRenderer nextSprite =
-                                nextRoom.GetComponent<SpriteRenderer>();
+                            SpriteRenderer nextSprite = nextRoom.GetComponent<SpriteRenderer>();
 
                             nextSprite.color = Color.yellow;
                         }
@@ -285,10 +285,10 @@ public class MapGenerator : MonoBehaviour
                 }
 
                 // combat
-                else if (room.tipo_casa ==
-                         CategoriaCasa.Combate)
+                else if (room.tipo_casa == CategoriaCasa.Combate)
                 {
                     sprite.color = Color.yellow;
+                    room.gameObject.name = "Combate";
                 }
             }
         }

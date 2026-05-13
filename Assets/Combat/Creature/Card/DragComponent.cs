@@ -23,13 +23,18 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private bool otherCreatureSelected => GameManager.Instance.SelectedCreature != null && 
                                           GameManager.Instance.SelectedCreature != parent;
 
-    private bool canBePlaced => GameManager.Instance.CanBePlaced;
+    private bool canBePlaced
+    {
+        get => GameManager.Instance.CanBePlaced;
+        set => GameManager.Instance.CanBePlaced = value;
+    }
     
 
     private void Update()
     {
         if (!isSelected)
             return;
+        canBePlaced = false;
 
         var mousePos = Camera.main.ScreenToWorldPoint(
             Mouse.current.position.ReadValue()

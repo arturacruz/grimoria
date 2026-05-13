@@ -118,7 +118,11 @@ public class GridComponent : MonoBehaviour
 
     private void PlaceCreature(int x, int y, Creature creature)
     {
-        var c = Instantiate(creature.gameObject, GetWorldPosition(new Vector2Int(x, y)), transform.rotation);
+        var creatureSizeOffset = new Vector2Int(creature.width - 1, creature.height - 1);
+        var c = Instantiate(
+            creature.gameObject,
+            GetWorldPosition(new Vector2Int(x, y)) - creatureSizeOffset,
+            transform.rotation);
         grid[y, x] = c.GetComponent<Creature>();
         for (var i = 0; i < creature.height; i++)
             for (var j = 0; j < creature.width; j++)

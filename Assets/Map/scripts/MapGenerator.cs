@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,12 +7,21 @@ public class MapGenerator : MonoBehaviour
 {
     [SerializeField] public int floors;
     [SerializeField] public int columns;
-    [SerializeField] public float scale;
-    [SerializeField] private float randomOffset = 1f;
+    [SerializeField] public float scale = 7;
+    [SerializeField] private float horizontalSpacing = 8f;
+    [SerializeField] private float verticalSpacing = 6f;
+    [SerializeField] private float randomOffset = 0.47f;
 
     [SerializeField] private GameObject Casa_combate;
     [SerializeField] private GameObject linha;
     [SerializeField] private SpriteRenderer background;
+
+    [SerializeField] public Sprite combat_sprite;
+    [SerializeField] public Sprite store_sprite;
+    [SerializeField] public Sprite boss_sprite;
+    [SerializeField] public Sprite start_sprite;
+
+    [SerializeField] private Material material_casa;
 
     public static Casa casa_atual;
 
@@ -39,15 +49,16 @@ public class MapGenerator : MonoBehaviour
     /// </summary>
     public Vector2 GetRoomDrawPosition(int x, int y)
     {
-        float xOffset =
-            (x - (columns - 1) / 2.0f) * scale +
-            Random.Range(-randomOffset, randomOffset);
+        float xPos =
+            (x - (columns - 1) / 2f) * horizontalSpacing;
 
-        float yOffset =
-            (y - (floors - 1) / 2.0f) * scale +
-            Random.Range(-randomOffset, randomOffset);
+        float yPos =
+            (y - (floors - 1) / 2f) * verticalSpacing;
 
-        return new Vector2(xOffset, yOffset);
+        xPos += Random.Range(-randomOffset, randomOffset);
+        yPos += Random.Range(-randomOffset, randomOffset);
+
+        return new Vector2(xPos, yPos);
     }
 
     /// <summary>
@@ -86,7 +97,7 @@ public class MapGenerator : MonoBehaviour
         float finalWidth = Mathf.Max(screenWidth, mapWidth);
         float finalHeight = Mathf.Max(screenHeight, mapHeight);
 
-        background.size = new Vector2(finalWidth, finalHeight + 2);
+        background.size = new Vector2(finalWidth, finalHeight + 17);
 
         background.transform.position = new Vector3(0, 0, 1);
     }
@@ -105,6 +116,7 @@ public class MapGenerator : MonoBehaviour
                     GetRoomDrawPosition(x, y),
                     Quaternion.identity
                 );
+                room.transform.localScale = Vector3.one * 0.47f;
 
                 matrix[y, x] = room.GetComponent<Casa>();
             }
@@ -240,13 +252,15 @@ public class MapGenerator : MonoBehaviour
                     continue;
 
                 SpriteRenderer sprite = room.GetComponent<SpriteRenderer>();
+                sprite.material = material_casa;
 
                 // Boss
                 if (y == floors - 1 && x == endX)
                 {
-                    sprite.color = Color.red;
+                    sprite.sprite = boss_sprite;
                     room.tipo_casa = CategoriaCasa.Boss;
                     room.gameObject.name = "Boss";
+                    room.transform.localScale = Vector3.one * 0.7f;
                     continue;
                 }
 
@@ -258,10 +272,12 @@ public class MapGenerator : MonoBehaviour
                     continue;
                 }
 
+                // room.transform.localScale = new Vector3(0.5f, 0.5f, 0f);
+
                 // start
                 if (y == 0)
                 {
-                    sprite.color = Color.magenta;
+                    sprite.sprite = start_sprite;
                     room.gameObject.name = "Inicio";
                     room.tipo_casa = CategoriaCasa.Inicio;
                     casa_atual = room;
@@ -272,7 +288,7 @@ public class MapGenerator : MonoBehaviour
                 // shop
                 if (room.tipo_casa == CategoriaCasa.Shop)
                 {
-                    sprite.color = Color.green;
+                    sprite.sprite = store_sprite;
                     room.gameObject.name = "Loja";
 
                     foreach (Casa nextRoom in room.lista_casa)
@@ -283,7 +299,7 @@ public class MapGenerator : MonoBehaviour
 
                             SpriteRenderer nextSprite = nextRoom.GetComponent<SpriteRenderer>();
 
-                            nextSprite.color = Color.yellow;
+                            nextSprite.sprite = combat_sprite;
                         }
                     }
                 }
@@ -291,7 +307,7 @@ public class MapGenerator : MonoBehaviour
                 // combat
                 else if (room.tipo_casa == CategoriaCasa.Combate)
                 {
-                    sprite.color = Color.yellow;
+                    sprite.sprite = combat_sprite;
                     room.gameObject.name = "Combate";
                 }
             }

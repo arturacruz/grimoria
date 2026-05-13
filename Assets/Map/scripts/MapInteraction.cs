@@ -6,11 +6,25 @@ using System;
 
 public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
-    private bool isMouseOver = false;
+    private Vector3 originalScale;
+    private void Start()
+    {
+        originalScale = transform.localScale;
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        isMouseOver = true;
+        Casa casa = gameObject.GetComponent<Casa>();
+        if (casa.tipo_casa == CategoriaCasa.Boss)
+        {
+            casa.transform.localScale = Vector3.one * 1f;
+        }
+        else
+        {
+        casa.transform.localScale = Vector3.one * 0.677f;
+            
+        }
     }
+
     public void OnPointerDown(PointerEventData eventData) {
         Casa casa_click = gameObject.GetComponent<Casa>();
         if (MapGenerator.casa_atual.lista_casa.Contains(casa_click) && casa_click.tipo_casa != CategoriaCasa.Vizitada) {
@@ -26,6 +40,8 @@ public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             }
             casa_click.tipo_casa = CategoriaCasa.Vizitada;
             casa_click.gameObject.name = "Vizitada";
+            SpriteRenderer sprite_casa = casa_click.GetComponent<SpriteRenderer>();
+            sprite_casa.color = Color.white;
 
             MapGenerator.casa_atual = casa_click;
         }
@@ -33,6 +49,6 @@ public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        isMouseOver = false;
+        gameObject.GetComponent<Casa>().transform.localScale = originalScale;
     }
 }

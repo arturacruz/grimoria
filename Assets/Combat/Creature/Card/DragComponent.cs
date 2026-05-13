@@ -48,6 +48,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log(1);
         isMouseOver = true;
     }
 

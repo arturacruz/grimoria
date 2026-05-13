@@ -129,7 +129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 165682918}
   - component: {fileID: 165682917}
-  - component: {fileID: 165682916}
   - component: {fileID: 165682915}
   m_Layer: 0
   m_Name: CameraDistortion
@@ -182,14 +181,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &165682916
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165682914}
-  m_Enabled: 1
 --- !u!20 &165682917
 Camera:
   m_ObjectHideFlags: 0
@@ -718,6 +709,7 @@ GameObject:
   - component: {fileID: 404970719}
   - component: {fileID: 404970718}
   - component: {fileID: 404970721}
+  - component: {fileID: 404970722}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -843,6 +835,22 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &404970722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404970717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.Physics2DRaycaster
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 5
 --- !u!1 &491689532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,6 +1177,10 @@ PrefabInstance:
       propertyPath: height
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4142520016797510652, guid: b590f7d68e6b97b4695b484678917c0c, type: 3}
+      propertyPath: boardPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: b2b75ab98ac70bb519b109681f7d1f34, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1390,6 +1402,55 @@ RectTransform:
   m_AnchoredPosition: {x: -25, y: -248}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &785446894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 785446896}
+  - component: {fileID: 785446895}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &785446895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785446894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf1dea88c2f41f89ff0762d5e5523f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  SelectedCreature: {fileID: 0}
+  CanBePlaced: 0
+  PlaceCreature:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &785446896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785446894}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.84038, y: 0.83728, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &873662372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,6 +2258,10 @@ PrefabInstance:
       propertyPath: height
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3814412306506980456, guid: 4c86250f45b101e4586801a1990ec6fa, type: 3}
+      propertyPath: boardPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: f1f1970dadd89ed949bd393b2cee87b3, type: 2}
     - target: {fileID: 3852199484788460491, guid: 4c86250f45b101e4586801a1990ec6fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.13
@@ -2604,8 +2669,9 @@ SceneRoots:
   - {fileID: 1512159167}
   - {fileID: 637327051}
   - {fileID: 168261683}
-  - {fileID: 1994538688}
   - {fileID: 2067615869}
   - {fileID: 379492025}
   - {fileID: 1190923884}
   - {fileID: 165682918}
+  - {fileID: 1994538688}
+  - {fileID: 785446896}

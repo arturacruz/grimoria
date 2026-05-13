@@ -9,6 +9,12 @@ public class Board : MonoBehaviour
     public byte width => gridComponent.width;
     public byte height => gridComponent.height;
 
+    public void Awake()
+    {
+        if (reflect) 
+            gridComponent.SetAsEnemy();
+    }
+
     public Creature[,] GetGrid()
     {
         return gridComponent.grid;

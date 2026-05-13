@@ -12,6 +12,7 @@ public class GridComponent : MonoBehaviour
 
     public Creature[,] grid { get; private set; }
     private bool[,] occupances;
+    private bool isEnemy;
 
     [SerializeField] private GameObject tilePrefab;
     private float tileSize = 2f;
@@ -21,6 +22,11 @@ public class GridComponent : MonoBehaviour
     {
         get => GameManager.Instance.CanBePlaced;
         set => GameManager.Instance.CanBePlaced = value;
+    }
+
+    public void SetAsEnemy()
+    {
+        isEnemy = true;
     }
     
     private void Start()
@@ -66,6 +72,8 @@ public class GridComponent : MonoBehaviour
 
     private void Update()
     {
+        if (isEnemy)
+            return;
         if (selectedCreature == null)
             return;
         
@@ -119,11 +127,14 @@ public class GridComponent : MonoBehaviour
     private void PlaceCreature(int x, int y, Creature creature)
     {
         var creatureSizeOffset = new Vector2Int(creature.width - 1, creature.height - 1);
-        var c = Instantiate(
+        var obj = Instantiate(
             creature.gameObject,
             GetWorldPosition(new Vector2Int(x, y)) - creatureSizeOffset,
             transform.rotation);
-        grid[y, x] = c.GetComponent<Creature>();
+        var c = obj.GetComponent<Creature>();
+
+        c.playerSide = !isEnemy;
+        grid[y, x] = c; 
         for (var i = 0; i < creature.height; i++)
             for (var j = 0; j < creature.width; j++)
                 occupances[y + i, x + j] = true;

@@ -8,6 +8,13 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private bool isMouseOver;
     [SerializeField] private GameObject parent;
 
+    private void Start()
+    {
+        var isPlayer = parent.GetComponent<Creature>().playerSide;
+        if (!isPlayer)
+            enabled = false;
+    }
+
     private bool isSelected
     {
         get => GameManager.Instance.SelectedCreature == parent;

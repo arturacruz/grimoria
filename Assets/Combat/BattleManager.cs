@@ -82,6 +82,10 @@ public class BattleManager : MonoBehaviour
     private void OnCreatureDeath(Creature creature)
     {
         Destroy(creature.gameObject);
+        
+        if (player.CreaturesAlive > 0 && enemy.CreaturesAlive > 0)
+            return;
+        
         battleOngoing = false;
         Debug.Log("battle ended");
     }

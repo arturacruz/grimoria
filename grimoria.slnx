@@ -1,4 +1,7 @@
 ﻿<Solution>
+<<<<<<< HEAD
+  <Project Path="Assembly-CSharp.csproj" />
+=======
   <Project Path="Unity.Timeline.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.csproj" />
   <Project Path="Unity.2D.Aseprite.Editor.csproj" />
@@ -50,4 +53,5 @@
   <Project Path="Unity.VisualScripting.DocCodeExamples.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.Entities.csproj" />
   <Project Path="Unity.Collections.Editor.csproj" />
+>>>>>>> d02a7d0e1b4fe413a0e2388639f5a7233dd17b9c
 </Solution>

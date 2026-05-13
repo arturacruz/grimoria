@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2172126137333488955}
-  - component: {fileID: 3824230125331896640}
+  - component: {fileID: 5458056381093757432}
   m_Layer: 0
   m_Name: Card1x2
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 2961913838125216126}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3824230125331896640
+--- !u!114 &5458056381093757432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,11 +44,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 171696272195155258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a929c8fe8e8b6494e89847816cbdcc64, type: 3}
+  m_Script: {fileID: 11500000, guid: fe8cb0f5ca254b82bd89b743c8309f28, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CreatureComponent
-  height: 2
-  width: 1
+  m_EditorClassIdentifier: Assembly-CSharp::Ghoul
+  lifeBar: {fileID: 6147313317721922878}
+  level: 1
 --- !u!1 &2089707066453671125
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8105692415132594610}
   - component: {fileID: 4027620639113749699}
+  - component: {fileID: 6147313317721922878}
   m_Layer: 0
   m_Name: LifeFill
   m_TagString: Untagged
@@ -475,3 +476,16 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &6147313317721922878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8867941003756449328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ac6802f8504e7ab3c7759f028b73f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LifeBarComponent
+  rend: {fileID: 4027620639113749699}

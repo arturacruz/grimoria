@@ -5,21 +5,30 @@ using UnityEngine.InputSystem;
 
 public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
-    private bool isMouseOver = false;
-    private bool selected = false;
-    
-    // For cases of overlapping
-    private bool otherCreatureSelected = false;
+    private bool isMouseOver;
     [SerializeField] private GameObject parent;
 
-    private void Start()
+    private bool isSelected
     {
-        GridComponent.CreatureSelected.AddListener(OnCreatureSelected);
+        get => GameManager.Instance.SelectedCreature == parent;
+        set
+        {
+            if (!value)
+                GameManager.Instance.SelectedCreature = null;
+            else
+                GameManager.Instance.SelectedCreature = parent;
+        }
     }
+
+    private bool otherCreatureSelected => GameManager.Instance.SelectedCreature != null && 
+                                          GameManager.Instance.SelectedCreature != parent;
+
+    private bool canBePlaced => GameManager.Instance.CanBePlaced;
     
+
     private void Update()
     {
-        if (!selected)
+        if (!isSelected)
             return;
 
         var mousePos = Camera.main.ScreenToWorldPoint(
@@ -30,7 +39,6 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         mousePos.z = 0;
 
         parent.transform.position = mousePos;
-        Debug.Log($"isMouseOver {isMouseOver}, selected: {selected}, can be placed {parent.GetComponent<CreatureComponent>().canBePlaced}");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -54,31 +62,30 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (otherCreatureSelected)
             return;
         
-        var component = parent.GetComponent<CreatureComponent>();
         if (isMouseOver)
         {
-            if (!component.canBePlaced && selected)
+            if (!canBePlaced && isSelected)
                 return;
 
-            selected = !selected;
-            GridComponent.CreatureSelected.Invoke(parent, selected);
+            // Order of invoking event has to be this, or else the creature will be null
+            if (isSelected)
+            {
+                GameManager.Instance.PlaceCreature.Invoke(true);
+                isSelected = false;
+            }
+            else
+            {
+                isSelected = true;
+                GameManager.Instance.PlaceCreature.Invoke(false);
+            }
         }
         else
-        {
-            component.canBePlaced = false;
-            selected = false;
-            GridComponent.CreatureSelected.Invoke(null, false);
-        }
-        ChangeChildrenSortingLayer(selected);
+            isSelected = false;
+        ChangeChildrenSortingLayer(isSelected);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         isMouseOver = false;
-    }
-
-    private void OnCreatureSelected(GameObject creature, bool selection)
-    {
-        otherCreatureSelected = creature != parent && selection;
     }
 }

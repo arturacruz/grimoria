@@ -1,5 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+enum BattleResult
+{
+    None,
+    Win,
+    Defeat
+}
 
 public class BattleManager : MonoBehaviour
 {
@@ -9,8 +17,10 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private Board player;
     [SerializeField] private Board enemy;
     [SerializeField] private GameObject trailAttackPrefab;
+    [SerializeField] private GameObject nextSceneButton;
 
     public bool battleOngoing;
+    private BattleResult result = BattleResult.None;
     
     private void Awake()
     {
@@ -21,6 +31,7 @@ public class BattleManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
+        nextSceneButton.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -101,12 +112,24 @@ public class BattleManager : MonoBehaviour
 
     private void KillCreature(Creature creature)
     {
-        var end = creature.playerSide ? player.DestroyCreature(creature) : enemy.DestroyCreature(creature);
+        if (creature.playerSide && player.DestroyCreature(creature))
+            result = BattleResult.Defeat;
+        else if (!creature.playerSide && enemy.DestroyCreature(creature))
+            result = BattleResult.Win;
 
-        if (!end)
+        if (result == BattleResult.None)
             return;
         
         battleOngoing = false;
+        nextSceneButton.SetActive(true);
         Debug.Log("battle ended");
+    }
+
+    public void GoToNextScene()
+    {
+        if (result == BattleResult.Win)
+            SceneManager.LoadScene(3);
+        else
+            SceneManager.LoadScene(0);
     }
 }

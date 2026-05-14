@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - RenderTexture
-  - 
+  - CardOverlay
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: SelectedCards
     uniqueID: 1584472589
+    locked: 0
+  - name: CardOverlay
+    uniqueID: 1041198635
     locked: 0
   m_RenderingLayers:
   - Default

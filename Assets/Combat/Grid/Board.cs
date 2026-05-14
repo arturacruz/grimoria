@@ -8,6 +8,7 @@ public class Board : MonoBehaviour
     public bool reflect;
     public byte width => gridComponent.width;
     public byte height => gridComponent.height;
+    public uint creaturesAlive;
 
     public void Awake()
     {
@@ -15,22 +16,18 @@ public class Board : MonoBehaviour
             gridComponent.SetAsEnemy();
     }
 
+    public void StartBattle()
+    {
+        foreach (var c in gridComponent.grid)
+        {
+            if (c == null) continue;
+            creaturesAlive++;
+        }
+    }
+    
     public Creature[,] GetGrid()
     {
         return gridComponent.grid;
-    }
-
-    public uint CreaturesAlive
-    {
-        get
-        {
-            uint count = 0;
-            for (var y = 0; y < height; y++)
-                for (var x = 0; x < width; x++)
-                    if (GetGrid()[y, x] != null)
-                        count++;
-            return count;
-        }
     }
 
     public bool ContainsCreature(Creature creature)
@@ -41,12 +38,26 @@ public class Board : MonoBehaviour
         return false;
     }
 
-    public Vector2Int GetPositionOfCreature(Creature creature)
+    public Vector2Int GetPositionOfCreature(Creature creature, bool accountReflection)
     {
         var pos = gridComponent.GetTilePosition(creature.transform.position);
-        if (reflect)
-            pos.x = width - pos.x - 1;
+        if (reflect && accountReflection)
+            pos.x = width - pos.x - creature.width;
         return pos;
+    }
+
+    // Returns true if the battle should end
+    public bool DestroyCreature(Creature creature)
+    {
+        var pos = GetPositionOfCreature(creature, false);
+
+        gridComponent.grid[pos.y, pos.x] = null;
+        for (var y = 0; y < creature.height; y++)
+        for (var x = 0; x < creature.width; x++)
+            gridComponent.occupances[pos.y + y, pos.x + x] = false;
+        creaturesAlive--;
+        Destroy(creature.gameObject);
+        return creaturesAlive == 0;
     }
 
     private Creature GetCreatureAt(int x, int y)
@@ -76,7 +87,7 @@ public class Board : MonoBehaviour
 
         foreach (var offset in offsets)
         {
-            for (var x = 0; x < width; x++)
+            for (var x = width - 1; x >= 0; x--)
             {
                 var creature = GetCreatureAt(x, y + offset);
                 if (creature != null)

@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class BiteAbility : Ability
 {
-    public override string description => "Deal damage.";
-    public override float levelToValueRatio => 1;
-    private uint damage = 10;
+    public override string description => $"Deal {damage} damage.";
+    public override uint damage => 10;
 
     public BiteAbility(Creature creature)
     {
@@ -23,8 +22,6 @@ public class BiteAbility : Ability
             Debug.Log($"{owner.name} found no target.");
             return;
         }
-        // TODO: Take level into account
-        target.TakeDamage(damage);
-        Debug.Log($"bite from {owner.name}!");
+        BattleManager.Instance.SpawnAttack(owner, target, damage);
     }
 }

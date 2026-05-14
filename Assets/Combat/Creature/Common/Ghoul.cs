@@ -11,8 +11,8 @@ public class Ghoul : Creature
     public override HealthComponent health => _health;
     public override Cooldown cooldown => _cooldown;
     public override string description => "Just a ghoul.";
-    protected override Element element => _element;
-    protected override List<Ability> abilities => _abilities;
+    public override Element element => _element;
+    public override List<Ability> abilities => _abilities;
 
     private Cooldown _cooldown;
     private HealthComponent _health;

@@ -11,11 +11,12 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
     public abstract HealthComponent health { get; }
     public abstract Cooldown cooldown { get; }
     public abstract string description { get; }
-    protected abstract Element element { get; }
-    protected abstract List<Ability> abilities { get; }
+    public abstract Element element { get; }
+    public abstract List<Ability> abilities { get; }
     [SerializeField] private LifeBarComponent lifeBar;
     public bool playerSide = true;
     public int level = 1;
+    private bool dead;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
 
     public void DoOnStart(Board allies, Board enemies)
     {
+        cooldown.started = true;
         element.DoOnStart(allies, enemies);
         foreach (var ability in abilities)
             ability?.DoOnStart(allies, enemies);
@@ -39,14 +41,20 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
         element.DoAbility(allies, enemies);
         foreach (var ability in abilities)
             ability?.DoAbility(allies, enemies);
+        
 
         cooldown.Restart();
     }
 
     public void TakeDamage(uint damage)
     {
+        if (dead)
+            return;
         if (health.TakeDamage(damage))
-            BattleManager.Instance.CreatureDied.Invoke(this);
+        {
+            BattleManager.Instance.UnlogCreature(this);
+            dead = true;
+        }
 
         lifeBar.UpdateValue(health.health);
     }

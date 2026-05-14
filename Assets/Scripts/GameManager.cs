@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameObject SelectedCreature;
+    public GameObject HoveringCreature;
     public bool CanBePlaced;
     public UnityEvent<bool> PlaceCreature = new();
 

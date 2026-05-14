@@ -11,7 +11,7 @@ public class GridComponent : MonoBehaviour
     public byte width { get; private set; } = 3;
 
     public Creature[,] grid { get; private set; }
-    private bool[,] occupances;
+    public bool[,] occupances { get; private set; }
     private bool isEnemy;
 
     [SerializeField] private GameObject tilePrefab;
@@ -139,7 +139,7 @@ public class GridComponent : MonoBehaviour
             for (var j = 0; j < creature.width; j++)
                 occupances[y + i, x + j] = true;
     }
-
+    
     private bool IsPositionInGrid(Vector2Int tilePos)
     {
         return tilePos.x >= 0 && tilePos.x < width && tilePos.y >= 0 && tilePos.y < height;

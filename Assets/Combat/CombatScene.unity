@@ -119,6 +119,71 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &60982961
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.8397
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.24069
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470760816406941046, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357059939836074003, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+      propertyPath: m_Name
+      value: Overlay
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
 --- !u!1 &614311745
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleManager
   player: {fileID: 1253457156}
   enemy: {fileID: 1243254917}
+  trailAttackPrefab: {fileID: 2978883355105925024, guid: ee6368af6a8d8f44bb62fa68e421f687, type: 3}
+  battleOngoing: 0
 --- !u!4 &614311747
 Transform:
   m_ObjectHideFlags: 0
@@ -434,7 +501,7 @@ Transform:
   m_GameObject: {fileID: 1143255442}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.26, y: 0.38, z: -10}
+  m_LocalPosition: {x: -1.72, y: 1.69, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -667,7 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f1b61b4392d454e8e7d626eab62457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridComponent
-  boardPreset: {fileID: 11400000, guid: b7371c53392c198ff9379434b8d8c627, type: 2}
+  boardPreset: {fileID: 11400000, guid: 4ba2ef5a4f735f1e2a01280d62f8fb12, type: 2}
   tilePrefab: {fileID: 6915690929748932554, guid: da39cb09116fe114c90600346a38bd1e, type: 3}
 --- !u!4 &1243254916
 Transform:
@@ -698,6 +765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Board
   gridComponent: {fileID: 1243254915}
   reflect: 1
+  creaturesAlive: 0
 --- !u!1 &1253457153
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Board
   gridComponent: {fileID: 1253457154}
   reflect: 0
+  creaturesAlive: 0
 --- !u!1 &1763217509
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,6 +991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   SelectedCreature: {fileID: 0}
+  HoveringCreature: {fileID: 0}
   CanBePlaced: 0
   PlaceCreature:
     m_PersistentCalls:
@@ -952,3 +1022,4 @@ SceneRoots:
   - {fileID: 2143725312}
   - {fileID: 899806186}
   - {fileID: 614311747}
+  - {fileID: 60982961}

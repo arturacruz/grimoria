@@ -19,7 +19,6 @@ public class HealthComponent
     public bool TakeDamage(uint damage)
     {
         health -= (int) damage;
-        Debug.Log($"took damage, remaining health: {health}");
         return ShouldDie();
     }
     

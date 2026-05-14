@@ -7,9 +7,13 @@ using System;
 public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     private Vector3 originalScale;
+    [SerializeField] private SpriteRenderer marked;
     private void Start()
     {
         originalScale = transform.localScale;
+        marked.enabled = false;
+        marked.transform.localScale = Vector3.one * 0.4f;
+
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -20,8 +24,7 @@ public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
         else
         {
-        casa.transform.localScale = Vector3.one * 0.677f;
-            
+            casa.transform.localScale = Vector3.one * 0.677f;
         }
     }
 
@@ -42,8 +45,10 @@ public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             casa_click.gameObject.name = "Vizitada";
             SpriteRenderer sprite_casa = casa_click.GetComponent<SpriteRenderer>();
             sprite_casa.color = Color.white;
+            marked.enabled = true;
 
             MapGenerator.casa_atual = casa_click;
+            MapGenerator.Player.transform.position = casa_click.transform.position;
         }
     }
 

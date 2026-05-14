@@ -23,6 +23,9 @@ public class MapGenerator : MonoBehaviour
 
     [SerializeField] private Material material_casa;
 
+    [SerializeField] private SpriteRenderer player;
+    public static SpriteRenderer Player;
+
     public static Casa casa_atual;
 
     private Casa[,] matrix;
@@ -38,6 +41,8 @@ public class MapGenerator : MonoBehaviour
 
     private void Start()
     {
+        Player = player;
+        Player.transform.localScale = Vector3.one * 0.47f;
         matrix = new Casa[floors, columns];
 
         GenerateMap();
@@ -87,6 +92,7 @@ public class MapGenerator : MonoBehaviour
     private void ResizeBackground()
     {
         background.sortingOrder = -10;
+        player.sortingOrder = 100;
 
         float screenHeight = Camera.main.orthographicSize * 2;
         float screenWidth = screenHeight * Screen.width / Screen.height;
@@ -97,7 +103,7 @@ public class MapGenerator : MonoBehaviour
         float finalWidth = Mathf.Max(screenWidth, mapWidth);
         float finalHeight = Mathf.Max(screenHeight, mapHeight);
 
-        background.size = new Vector2(finalWidth, finalHeight + 17);
+        background.size = new Vector2(finalWidth, finalHeight + 20);
 
         background.transform.position = new Vector3(0, 0, 1);
     }
@@ -240,7 +246,7 @@ public class MapGenerator : MonoBehaviour
     /// <summary>
     /// Categorizes rooms.
     /// </summary>
-    private void CategorizeRooms()
+private void CategorizeRooms()
     {
         for (int y = 0; y < floors; y++)
         {
@@ -251,64 +257,85 @@ public class MapGenerator : MonoBehaviour
                 if (room == null)
                     continue;
 
-                SpriteRenderer sprite = room.GetComponent<SpriteRenderer>();
+                SpriteRenderer sprite =
+                    room.GetComponent<SpriteRenderer>();
+
                 sprite.material = material_casa;
 
-                // Boss
+                if (y == 0 && x == startX)
+                {
+                    sprite.sprite = start_sprite;
+
+                    room.gameObject.name = "Inicio";
+                    room.tipo_casa = CategoriaCasa.Inicio;
+
+                    casa_atual = room;
+
+                    player.transform.position =
+                        new Vector3(
+                            room.transform.position.x,
+                            room.transform.position.y,
+                            -1f
+                        );
+
+                    player.sortingOrder = 100;
+
+                    continue;
+                }
+
                 if (y == floors - 1 && x == endX)
                 {
                     sprite.sprite = boss_sprite;
+
                     room.tipo_casa = CategoriaCasa.Boss;
                     room.gameObject.name = "Boss";
-                    room.transform.localScale = Vector3.one * 0.7f;
+
+                    room.transform.localScale =
+                        Vector3.one * 0.7f;
+
                     continue;
                 }
 
-                // remove unused
                 if (room.lista_casa.Count == 0)
                 {
                     Destroy(room.gameObject);
+
                     matrix[y, x] = null;
-                    continue;
-                }
-
-                // room.transform.localScale = new Vector3(0.5f, 0.5f, 0f);
-
-                // start
-                if (y == 0)
-                {
-                    sprite.sprite = start_sprite;
-                    room.gameObject.name = "Inicio";
-                    room.tipo_casa = CategoriaCasa.Inicio;
-                    casa_atual = room;
 
                     continue;
                 }
 
-                // shop
                 if (room.tipo_casa == CategoriaCasa.Shop)
                 {
                     sprite.sprite = store_sprite;
+
                     room.gameObject.name = "Loja";
 
                     foreach (Casa nextRoom in room.lista_casa)
                     {
-                        if (nextRoom.tipo_casa == CategoriaCasa.Shop)
+                        if (nextRoom.tipo_casa ==
+                            CategoriaCasa.Shop)
                         {
-                            nextRoom.tipo_casa = CategoriaCasa.Combate;
+                            nextRoom.tipo_casa =
+                                CategoriaCasa.Combate;
 
-                            SpriteRenderer nextSprite = nextRoom.GetComponent<SpriteRenderer>();
+                            SpriteRenderer nextSprite =
+                                nextRoom.GetComponent<SpriteRenderer>();
 
-                            nextSprite.sprite = combat_sprite;
+                            nextSprite.sprite =
+                                combat_sprite;
                         }
                     }
                 }
 
-                // combat
-                else if (room.tipo_casa == CategoriaCasa.Combate)
+                else
                 {
                     sprite.sprite = combat_sprite;
+
                     room.gameObject.name = "Combate";
+
+                    room.tipo_casa =
+                        CategoriaCasa.Combate;
                 }
             }
         }

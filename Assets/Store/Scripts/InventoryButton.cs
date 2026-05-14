@@ -4,7 +4,7 @@ namespace Store.Scripts
 {
     public class InventoryButton : MonoBehaviour
     {
-        [SerializeField] private Inventory inventory;
+        [SerializeField] private CameraInventoryMover inventory;
 
         private void OnMouseDown()
         {

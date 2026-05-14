@@ -9,12 +9,6 @@ public class GameManager : MonoBehaviour
     public bool CanBePlaced;
     public UnityEvent<bool> PlaceCreature = new();
 
-    private void Update()
-    {
-        CanBePlaced = true;
-    }
-
-
     private void Awake()
     {
         if (Instance != null && Instance != this)

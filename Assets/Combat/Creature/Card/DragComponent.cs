@@ -8,6 +8,13 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private bool isMouseOver;
     [SerializeField] private GameObject parent;
 
+    private void Start()
+    {
+        var isPlayer = parent.GetComponent<Creature>().playerSide;
+        if (!isPlayer)
+            enabled = false;
+    }
+
     private bool isSelected
     {
         get => GameManager.Instance.SelectedCreature == parent;
@@ -23,13 +30,18 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private bool otherCreatureSelected => GameManager.Instance.SelectedCreature != null && 
                                           GameManager.Instance.SelectedCreature != parent;
 
-    private bool canBePlaced => GameManager.Instance.CanBePlaced;
+    private bool canBePlaced
+    {
+        get => GameManager.Instance.CanBePlaced;
+        set => GameManager.Instance.CanBePlaced = value;
+    }
     
 
     private void Update()
     {
         if (!isSelected)
             return;
+        canBePlaced = false;
 
         var mousePos = Camera.main.ScreenToWorldPoint(
             Mouse.current.position.ReadValue()
@@ -66,7 +78,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             if (!canBePlaced && isSelected)
                 return;
-
+            
             // Order of invoking event has to be this, or else the creature will be null
             if (isSelected)
             {

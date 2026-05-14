@@ -14,6 +14,7 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
     protected abstract Element element { get; }
     protected abstract List<Ability> abilities { get; }
     [SerializeField] private LifeBarComponent lifeBar;
+    public bool playerSide = true;
     public int level = 1;
 
     private void Start()

@@ -1,14 +1,18 @@
 using System;
+using Combat.BoardPreset;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class GridComponent : MonoBehaviour
 {
-    public byte height = 3;
-    public byte width = 3;
+    [SerializeField] private BoardPresetObject boardPreset;
+    public byte height { get; private set; }= 3;
+    public byte width { get; private set; } = 3;
+
     public Creature[,] grid { get; private set; }
     private bool[,] occupances;
+    private bool isEnemy;
 
     [SerializeField] private GameObject tilePrefab;
     private float tileSize = 2f;
@@ -19,9 +23,19 @@ public class GridComponent : MonoBehaviour
         get => GameManager.Instance.CanBePlaced;
         set => GameManager.Instance.CanBePlaced = value;
     }
+
+    public void SetAsEnemy()
+    {
+        isEnemy = true;
+    }
     
     private void Start()
     {
+        if (boardPreset != null)
+        {
+            height = (byte) boardPreset.preset.Length;
+            width = (byte) boardPreset.preset[0].creatures.Length;
+        }
         grid = new Creature[height, width];
         occupances = new bool[height, width];
 
@@ -35,6 +49,12 @@ public class GridComponent : MonoBehaviour
                     transform.rotation);
                 tile.transform.SetParent(transform);
                 tile.transform.localScale = new Vector3(tileSize, tileSize, 1);
+                if (boardPreset == null) continue;
+
+                var creature = boardPreset.preset[y].creatures[x];
+                if (creature == null) continue;
+
+                PlaceCreature(x, y, creature);
             }
         }
         
@@ -52,6 +72,8 @@ public class GridComponent : MonoBehaviour
 
     private void Update()
     {
+        if (isEnemy)
+            return;
         if (selectedCreature == null)
             return;
         
@@ -61,8 +83,7 @@ public class GridComponent : MonoBehaviour
         // If the creature is not on this grid
         if (!IsPositionInGrid(tileMousePos))
             return;
-
-        canCreatureBePlaced = false;
+        
         for (var y = 0; y < creature.height; y++)
         {
             for (var x = 0; x < creature.width; x++)
@@ -103,6 +124,22 @@ public class GridComponent : MonoBehaviour
         return occupances[tilePos.y, tilePos.x];
     }
 
+    private void PlaceCreature(int x, int y, Creature creature)
+    {
+        var creatureSizeOffset = new Vector2Int(creature.width - 1, creature.height - 1);
+        var obj = Instantiate(
+            creature.gameObject,
+            GetWorldPosition(new Vector2Int(x, y)) - creatureSizeOffset,
+            transform.rotation);
+        var c = obj.GetComponent<Creature>();
+
+        c.playerSide = !isEnemy;
+        grid[y, x] = c; 
+        for (var i = 0; i < creature.height; i++)
+            for (var j = 0; j < creature.width; j++)
+                occupances[y + i, x + j] = true;
+    }
+
     private bool IsPositionInGrid(Vector2Int tilePos)
     {
         return tilePos.x >= 0 && tilePos.x < width && tilePos.y >= 0 && tilePos.y < height;
@@ -110,9 +147,6 @@ public class GridComponent : MonoBehaviour
 
     private void OnPlaceCreature(bool placed)
     {
-        if (!canCreatureBePlaced)
-            return;
-
         var creatureTilePos = GetTilePosition(selectedCreature.transform.position);
 
         // If this placing was outside this grid, do nothing

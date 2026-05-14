@@ -6,27 +6,54 @@ using System;
 
 public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
-    private bool isMouseOver = false;
+    private Vector3 originalScale;
+    [SerializeField] private SpriteRenderer marked;
+    private void Start()
+    {
+        originalScale = transform.localScale;
+        marked.enabled = false;
+        marked.transform.localScale = Vector3.one * 0.4f;
+
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        isMouseOver = true;
+        Casa casa = gameObject.GetComponent<Casa>();
+        if (casa.tipo_casa == CategoriaCasa.Boss)
+        {
+            casa.transform.localScale = Vector3.one * 1f;
+        }
+        else
+        {
+            casa.transform.localScale = Vector3.one * 0.677f;
+        }
     }
-    public void OnPointerDown(PointerEventData eventData) {
-        CategoriaCasa tipo_casa = gameObject.GetComponent<Casa>().tipo_casa;
-        if (tipo_casa == CategoriaCasa.Combate || tipo_casa == CategoriaCasa.Boss)
-        {
-            SceneManager.LoadScene("CombatScene");
-        }
 
-        else if (tipo_casa == CategoriaCasa.Shop)
-        {
-            SceneManager.LoadScene("StoreScene");
+    public void OnPointerDown(PointerEventData eventData) {
+        Casa casa_click = gameObject.GetComponent<Casa>();
+        if (MapGenerator.casa_atual.lista_casa.Contains(casa_click) && casa_click.tipo_casa != CategoriaCasa.Vizitada) {
+            CategoriaCasa tipo_casa = casa_click.tipo_casa;
+            if (tipo_casa == CategoriaCasa.Combate || tipo_casa == CategoriaCasa.Boss)
+            {
+                SceneManager.LoadScene("CombatScene");
+            }
+
+            else if (tipo_casa == CategoriaCasa.Shop)
+            {
+                SceneManager.LoadScene("StoreScene");
+            }
+            casa_click.tipo_casa = CategoriaCasa.Vizitada;
+            casa_click.gameObject.name = "Vizitada";
+            SpriteRenderer sprite_casa = casa_click.GetComponent<SpriteRenderer>();
+            sprite_casa.color = Color.white;
+            marked.enabled = true;
+
+            MapGenerator.casa_atual = casa_click;
+            MapGenerator.Player.transform.position = casa_click.transform.position;
         }
-        print("teste");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        isMouseOver = false;
+        gameObject.GetComponent<Casa>().transform.localScale = originalScale;
     }
 }

@@ -14,6 +14,10 @@ public enum CategoriaCasa
 
 public class Casa : MonoBehaviour
 {
+    public int x;
+    public int y;
+
+    public bool visited = false;
     public List<Casa> lista_casa = new List<Casa>();
 
     public CategoriaCasa tipo_casa;

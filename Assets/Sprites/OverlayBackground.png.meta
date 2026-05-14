@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 46436e517fbce7e46b8954379adc9224
+guid: 9d3589357876b9b4aa66852e475d8abf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3873087697204469031
-    second: spider_0
+      213: -7407483522958772637
+    second: OverlayBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spider_0
+      name: OverlayBackground_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 1024
+        width: 192
+        height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72ddec77db8ffb530800000000000000
-      internalID: 3873087697204469031
+      spriteID: 366bb7e7bf4533990800000000000000
+      internalID: -7407483522958772637
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: cb12a45625ff2deb294f245a07dc5367
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      spider_0: 3873087697204469031
+      OverlayBackground_0: -7407483522958772637
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

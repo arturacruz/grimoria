@@ -5,15 +5,10 @@ using UnityEngine.InputSystem;
 
 public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
-    private bool isMouseOver;
+    private bool isMouseOver => GameManager.Instance.HoveringCreature == parent;
     [SerializeField] private GameObject parent;
 
-    private void Start()
-    {
-        var isPlayer = parent.GetComponent<Creature>().playerSide;
-        if (!isPlayer)
-            enabled = false;
-    }
+    private bool isPlayer => parent.GetComponent<Creature>().playerSide;
 
     private bool isSelected
     {
@@ -39,7 +34,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void Update()
     {
-        if (!isSelected)
+        if (!isSelected || !isPlayer)
             return;
         canBePlaced = false;
 
@@ -55,7 +50,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        isMouseOver = true;
+        GameManager.Instance.HoveringCreature = parent;
     }
 
     private void ChangeChildrenSortingLayer(bool above)
@@ -71,7 +66,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (otherCreatureSelected)
+        if (otherCreatureSelected || !isPlayer || BattleManager.Instance.battleOngoing)
             return;
         
         if (isMouseOver)
@@ -98,6 +93,6 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        isMouseOver = false;
+        GameManager.Instance.HoveringCreature = null;
     }
 }

@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Cooldown
 {
-    private float timeSeconds;
+    public float timeSeconds;
     private float startTime;
+    public bool started;
 
     public Cooldown(float timeSeconds)
     {
@@ -11,7 +12,7 @@ public class Cooldown
         Restart();
     }
 
-    public float ElapsedTimeSec() => Time.time - startTime;
+    public float ElapsedTimeSec() => started ? Time.time - startTime : 0;
 
     public bool IsDone() => ElapsedTimeSec() >= timeSeconds; 
 

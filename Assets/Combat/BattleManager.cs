@@ -1,19 +1,16 @@
-using System;
-using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
-
-    public readonly UnityEvent<Creature> CooldownEnded;
-    public readonly UnityEvent<Creature> CreatureDied = new();
+    public readonly Queue<Creature> DeathPool = new();
 
     [SerializeField] private Board player;
     [SerializeField] private Board enemy;
+    [SerializeField] private GameObject trailAttackPrefab;
 
-    private bool battleOngoing;
+    public bool battleOngoing;
     
     private void Awake()
     {
@@ -26,11 +23,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Instance.CreatureDied.AddListener(OnCreatureDeath);
-    }
-
     private void FixedUpdate()
     {
         if (battleOngoing)
@@ -39,7 +31,9 @@ public class BattleManager : MonoBehaviour
 
     public void StartBattle()
     {
-        Debug.Log("battle start");
+        player.StartBattle();
+        enemy.StartBattle();
+        
         foreach (var creature in player.GetGrid())
             creature?.DoOnStart(player, enemy);
         
@@ -56,15 +50,17 @@ public class BattleManager : MonoBehaviour
         
         foreach (var creature in enemy.GetGrid())
             creature?.DoAbility(player, enemy);
+        
+        HandleDeaths();
     }
     
     public Creature GetTarget(Creature attacker)
     {
-        var isPlayerAttacking = player.ContainsCreature(attacker);
+        var isPlayerAttacking = attacker.playerSide;
         var attackingBoard = isPlayerAttacking ? player : enemy;
         var targetBoard = isPlayerAttacking ? enemy : player;
 
-        var y = attackingBoard.GetPositionOfCreature(attacker).y;
+        var y = attackingBoard.GetPositionOfCreature(attacker, true).y;
 
         switch (attacker.battleClass)
         {
@@ -78,12 +74,36 @@ public class BattleManager : MonoBehaviour
 
         return null;
     }
-
-    private void OnCreatureDeath(Creature creature)
+    
+    private void HandleDeaths()
     {
-        Destroy(creature.gameObject);
-        
-        if (player.CreaturesAlive > 0 && enemy.CreaturesAlive > 0)
+        while (DeathPool.Count > 0)
+        {
+            var c = DeathPool.Dequeue();
+            KillCreature(c);
+        }
+    }
+
+    public void SpawnAttack(Creature from, Creature to, uint damage)
+    {
+        var fromc = from.gameObject;
+        var obj = Instantiate(trailAttackPrefab, fromc.transform.position, fromc.transform.rotation);
+        var trail = obj.GetComponent<TrailComponent>();
+        trail.damage = damage;
+        trail.target = to;
+    }
+    
+
+    public void UnlogCreature(Creature creature)
+    {
+        DeathPool.Enqueue(creature);
+    }
+
+    private void KillCreature(Creature creature)
+    {
+        var end = creature.playerSide ? player.DestroyCreature(creature) : enemy.DestroyCreature(creature);
+
+        if (!end)
             return;
         
         battleOngoing = false;

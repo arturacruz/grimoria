@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spider
   lifeBar: {fileID: 7791984377608875981}
+  playerSide: 1
   level: 1
 --- !u!1 &2089707066453671125
 GameObject:

@@ -1,0 +1,1274 @@
+fileFormatVersion: 2
+guid: ba73b3c5f5cdd2e42a11194ad5c86a52
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7530266292162267926
+    second: bau_semfundo 1_0
+  - first:
+      213: 8167110711114944698
+    second: bau_semfundo 1_1
+  - first:
+      213: 7158640210501919809
+    second: bau_semfundo 1_2
+  - first:
+      213: -2040895048817152048
+    second: bau_semfundo 1_3
+  - first:
+      213: 1094183060354573720
+    second: bau_semfundo 1_4
+  - first:
+      213: -2173459905940988723
+    second: bau_semfundo 1_5
+  - first:
+      213: 5767356682835141115
+    second: bau_semfundo 1_6
+  - first:
+      213: -3910891345629932804
+    second: bau_semfundo 1_7
+  - first:
+      213: 5203359066838247288
+    second: bau_semfundo 1_8
+  - first:
+      213: 3398183456930304725
+    second: bau_semfundo 1_9
+  - first:
+      213: 5154893095996298329
+    second: bau_semfundo 1_10
+  - first:
+      213: -3274900164851816508
+    second: bau_semfundo 1_11
+  - first:
+      213: -250806536218462899
+    second: bau_semfundo 1_12
+  - first:
+      213: -7155957606651209667
+    second: bau_semfundo 1_13
+  - first:
+      213: -6047905419372870169
+    second: bau_semfundo 1_14
+  - first:
+      213: -7451843763291075244
+    second: bau_semfundo 1_15
+  - first:
+      213: 1427575487444588599
+    second: bau_semfundo 1_16
+  - first:
+      213: 2409407113539230893
+    second: bau_semfundo 1_17
+  - first:
+      213: -6051730841253143629
+    second: bau_semfundo 1_18
+  - first:
+      213: -2006418880704124808
+    second: bau_semfundo 1_19
+  - first:
+      213: -544818068015227626
+    second: bau_semfundo 1_20
+  - first:
+      213: 408737973591126663
+    second: bau_semfundo 1_21
+  - first:
+      213: -942759446640763354
+    second: bau_semfundo 1_22
+  - first:
+      213: 7169626547253750049
+    second: bau_semfundo 1_23
+  - first:
+      213: -4038355065709378200
+    second: bau_semfundo 1_24
+  - first:
+      213: -7728701072604271210
+    second: bau_semfundo 1_25
+  - first:
+      213: 3578735717365941861
+    second: bau_semfundo 1_26
+  - first:
+      213: 5256751177507892479
+    second: bau_semfundo 1_27
+  - first:
+      213: -552449174449952659
+    second: bau_semfundo 1_28
+  - first:
+      213: 2737550759498322693
+    second: bau_semfundo 1_29
+  - first:
+      213: -7470376138565030941
+    second: bau_semfundo 1_30
+  - first:
+      213: 7826202247973963679
+    second: bau_semfundo 1_31
+  - first:
+      213: -8352860200232796476
+    second: bau_semfundo 1_32
+  - first:
+      213: -8546513438580871897
+    second: bau_semfundo 1_33
+  - first:
+      213: -1945647173716809392
+    second: bau_semfundo 1_34
+  - first:
+      213: 7338118846090729084
+    second: bau_semfundo 1_35
+  - first:
+      213: 4844855403874430141
+    second: bau_semfundo 1_36
+  - first:
+      213: 2462365055893752300
+    second: bau_semfundo 1_37
+  - first:
+      213: 2983477826777711712
+    second: bau_semfundo 1_38
+  - first:
+      213: 2137656347639792646
+    second: bau_semfundo 1_39
+  - first:
+      213: -6851942974306661479
+    second: bau_semfundo 1_40
+  - first:
+      213: -7722504980917562446
+    second: bau_semfundo 1_41
+  - first:
+      213: -2276737354109557522
+    second: bau_semfundo 1_42
+  - first:
+      213: -6765533227683684020
+    second: bau_semfundo 1_43
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bau_semfundo 1_0
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 629
+        width: 144
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae4f19f44be1f7790800000000000000
+      internalID: -7530266292162267926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_1
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 629
+        width: 143
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab05b49abe7675170800000000000000
+      internalID: 8167110711114944698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_2
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 629
+        width: 145
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1446bc5e759985360800000000000000
+      internalID: 7158640210501919809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_3
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 629
+        width: 147
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0df666724c84da3e0800000000000000
+      internalID: -2040895048817152048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_4
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 629
+        width: 147
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8952fa732b15f2f00800000000000000
+      internalID: 1094183060354573720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_5
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 629
+        width: 149
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcc55d42bb156d1e0800000000000000
+      internalID: -2173459905940988723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_6
+      rect:
+        serializedVersion: 2
+        x: 1389
+        y: 629
+        width: 153
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf12d55a854c90050800000000000000
+      internalID: 5767356682835141115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 396
+        width: 153
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf2149cba09b9b9c0800000000000000
+      internalID: -3910891345629932804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_8
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 396
+        width: 154
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 877a3b1b08b063840800000000000000
+      internalID: 5203359066838247288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_9
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 396
+        width: 161
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d290f789d5c82f20800000000000000
+      internalID: 3398183456930304725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_10
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 396
+        width: 177
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95419f185fbd98740800000000000000
+      internalID: 5154893095996298329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_11
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 396
+        width: 184
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c7a327b6a73d82d0800000000000000
+      internalID: -3274900164851816508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_12
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 396
+        width: 202
+        height: 181
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d453a5db8c4f48cf0800000000000000
+      internalID: -250806536218462899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_13
+      rect:
+        serializedVersion: 2
+        x: 1362
+        y: 510
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d38dccb787ee0bc90800000000000000
+      internalID: -7155957606651209667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_14
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 396
+        width: 191
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e5ce137016811ca0800000000000000
+      internalID: -6047905419372870169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_15
+      rect:
+        serializedVersion: 2
+        x: 1565
+        y: 492
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45d435f249bb59890800000000000000
+      internalID: -7451843763291075244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_16
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 484
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 738903b9754cfc310800000000000000
+      internalID: 1427575487444588599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_17
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 127
+        width: 216
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dac1ec1110fef6120800000000000000
+      internalID: 2409407113539230893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_18
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 127
+        width: 220
+        height: 221
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bb94d20ddee30ca0800000000000000
+      internalID: -6051730841253143629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_19
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 126
+        width: 214
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8786ef098a4c724e0800000000000000
+      internalID: -2006418880704124808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_20
+      rect:
+        serializedVersion: 2
+        x: 1403
+        y: 344
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61ddcbc8ada6078f0800000000000000
+      internalID: -544818068015227626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_21
+      rect:
+        serializedVersion: 2
+        x: 1527
+        y: 344
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 782bc1a75012ca500800000000000000
+      internalID: 408737973591126663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_22
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 127
+        width: 203
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62e555a3745aae2f0800000000000000
+      internalID: -942759446640763354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_23
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 126
+        width: 210
+        height: 216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1292541cb51af7360800000000000000
+      internalID: 7169626547253750049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_24
+      rect:
+        serializedVersion: 2
+        x: 1355
+        y: 331
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8654e7fb671e4f7c0800000000000000
+      internalID: -4038355065709378200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_25
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 330
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69ded38a2532eb490800000000000000
+      internalID: -7728701072604271210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_26
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 126
+        width: 199
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 566899a8c293aa130800000000000000
+      internalID: 3578735717365941861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_27
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 127
+        width: 188
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffc69ff285bb3f840800000000000000
+      internalID: 5256751177507892479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_28
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 281
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d68e370276e4558f0800000000000000
+      internalID: -552449174449952659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_29
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 283
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5039f7e59ebbdf520800000000000000
+      internalID: 2737550759498322693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_30
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 281
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ebe6425b74e35890800000000000000
+      internalID: -7470376138565030941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_31
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 276
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f970ad2ca714c9c60800000000000000
+      internalID: 7826202247973963679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_32
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 253
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ce30aa37eda41c80800000000000000
+      internalID: -8352860200232796476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_33
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 256
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72de8491f4fa46980800000000000000
+      internalID: -8546513438580871897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_34
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 254
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 059ed58343caff4e0800000000000000
+      internalID: -1945647173716809392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_35
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 258
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7656d4263c36d560800000000000000
+      internalID: 7338118846090729084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_36
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 254
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbc211812526c3340800000000000000
+      internalID: 4844855403874430141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_37
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 243
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce9c1efd8f31c2220800000000000000
+      internalID: 2462365055893752300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_38
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 238
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 064075cb641776920800000000000000
+      internalID: 2983477826777711712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_39
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 227
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 604cde45f1b7aad10800000000000000
+      internalID: 2137656347639792646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_40
+      rect:
+        serializedVersion: 2
+        x: 1571
+        y: 230
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99bc7330b2209e0a0800000000000000
+      internalID: -6851942974306661479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_41
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 215
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b3593ca2a624d490800000000000000
+      internalID: -7722504980917562446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_42
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 222
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee4ef6960776760e0800000000000000
+      internalID: -2276737354109557522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bau_semfundo 1_43
+      rect:
+        serializedVersion: 2
+        x: 1125
+        y: 223
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c41efcfef5ffb12a0800000000000000
+      internalID: -6765533227683684020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      bau_semfundo 1_0: -7530266292162267926
+      bau_semfundo 1_1: 8167110711114944698
+      bau_semfundo 1_10: 5154893095996298329
+      bau_semfundo 1_11: -3274900164851816508
+      bau_semfundo 1_12: -250806536218462899
+      bau_semfundo 1_13: -7155957606651209667
+      bau_semfundo 1_14: -6047905419372870169
+      bau_semfundo 1_15: -7451843763291075244
+      bau_semfundo 1_16: 1427575487444588599
+      bau_semfundo 1_17: 2409407113539230893
+      bau_semfundo 1_18: -6051730841253143629
+      bau_semfundo 1_19: -2006418880704124808
+      bau_semfundo 1_2: 7158640210501919809
+      bau_semfundo 1_20: -544818068015227626
+      bau_semfundo 1_21: 408737973591126663
+      bau_semfundo 1_22: -942759446640763354
+      bau_semfundo 1_23: 7169626547253750049
+      bau_semfundo 1_24: -4038355065709378200
+      bau_semfundo 1_25: -7728701072604271210
+      bau_semfundo 1_26: 3578735717365941861
+      bau_semfundo 1_27: 5256751177507892479
+      bau_semfundo 1_28: -552449174449952659
+      bau_semfundo 1_29: 2737550759498322693
+      bau_semfundo 1_3: -2040895048817152048
+      bau_semfundo 1_30: -7470376138565030941
+      bau_semfundo 1_31: 7826202247973963679
+      bau_semfundo 1_32: -8352860200232796476
+      bau_semfundo 1_33: -8546513438580871897
+      bau_semfundo 1_34: -1945647173716809392
+      bau_semfundo 1_35: 7338118846090729084
+      bau_semfundo 1_36: 4844855403874430141
+      bau_semfundo 1_37: 2462365055893752300
+      bau_semfundo 1_38: 2983477826777711712
+      bau_semfundo 1_39: 2137656347639792646
+      bau_semfundo 1_4: 1094183060354573720
+      bau_semfundo 1_40: -6851942974306661479
+      bau_semfundo 1_41: -7722504980917562446
+      bau_semfundo 1_42: -2276737354109557522
+      bau_semfundo 1_43: -6765533227683684020
+      bau_semfundo 1_5: -2173459905940988723
+      bau_semfundo 1_6: 5767356682835141115
+      bau_semfundo 1_7: -3910891345629932804
+      bau_semfundo 1_8: 5203359066838247288
+      bau_semfundo 1_9: 3398183456930304725
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -24,13 +24,9 @@ public class BattleManager : MonoBehaviour
     
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance != null)
             Destroy(this);
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(this);
-        }
+        Instance = this;
         nextSceneButton.SetActive(false);
     }
 
@@ -42,6 +38,7 @@ public class BattleManager : MonoBehaviour
 
     public void StartBattle()
     {
+        Debug.Log("start battle");
         player.StartBattle();
         enemy.StartBattle();
         

@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f1b61b4392d454e8e7d626eab62457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridComponent
-  boardPreset: {fileID: 11400000, guid: 4ba2ef5a4f735f1e2a01280d62f8fb12, type: 2}
+  boardPreset: {fileID: 11400000, guid: f5174c05a369dfa4aa642868602d74aa, type: 2}
   tilePrefab: {fileID: 6915690929748932554, guid: da39cb09116fe114c90600346a38bd1e, type: 3}
 --- !u!4 &1243254916
 Transform:

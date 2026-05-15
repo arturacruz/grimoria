@@ -2,9 +2,36 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Rarity
+{
+    Common, Rare, Epic
+}
+
+public enum Tag
+{
+    Beast, Undead, Damned
+}
+
 public abstract class Creature : MonoBehaviour, IBattleBehaviour
 {
+    public string GetRarityAsString() => rarity switch
+    { 
+        Rarity.Common => "Common",
+        Rarity.Rare => "Rare",
+        Rarity.Epic => "Epic",
+        _ => "Error"
+    };
+    public string GetTagAsString() => tag switch
+    { 
+        Tag.Beast => "Beast",
+        Tag.Damned => "Damned",
+        Tag.Undead => "Undead",
+        _ => "Error"
+    };
+    
     public abstract string name { get; }
+    public abstract Rarity rarity { get; }
+    public abstract Tag tag { get; }
     public abstract BattleClass battleClass { get; } 
     public abstract byte height { get; }
     public abstract byte width { get;  }

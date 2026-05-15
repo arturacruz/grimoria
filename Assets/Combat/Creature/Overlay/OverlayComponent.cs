@@ -1,25 +1,34 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OverlayComponent : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer background;
-    [SerializeField] private SpriteRenderer combatClass;
-    [SerializeField] private TextMeshProUGUI name;
+    [SerializeField] private SpriteRenderer[] backgrounds;
+    [SerializeField] private Image[] images;
+    [SerializeField] private TextMeshProUGUI creatureName;
     [SerializeField] private TextMeshProUGUI health;
-    [SerializeField] private TextMeshProUGUI damage;
+    [SerializeField] private TextMeshProUGUI skills;
     [SerializeField] private TextMeshProUGUI cooldown;
+    [SerializeField] private TextMeshProUGUI description;
+    [SerializeField] private TextMeshProUGUI rarity;
+    [SerializeField] private TextMeshProUGUI creatureTag;
 
     private void SetVisibility(bool visible)
     {
         var alpha = visible ? 1 : 0;
-        background.enabled = visible;
-        combatClass.enabled = visible;
-        name.alpha = alpha;
+        foreach (var background in backgrounds)
+            background.enabled = visible;
+        foreach (var image in images)
+            image.enabled = visible;
+        creatureName.alpha = alpha;
         health.alpha = alpha;
-        damage.alpha = alpha;
+        skills.alpha = alpha;
         cooldown.alpha = alpha;
+        description.alpha = alpha;
+        rarity.alpha = alpha;
+        creatureTag.alpha = alpha;
     }
 
     private Vector3 GetPosition(Creature creature)
@@ -31,15 +40,23 @@ public class OverlayComponent : MonoBehaviour
     private void FixedUpdate()
     {
         var creature = GameManager.Instance.HoveringCreature;
-        SetVisibility(creature != null);
-        if (creature == null)
+        if (creature == null || GameManager.Instance.SelectedCreature == creature)
+        {
+            SetVisibility(false);
             return;
+        }
 
         var c = creature.GetComponent<Creature>();
+        SetVisibility(true);
         transform.position = GetPosition(c);
-        name.text = c.name;
-        health.text = $"HP: {c.health.health}/{c.health.maxHealth}";
-        damage.text = c.abilities[0].description;
-        cooldown.text = $"Cooldown: {(int) c.cooldown.ElapsedTimeSec()}/{(int) c.cooldown.timeSeconds}";
+        creatureName.text = c.name;
+        health.text = $"{c.health.health}\n{c.health.maxHealth}";
+        skills.text = "";
+        foreach (var ab in c.abilities)
+            skills.text += ab.description + "\n";
+        cooldown.text = $"{c.cooldown.timeSeconds}s";
+        description.text = c.description;
+        rarity.text = c.GetRarityAsString();
+        creatureTag.text = c.GetTagAsString();
     }
 }

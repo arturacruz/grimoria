@@ -66,7 +66,9 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (otherCreatureSelected || !isPlayer || BattleManager.Instance.battleOngoing)
+        if (otherCreatureSelected 
+            || !isPlayer 
+            || (BattleManager.Instance !=null && BattleManager.Instance.battleOngoing))
             return;
         
         if (isMouseOver)

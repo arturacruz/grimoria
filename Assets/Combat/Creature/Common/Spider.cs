@@ -3,6 +3,8 @@ using System.Collections.Generic;
 public sealed class Spider : Creature
 {
     public override string name => "Spider";
+    public override Rarity rarity => Rarity.Common;
+    public override Tag tag => Tag.Beast;
     public override BattleClass battleClass => BattleClass.Meele;
     public override byte height => 1;
     public override byte width => 1;

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Ghoul : Creature
 {
     public override string name => "Ghoul";
+    public override Rarity rarity => Rarity.Common;
+    public override Tag tag => Tag.Damned;
     public override BattleClass battleClass => BattleClass.Meele;
     public override byte height => 2;
     public override byte width => 1;

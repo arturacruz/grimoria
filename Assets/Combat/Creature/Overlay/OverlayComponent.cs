@@ -36,7 +36,7 @@ public class OverlayComponent : MonoBehaviour
         var offset = creature.playerSide ? new Vector2(5, 0) : new Vector2(-5, 0);
         return creature.gameObject.transform.position + (Vector3) offset;
     }
-    
+
     private void FixedUpdate()
     {
         var creature = GameManager.Instance.HoveringCreature;
@@ -56,7 +56,7 @@ public class OverlayComponent : MonoBehaviour
             skills.text += ab.description + "\n";
         cooldown.text = $"{c.cooldown.timeSeconds}s";
         description.text = c.description;
-        rarity.text = c.GetRarityAsString();
-        creatureTag.text = c.GetTagAsString();
-    }
+        rarity.text = $"Rarity: {c.GetRarityAsString()}";
+        creatureTag.text = $"Tag: {c.GetTagAsString()}";
+}
 }

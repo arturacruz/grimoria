@@ -33,6 +33,8 @@ public class MapGenerator : MonoBehaviour
     private int startX;
     private int endX;
 
+    public static MapGenerator Instance;
+
     private List<int> finalConnections =
         new List<int>();
 
@@ -41,6 +43,8 @@ public class MapGenerator : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
+
         Player = player;
 
         Player.transform.localScale =
@@ -392,7 +396,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    private void SaveMap()
+    public void SaveMap()
     {
         MapData.rooms.Clear();
 
@@ -419,6 +423,9 @@ public class MapGenerator : MonoBehaviour
 
                 data.tipo =
                     room.tipo_casa;
+
+                data.visitada =
+                    room.visitada;
 
                 if (room == GameManager.casa_atual)
                 {
@@ -467,14 +474,13 @@ public class MapGenerator : MonoBehaviour
                 Quaternion.identity
             );
 
-            room.transform.localScale =
-                Vector3.one * 0.47f;
+            room.transform.localScale = Vector3.one * 0.47f;
 
-            Casa casa =
-                room.GetComponent<Casa>();
+            Casa casa = room.GetComponent<Casa>();
 
-            casa.tipo_casa =
-                data.tipo;
+            casa.tipo_casa = data.tipo;
+
+            casa.visitada = data.visitada;
 
             matrix[data.y, data.x] =
                 casa;
@@ -526,40 +532,58 @@ public class MapGenerator : MonoBehaviour
                 SpriteRenderer sprite =
                     room.GetComponent<SpriteRenderer>();
 
-                sprite.material = material_casa;
+                sprite.material =
+                    material_casa;
 
-                switch (room.tipo_casa)
+                // sprite.color =
+                //     Color.gray;
+
+                room.transform.localScale =
+                    Vector3.one * 0.47f;
+
+                if (room.tipo_casa ==
+                    CategoriaCasa.Inicio)
                 {
-                    case CategoriaCasa.Inicio:
+                    sprite.sprite =
+                        start_sprite;
+                }
 
-                        sprite.sprite =
-                            start_sprite;
+                if (room.tipo_casa ==
+                    CategoriaCasa.Combate)
+                {
+                    sprite.sprite =
+                        combat_sprite;
+                }
 
-                        break;
+                else if (room.tipo_casa ==
+                        CategoriaCasa.Boss)
+                {
+                    sprite.sprite =
+                        boss_sprite;
 
-                    case CategoriaCasa.Boss:
+                    room.transform.localScale =
+                        Vector3.one * 0.7f;
+                }
 
-                        sprite.sprite =
-                            boss_sprite;
+                else if (room.tipo_casa ==
+                        CategoriaCasa.Shop)
+                {
+                    sprite.sprite =
+                        store_sprite;
+                }
 
-                        room.transform.localScale =
-                            Vector3.one * 0.7f;
+                if (room.visitada)
+                {
+                    sprite.color =
+                        Color.white;
 
-                        break;
+                    MapInteraction interaction =
+                        room.GetComponent<MapInteraction>();
 
-                    case CategoriaCasa.Shop:
-
-                        sprite.sprite =
-                            store_sprite;
-
-                        break;
-
-                    default:
-
-                        sprite.sprite =
-                            combat_sprite;
-
-                        break;
+                    if (interaction != null)
+                    {
+                        interaction.SetMarked(true);
+                    }
                 }
             }
         }

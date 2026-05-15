@@ -4,6 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class RoomData
 {
+    public bool visitada;
     public int x;
     public int y;
 

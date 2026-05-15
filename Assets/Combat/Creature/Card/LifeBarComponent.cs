@@ -2,17 +2,12 @@
 
 public class LifeBarComponent : MonoBehaviour
 {
-    private uint maxHealth;
-
+    [SerializeField] private Creature creature;
     [SerializeField] private Renderer rend;
 
-    public void Init(uint maxHealth)
-    {
-        this.maxHealth = maxHealth;
-    }
     
-    public void UpdateValue(int health)
+    private void Update()
     {
-        rend.material.SetFloat("_Heigth", health / (float) maxHealth);
+        rend.material.SetFloat("_Heigth", creature.health.health / (float) creature.health.maxHealth);
     }
 }

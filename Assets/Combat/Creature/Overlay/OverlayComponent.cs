@@ -14,6 +14,7 @@ public class OverlayComponent : MonoBehaviour
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private TextMeshProUGUI rarity;
     [SerializeField] private TextMeshProUGUI creatureTag;
+    [SerializeField] private TextMeshProUGUI[] statusEffects;
 
     private void SetVisibility(bool visible)
     {
@@ -29,11 +30,13 @@ public class OverlayComponent : MonoBehaviour
         description.alpha = alpha;
         rarity.alpha = alpha;
         creatureTag.alpha = alpha;
+        foreach (var effect in statusEffects)
+            effect.alpha = alpha;
     }
 
     private Vector3 GetPosition(Creature creature)
     {
-        var offset = creature.playerSide ? new Vector2(5, 0) : new Vector2(-5, 0);
+        var offset = creature.playerSide ? new Vector2(6, 0) : new Vector2(-5, 0);
         return creature.gameObject.transform.position + (Vector3) offset;
     }
 
@@ -58,5 +61,10 @@ public class OverlayComponent : MonoBehaviour
         description.text = c.description;
         rarity.text = $"Rarity: {c.GetRarityAsString()}";
         creatureTag.text = $"Tag: {c.GetTagAsString()}";
-}
+
+        for (var i = 0; i < statusEffects.Length; i++)
+        {
+            statusEffects[i].text = $"{c.GetStatusAmount((Status.StatusEffect)i)}";
+        }
+    }
 }

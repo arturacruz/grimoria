@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 enum BattleResult
@@ -18,7 +19,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private Board enemy;
     [SerializeField] private GameObject trailAttackPrefab;
     [SerializeField] private GameObject nextSceneButton;
-
+    private Cooldown tickCooldown;
+    
     public bool battleOngoing;
     private BattleResult result = BattleResult.None;
     
@@ -28,6 +30,7 @@ public class BattleManager : MonoBehaviour
             Destroy(this);
         Instance = this;
         nextSceneButton.SetActive(false);
+        tickCooldown = new Cooldown(0.5f);
     }
 
     private void FixedUpdate()
@@ -41,6 +44,10 @@ public class BattleManager : MonoBehaviour
         Debug.Log("start battle");
         player.StartBattle();
         enemy.StartBattle();
+        tickCooldown.Start();
+        
+        foreach (var creature in enemy.GetGrid())
+            creature?.ApplyStatus(Status.StatusEffect.Weak, 2);
         
         foreach (var creature in player.GetGrid())
             creature?.DoOnStart(player, enemy);
@@ -55,9 +62,21 @@ public class BattleManager : MonoBehaviour
     {
         foreach (var creature in player.GetGrid())
             creature?.DoAbility(player, enemy);
-        
+
         foreach (var creature in enemy.GetGrid())
             creature?.DoAbility(player, enemy);
+
+        // Tick logic
+        if (tickCooldown.IsDone())
+        {
+            foreach (var creature in player.GetGrid())
+                creature?.DoOnTick();
+
+            foreach (var creature in enemy.GetGrid())
+                creature?.DoOnTick();
+            
+            tickCooldown.Restart();
+        }
         
         HandleDeaths();
     }

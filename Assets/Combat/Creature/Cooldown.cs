@@ -12,6 +12,12 @@ public class Cooldown
         Restart();
     }
 
+    public void Start()
+    {
+        started = true;
+        Restart();
+    }
+
     public float ElapsedTimeSec() => started ? Time.time - startTime : 0;
 
     public bool IsDone() => ElapsedTimeSec() >= timeSeconds; 

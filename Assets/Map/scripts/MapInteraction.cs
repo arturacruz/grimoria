@@ -30,7 +30,7 @@ public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerDown(PointerEventData eventData) {
         Casa casa_click = gameObject.GetComponent<Casa>();
-        if (MapGenerator.casa_atual.lista_casa.Contains(casa_click) && casa_click.tipo_casa != CategoriaCasa.Vizitada) {
+        if (GameManager.casa_atual.lista_casa.Contains(casa_click) && casa_click.tipo_casa != CategoriaCasa.Vizitada) {
             CategoriaCasa tipo_casa = casa_click.tipo_casa;
             if (tipo_casa == CategoriaCasa.Combate || tipo_casa == CategoriaCasa.Boss)
             {
@@ -47,7 +47,7 @@ public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             sprite_casa.color = Color.white;
             marked.enabled = true;
 
-            MapGenerator.casa_atual = casa_click;
+            GameManager.casa_atual = casa_click;
             MapGenerator.Player.transform.position = casa_click.transform.position;
         }
     }

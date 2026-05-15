@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject HoveringCreature;
     public bool CanBePlaced;
     public UnityEvent<bool> PlaceCreature = new();
+    public static Casa casa_atual;
 
     private void Awake()
     {

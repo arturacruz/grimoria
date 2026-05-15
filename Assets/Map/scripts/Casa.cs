@@ -20,7 +20,8 @@ public class Casa : MonoBehaviour
 
     private void Awake()
     {
-        int x = Random.Range(1, 17);
+        // int x = Random.Range(1, 17);
+        int x = 1;
         if (x == 1)
         {
             tipo_casa = CategoriaCasa.Shop;

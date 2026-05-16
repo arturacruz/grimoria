@@ -13,8 +13,14 @@ public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         originalScale = transform.localScale;
         marked.enabled = false;
         marked.transform.localScale = Vector3.one * 0.4f;
-
+        var sr = marked.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.sortingLayerName = "Map";
+            sr.sortingOrder = 11;
+        }
     }
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
         Casa casa = gameObject.GetComponent<Casa>();

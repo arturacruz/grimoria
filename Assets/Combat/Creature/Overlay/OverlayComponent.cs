@@ -60,7 +60,7 @@ public class OverlayComponent : MonoBehaviour
         skills.text = "";
         foreach (var ab in c.abilities)
             skills.text += "- " + ab.description + "\n";
-        cooldown.text = $"{c.cooldown.timeSeconds:F1}s";
+        cooldown.text = $"{c.cooldown.timeSeconds:F}s";
         description.text = c.description;
         rarity.text = $"Rarity: {c.GetRarityAsString()}";
         creatureTag.text = $"Tag: {c.GetTagAsString()}";

@@ -18,6 +18,7 @@ public sealed class Plague : Element
     {
         foreach (var c in targets)
         {
+            if (c == null) continue;
             var val = value;
             if (IsCounter(c))
                 val *= 2;

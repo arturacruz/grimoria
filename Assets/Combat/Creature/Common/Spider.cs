@@ -21,7 +21,7 @@ public sealed class Spider : Creature
 
     private void Awake()
     {
-        _cooldown = new Cooldown(5f);
+        _cooldown = new Cooldown(3f);
         _health = new HealthComponent(100);
         _element = new Plague(this);
         _abilities.Add(new BiteAbility(this));

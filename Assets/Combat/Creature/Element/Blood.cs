@@ -3,7 +3,7 @@ public sealed class Blood : Element
 
     public override string elementName => "Blood";
     public override string countersName => "Void";
-    public override string description => $"Heals equal to {value:P}% of damage. Counters {countersName}.";
+    public override string description => $"Heals equal to {value:P} of damage. Counters {countersName}.";
     protected override float value => 0.25f;
 
     public Blood(Creature creature)
@@ -19,8 +19,11 @@ public sealed class Blood : Element
     {
         var amount = 0f;
         foreach (var c in targets)
+        {
+            if (c == null) continue;
             if (IsCounter(c)) amount += value * 2;
             else amount += value;
+        }
 
         var final = amount * damage; 
         owner.Heal((uint) final);

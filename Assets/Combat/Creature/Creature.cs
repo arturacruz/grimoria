@@ -96,6 +96,7 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
             return;
         if (health.TakeDamage(damage))
             Die();
+        CheckForRuin();
     }
 
     public void Heal(uint amount)
@@ -122,16 +123,19 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
         }
     }
 
+    private void CheckForRuin()
+    {
+        if (GetStatusAmount(Status.StatusEffect.Ruin) is uint value and > 0)
+        {
+            if (health.health <= value)
+                Die();
+        }
+    }
+
     private void OnApplyStatus(Status.StatusEffect effect, uint value)
     {
         statusEffects[(int)effect] += value;
-        switch (effect)
-        {
-            case Status.StatusEffect.Ruin:
-                if (health.health <= GetStatusAmount(Status.StatusEffect.Ruin))
-                    Die();
-                break;
-        }
+        CheckForRuin();
     }
 }
 

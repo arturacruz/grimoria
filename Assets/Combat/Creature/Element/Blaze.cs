@@ -1,9 +1,11 @@
+using UnityEngine;
+
 public sealed class Blaze : Element
 {
     public override string elementName => "Blaze";
     public override string countersName => "Plague";
-    public override string description => $"Burns enemies equal to {value:P}% of damage. Counters {countersName}.";
-    protected override float value => 0.1f;
+    public override string description => $"Burns enemies equal to {value:P} of damage. Counters {countersName}.";
+    protected override float value => 0.2f;
 
     public Blaze(Creature creature)
     {
@@ -18,6 +20,7 @@ public sealed class Blaze : Element
     {
         foreach (var c in targets)
         {
+            if (c == null) continue;
             var dmg = damage * value;
             if (IsCounter(c))
                 dmg *= 2;

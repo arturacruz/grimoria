@@ -50,6 +50,9 @@ TagManager:
   - name: SelectedCards
     uniqueID: 1584472589
     locked: 0
+  - name: DetalhesGrid
+    uniqueID: 4285524761
+    locked: 0
   - name: CardOverlay
     uniqueID: 1041198635
     locked: 0

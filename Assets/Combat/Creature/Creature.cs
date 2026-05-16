@@ -40,24 +40,32 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
     public abstract string description { get; }
     public abstract Element element { get; }
     public abstract List<Ability> abilities { get; }
-    [SerializeField] private LifeBarComponent lifeBar;
     public bool playerSide = true;
-    public int level = 1;
+    public uint[] statusEffects = new uint[Status.Amount];
     private bool dead;
-
-    private void Start()
-    {
-        lifeBar.Init(health.maxHealth);
-    }
 
     public void DoOnStart(Board allies, Board enemies)
     {
         cooldown.started = true;
-        element.DoOnStart(allies, enemies);
         foreach (var ability in abilities)
             ability?.DoOnStart(allies, enemies);
         
         cooldown.Restart();
+    }
+
+    public uint GetStatusAmount(Status.StatusEffect effect)
+    {
+        return statusEffects[(int)effect];
+    }
+
+    private void LowerStatusAmount(Status.StatusEffect effect)
+    {
+        statusEffects[(int)effect]--;
+    }
+
+    public void ApplyStatus(Status.StatusEffect effect, uint value)
+    {
+        OnApplyStatus(effect, value);
     }
 
     public void DoAbility(Board allies, Board enemies)
@@ -65,12 +73,21 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
         if (!cooldown.IsDone())
             return;
         
-        element.DoAbility(allies, enemies);
         foreach (var ability in abilities)
             ability?.DoAbility(allies, enemies);
         
+        if (GetStatusAmount(Status.StatusEffect.Weak) > 0)
+            LowerStatusAmount(Status.StatusEffect.Weak);
 
         cooldown.Restart();
+    }
+
+    private void Die()
+    {
+        if (dead)
+            return;
+        BattleManager.Instance.UnlogCreature(this);
+        dead = true;
     }
 
     public void TakeDamage(uint damage)
@@ -78,12 +95,47 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
         if (dead)
             return;
         if (health.TakeDamage(damage))
-        {
-            BattleManager.Instance.UnlogCreature(this);
-            dead = true;
-        }
+            Die();
+        CheckForRuin();
+    }
 
-        lifeBar.UpdateValue(health.health);
+    public void Heal(uint amount)
+    {
+        health.health += (int) amount;
+        if (health.health > health.maxHealth)
+            health.health = (int) health.maxHealth;
+    }
+
+    public void SetCooldownByRatio(float amount)
+    {
+        cooldown.timeSeconds *= amount;
+        if (cooldown.timeSeconds < 0.5f) cooldown.timeSeconds = 0.5f;
+        if (cooldown.timeSeconds > 16f) cooldown.timeSeconds = 16f;
+    }
+    
+
+    public void DoOnTick()
+    {
+        if (GetStatusAmount(Status.StatusEffect.Burn) is uint value and > 0)
+        {
+            TakeDamage(value);
+            LowerStatusAmount(Status.StatusEffect.Burn);
+        }
+    }
+
+    private void CheckForRuin()
+    {
+        if (GetStatusAmount(Status.StatusEffect.Ruin) is uint value and > 0)
+        {
+            if (health.health <= value)
+                Die();
+        }
+    }
+
+    private void OnApplyStatus(Status.StatusEffect effect, uint value)
+    {
+        statusEffects[(int)effect] += value;
+        CheckForRuin();
     }
 }
 

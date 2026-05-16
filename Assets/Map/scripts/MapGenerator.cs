@@ -3,6 +3,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 
+
 public class MapGenerator : MonoBehaviour
 {
     [SerializeField] public int floors;
@@ -28,6 +29,8 @@ public class MapGenerator : MonoBehaviour
     public static SpriteRenderer Player;
     public static Casa casa_atual;
     public static MapGenerator Instance;
+
+    public bool active;
 
     private Casa[,] matrix;
     private int startX;
@@ -85,7 +88,7 @@ public class MapGenerator : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         bool isMapScene = scene.name == "MapScene";
-        SetMapLayer(isMapScene);
+        SetMapLayer(isMapScene);            
     }
 
     private void SetAlpha(SpriteRenderer sr, bool active)
@@ -97,19 +100,12 @@ public class MapGenerator : MonoBehaviour
 
     private void SetMapLayer(bool active)
     {
+        this.active = active;
         string layer = "Map";
 
-        int bgOrder = -10;
-        int mapBaseOrder = 10;
-        int xOrder = 7;
-        int playerOrder = 70;
+        background.GetComponent<SpriteRenderer>().enabled = active;
 
-        background.sortingLayerName = layer;
-        background.sortingOrder = bgOrder;
-        SetAlpha(background, active);
-
-        player.sortingLayerName = layer;
-        player.sortingOrder = playerOrder;
+        player.GetComponent<SpriteRenderer>().enabled = active;
         SetAlpha(player, active);
 
         foreach (Transform child in transform)
@@ -118,19 +114,28 @@ public class MapGenerator : MonoBehaviour
             if (sr != null)
             {
                 sr.sortingLayerName = layer;
-                if (sr.gameObject.CompareTag("Player"))
-                {
-                    sr.sortingOrder = playerOrder;
-                }
-                else if (sr.gameObject.name.Contains("Vizitada"))
-                {
-                    sr.sortingOrder = xOrder;
-                }
-                else
-                {
-                    sr.sortingOrder = mapBaseOrder;
-                }
+                sr.GetComponent<SpriteRenderer>().enabled = active;
+                child.gameObject.layer = active ? 0:2;
                 SetAlpha(sr, active);
+            }
+
+            Transform mark = child.Find("mark");
+
+            if (mark != null)
+            {
+                SpriteRenderer marcado = mark.GetComponent<SpriteRenderer>();
+
+                if (marcado != null)
+                {
+                    marcado.enabled = active;
+
+                    var casa = child.GetComponent<Casa>();
+
+                    if (casa.tipo_casa != CategoriaCasa.Visitada)
+                    {
+                        marcado.enabled = false;
+                    }
+                }
             }
 
             var lr = child.GetComponent<LineRenderer>();
@@ -332,7 +337,7 @@ public class MapGenerator : MonoBehaviour
                     continue;
                 }
 
-                if (Random.value < 0.15f)
+                if (Random.value < 0.2f)
                 {
                     room.tipo_casa = CategoriaCasa.Shop;
                     sprite.sprite = store_sprite;

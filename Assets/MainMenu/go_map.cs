@@ -11,21 +11,21 @@ public class go_map : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public void OnPointerEnter(PointerEventData eventData)
     {
         mouse = true;
-        print("Teste");
+        // print("Teste");
         
     }
 
     public void OnPointerDown(PointerEventData eventData) {
         SceneManager.LoadScene("MapScene");
-        print("Teste 777");
-        Debug.Log("CLICK");
+        // print("Teste 777");
+        // Debug.Log("CLICK");
         
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         mouse = false;
-        print("Teste 333");
+        // print("Teste 333");
         
         
     }

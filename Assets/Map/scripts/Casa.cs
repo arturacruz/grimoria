@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public enum CategoriaCasa
 {
-    Vizitada,
+    Visitada,
     Combate,
     Shop,
     Boss,

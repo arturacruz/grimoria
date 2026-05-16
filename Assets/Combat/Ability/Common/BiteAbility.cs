@@ -13,14 +13,10 @@ public class BiteAbility : Ability
 
     public override void DoOnStart(Board allies, Board enemies) {}
 
-    protected override void DoOnActivate(Board allies, Board enemies)
+    protected override Creature[] DoOnActivate(Board allies, Board enemies)
     {
         var target = BattleManager.Instance.GetTarget(owner);
-        if (target == null)
-        {
-            Debug.Log($"{owner.name} found no target.");
-            return;
-        }
         BattleManager.Instance.SpawnAttack(owner, target, currentDamage);
+        return new[] { target };
     }
 }

@@ -23,7 +23,7 @@ public sealed class Spider : Creature
     {
         _cooldown = new Cooldown(5f);
         _health = new HealthComponent(100);
-        _element = new Plague();
+        _element = new Plague(this);
         _abilities.Add(new BiteAbility(this));
     }
 }

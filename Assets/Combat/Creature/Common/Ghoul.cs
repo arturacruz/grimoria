@@ -25,7 +25,7 @@ public class Ghoul : Creature
     {
         _cooldown = new Cooldown(6f);
         _health = new HealthComponent(100);
-        _element = new Blood();
+        _element = new Blood(this);
         _abilities.Add(new BiteAbility(this));
     }
 }

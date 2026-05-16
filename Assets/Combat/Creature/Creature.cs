@@ -47,7 +47,6 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
     public void DoOnStart(Board allies, Board enemies)
     {
         cooldown.started = true;
-        element.DoOnStart(allies, enemies);
         foreach (var ability in abilities)
             ability?.DoOnStart(allies, enemies);
         
@@ -74,7 +73,6 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
         if (!cooldown.IsDone())
             return;
         
-        element.DoAbility(allies, enemies);
         foreach (var ability in abilities)
             ability?.DoAbility(allies, enemies);
         
@@ -99,6 +97,21 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
         if (health.TakeDamage(damage))
             Die();
     }
+
+    public void Heal(uint amount)
+    {
+        health.health += (int) amount;
+        if (health.health > health.maxHealth)
+            health.health = (int) health.maxHealth;
+    }
+
+    public void SetCooldownByRatio(float amount)
+    {
+        cooldown.timeSeconds *= amount;
+        if (cooldown.timeSeconds < 0.5f) cooldown.timeSeconds = 0.5f;
+        if (cooldown.timeSeconds > 16f) cooldown.timeSeconds = 16f;
+    }
+    
 
     public void DoOnTick()
     {

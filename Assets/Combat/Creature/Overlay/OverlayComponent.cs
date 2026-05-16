@@ -11,6 +11,7 @@ public class OverlayComponent : MonoBehaviour
     [SerializeField] private TextMeshProUGUI health;
     [SerializeField] private TextMeshProUGUI skills;
     [SerializeField] private TextMeshProUGUI cooldown;
+    [SerializeField] private TextMeshProUGUI element;
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private TextMeshProUGUI rarity;
     [SerializeField] private TextMeshProUGUI creatureTag;
@@ -24,6 +25,7 @@ public class OverlayComponent : MonoBehaviour
         foreach (var image in images)
             image.enabled = visible;
         creatureName.alpha = alpha;
+        element.alpha = alpha;
         health.alpha = alpha;
         skills.alpha = alpha;
         cooldown.alpha = alpha;
@@ -54,10 +56,11 @@ public class OverlayComponent : MonoBehaviour
         transform.position = GetPosition(c);
         creatureName.text = c.name;
         health.text = $"{c.health.health}\n{c.health.maxHealth}";
+        element.text = $"{c.element.elementName}: {c.element.description}";
         skills.text = "";
         foreach (var ab in c.abilities)
-            skills.text += ab.description + "\n";
-        cooldown.text = $"{c.cooldown.timeSeconds}s";
+            skills.text += "- " + ab.description + "\n";
+        cooldown.text = $"{c.cooldown.timeSeconds:F1}s";
         description.text = c.description;
         rarity.text = $"Rarity: {c.GetRarityAsString()}";
         creatureTag.text = $"Tag: {c.GetTagAsString()}";

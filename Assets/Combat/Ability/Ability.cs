@@ -25,8 +25,9 @@ public abstract class Ability : IBattleBehaviour
             currentDamage = (uint)(damage * 0.8);
         else
             currentDamage = damage;
-        DoOnActivate(allies, enemies);
+        var targets = DoOnActivate(allies, enemies);
+        owner.element.DoAbility(targets, currentDamage);
     }
 
-    protected abstract void DoOnActivate(Board allies, Board enemies);
+    protected abstract Creature[] DoOnActivate(Board allies, Board enemies);
 }

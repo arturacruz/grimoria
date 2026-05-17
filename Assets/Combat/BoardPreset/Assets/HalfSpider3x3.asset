@@ -16,12 +16,12 @@ MonoBehaviour:
   - creatures:
     - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}
     - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}
-    - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}
+    - {fileID: 5458056381093757432, guid: 21ced3d9cf4184948b6bcc2dad6ec398, type: 3}
   - creatures:
     - {fileID: 0}
     - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}
     - {fileID: 0}
   - creatures:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 1238991620326821479, guid: 765f8d042290bf8449a044528c968d5a, type: 3}
+    - {fileID: 1238991620326821479, guid: e1639587537a69349ac679bed2572c0b, type: 3}
+    - {fileID: 1238991620326821479, guid: 765f8d042290bf8449a044528c968d5a, type: 3}

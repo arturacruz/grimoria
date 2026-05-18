@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2172126137333488955}
   - component: {fileID: 5458056381093757432}
   m_Layer: 0
-  m_Name: Card1x2
+  m_Name: Card2x1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8cb0f5ca254b82bd89b743c8309f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ghoul
-  playerSide: 1
-  statusEffects: 000000000000000000000000
+  lifeBar: {fileID: 6147313317721922878}
+  level: 1
 --- !u!1 &2089707066453671125
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2172126137333488955}
@@ -227,8 +227,8 @@ Transform:
   m_GameObject: {fileID: 5600669501896592809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.95, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8105692415132594610}
@@ -319,8 +319,8 @@ Transform:
   m_GameObject: {fileID: 6948532733815376191}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0433, y: 0, z: 0}
-  m_LocalScale: {x: 0.17445761, y: 0.045, z: 1}
+  m_LocalPosition: {x: 0.045, y: 0, z: 0}
+  m_LocalScale: {x: 0.075, y: 0.09, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2172126137333488955}
@@ -488,5 +488,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ac6802f8504e7ab3c7759f028b73f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LifeBarComponent
-  creature: {fileID: 0}
   rend: {fileID: 4027620639113749699}

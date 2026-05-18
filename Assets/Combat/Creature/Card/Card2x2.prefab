@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2172126137333488955}
-  - component: {fileID: 5458056381093757432}
+  - component: {fileID: 1238991620326821479}
   m_Layer: 0
-  m_Name: Card1x2
+  m_Name: Card2x2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7025706093070978466}
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 2961913838125216126}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5458056381093757432
+--- !u!114 &1238991620326821479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,9 +44,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 171696272195155258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe8cb0f5ca254b82bd89b743c8309f28, type: 3}
+  m_Script: {fileID: 11500000, guid: 65959ba649784db198c05fb3d98bab19, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Ghoul
+  m_EditorClassIdentifier: Assembly-CSharp::Spider
   playerSide: 1
   statusEffects: 000000000000000000000000
 --- !u!1 &2089707066453671125
@@ -76,9 +76,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089707066453671125}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2172126137333488955}
@@ -227,7 +227,7 @@ Transform:
   m_GameObject: {fileID: 5600669501896592809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.95, y: 0, z: 0}
+  m_LocalPosition: {x: -0.45, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -319,8 +319,8 @@ Transform:
   m_GameObject: {fileID: 6948532733815376191}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0433, y: 0, z: 0}
-  m_LocalScale: {x: 0.17445761, y: 0.045, z: 1}
+  m_LocalPosition: {x: 0.045, y: 0, z: 0}
+  m_LocalScale: {x: 0.075, y: 0.075, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2172126137333488955}
@@ -374,7 +374,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -8184708258629884744, guid: fa0d3bdd58f58e6e1b18a8751770583e, type: 3}
+  m_Sprite: {fileID: 3873087697204469031, guid: 46436e517fbce7e46b8954379adc9224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -394,7 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8105692415132594610}
   - component: {fileID: 4027620639113749699}
-  - component: {fileID: 6147313317721922878}
+  - component: {fileID: 7791984377608875981}
   m_Layer: 0
   m_Name: LifeFill
   m_TagString: Untagged
@@ -476,7 +476,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &6147313317721922878
+--- !u!114 &7791984377608875981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

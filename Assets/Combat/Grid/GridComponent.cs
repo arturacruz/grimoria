@@ -169,9 +169,11 @@ public class GridComponent : MonoBehaviour
             for (var x = 0; x < width; x++)
                 occupances[y + i, x + j] = placed;
 
-        if (!isInventory) return;
-        
-        if (placed) InventoryManager.Instance.AddToInventory(creature);
-        else InventoryManager.Instance.RemoveFromInventory(creature);
+        if (isInventory)
+            if (placed) InventoryManager.Instance.AddToInventory(creature);
+            else InventoryManager.Instance.RemoveFromInventory(creature);
+        else if (isPlayerBoard)
+            if (placed) BoardManager.Instance.AddToBoardManager(creature);
+            else BoardManager.Instance.RemoveFromBoardManager(creature);
     }
 }

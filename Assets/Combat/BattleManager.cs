@@ -51,6 +51,9 @@ public class BattleManager : MonoBehaviour
         enemy.StartBattle();
         tickCooldown.Start();
         
+        foreach (var creature in enemy.GetGrid())
+            creature?.ApplyStatus(Status.StatusEffect.Burn, 40);
+        
         foreach (var creature in player.GetGrid())
             creature?.DoOnStart(player, enemy);
         

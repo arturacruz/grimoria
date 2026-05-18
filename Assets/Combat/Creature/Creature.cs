@@ -48,8 +48,8 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
     private bool isInInventory => InventoryManager.Instance != null 
                                   && InventoryManager.Instance.Contains(this);
 
-    private bool isInBoard => BattleManager.Instance != null
-                              && BattleManager.Instance.IsCreatureInPlayerGrid(this);
+    private bool isInBoard => BoardManager.Instance != null
+                              && BoardManager.Instance.Contains(this);
 
     private void Start()
     {
@@ -73,7 +73,12 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
             Destroy(gameObject);
             return;
         }
-        var isScene = scene.name == "CombatScene" || scene.name == "StoreScene" || scene.name == "Reward";
+        
+        bool isScene;
+        if (isInBoard)
+            isScene = scene.name == "CombatScene";
+        else
+            isScene = scene.name == "CombatScene" || scene.name == "StoreScene" || scene.name == "Reward";
         ChangeChildrenSortingLayer(isScene);
     }
 

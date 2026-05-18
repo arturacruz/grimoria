@@ -1,26 +1,26 @@
-﻿using System.Collections.Generic;
-using TMPro;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InventoryManager : MonoBehaviour
+public class BoardManager : MonoBehaviour
 {
-    public static InventoryManager Instance;
-    public GameObject grid;
+    public static BoardManager Instance;
     public List<GameObject> creatures;
-    public uint money;
+    public GameObject board;
 
     private void Awake()
     {
         if (Instance != null)
         {
-            var first = FindObjectsByType<InventoryManager>(FindObjectsSortMode.InstanceID);
+            var first = FindObjectsByType<BoardManager>(FindObjectsSortMode.InstanceID);
             foreach (var f in first)
             {
                 if (f != Instance)
                     Destroy(f);
             }
         }
+
         if (Instance != null && Instance != this)
             Destroy(gameObject);
         else
@@ -28,26 +28,26 @@ public class InventoryManager : MonoBehaviour
             Instance = this;
             SceneManager.sceneLoaded += OnSceneLoaded;
             DontDestroyOnLoad(this);
-            if (grid != null)
-                DontDestroyOnLoad(grid);
+            if (board != null)
+                DontDestroyOnLoad(board);
         }
     }
-
+    
     public bool Contains(Creature creature)
     {
         return creatures.Contains(creature.gameObject);
     }
-
-    public void AddToInventory(Creature creature)
+    
+    public void AddToBoardManager(Creature creature)
     {
         creatures.Add(creature.gameObject);
     }
 
-    public void RemoveFromInventory(Creature creature)
+    public void RemoveFromBoardManager(Creature creature)
     {
         creatures.Remove(creature.gameObject);
     }
-
+    
     public void Show(bool visible)
     {
         foreach (var c in creatures)
@@ -56,19 +56,19 @@ public class InventoryManager : MonoBehaviour
             c.gameObject.layer = visible ? 0 : 2;
         }
 
-        foreach (var g in grid.GetComponentsInChildren<SpriteRenderer>()) g.enabled = visible;
-        grid.layer = visible ? 0 : 2;
-
-        foreach (var c in GetComponentsInChildren<SpriteRenderer>()) c.enabled = visible;
-        foreach (var c in GetComponentsInChildren<TextMeshProUGUI>()) c.alpha = visible ? 1 : 0;
+        foreach (var g in board.GetComponentsInChildren<SpriteRenderer>()) g.enabled = visible;
+        board.layer = visible ? 0 : 2;
         gameObject.layer = visible ? 0 : 2;
     }
-    
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        var isScene = scene.name == "CombatScene" || scene.name == "StoreScene" || scene.name == "Reward";
+        Debug.Log("change scene");
+        var isScene = scene.name == "CombatScene";
         Show(isScene);
+        if (isScene)
+        {
+            BattleManager.Instance.player = board.GetComponent<Board>();
+        }
     }
-
 }

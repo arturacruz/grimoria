@@ -71,6 +71,22 @@ public class Board : MonoBehaviour
         return GetGrid()[y, x];
     }
 
+    public Creature[] GetAOETargets()
+    {
+        var creatures = new Creature[creaturesAlive];
+        var i = 0;
+        foreach (var c in GetGrid())
+        {
+            if (c != null)
+            {
+                creatures[i] = c;
+                i++;
+            }
+        }
+
+        return creatures;
+    }
+
     public Creature GetMeleeTargetAt(int y)
     {
         // Offsets so that, if the creature can't find a target at the same line,

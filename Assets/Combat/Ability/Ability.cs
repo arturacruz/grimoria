@@ -4,6 +4,7 @@ public abstract class Ability : IBattleBehaviour
 {
     protected Creature owner;
     // TODO: Rethink descriptions to support different values of damage.
+    public abstract string abilityName { get; }
     public abstract string description { get; }
     public abstract uint damage { get; }
     public uint currentDamage;
@@ -27,6 +28,17 @@ public abstract class Ability : IBattleBehaviour
             currentDamage = damage;
         var targets = DoOnActivate(allies, enemies);
         owner.element.DoAbility(targets, currentDamage);
+    }
+
+    public void OnSkillUsed(Creature from, Creature to)
+    {
+        var targets = OnSkill(from, to);
+        owner.element.DoAbility(targets, currentDamage);
+    }
+
+    public virtual Creature[] OnSkill(Creature from, Creature to)
+    {
+        return new Creature[] { };
     }
 
     protected abstract Creature[] DoOnActivate(Board allies, Board enemies);

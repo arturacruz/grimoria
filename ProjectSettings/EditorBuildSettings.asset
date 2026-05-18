@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Store/StoreScene.unity
     guid: 0392e6b8538163146ae4cf6e700e2c16
   - enabled: 1
-    path: Assets/Combat/CombatScene.unity
+    path: Assets/Combat/backup.unity
     guid: ca8df0ed6650d60cbb6b0a2deef166db
   - enabled: 1
     path: Assets/Reward/Reward.unity

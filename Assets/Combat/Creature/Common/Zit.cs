@@ -10,7 +10,7 @@ public class Zit : Creature
     public override byte width => 2;
     public override HealthComponent health => _health;
     public override Cooldown cooldown => _cooldown;
-    public override string description => "Just a ghoul.";
+    public override string description => "Master of the underworld.";
     public override Element element => _element;
     public override List<Ability> abilities => _abilities;
 
@@ -21,9 +21,10 @@ public class Zit : Creature
 
     private void Awake()
     {
-        _cooldown = new Cooldown(6f);
-        _health = new HealthComponent(150);
+        _cooldown = new Cooldown(3f);
+        _health = new HealthComponent(250);
         _element = new Death(this);
-        _abilities.Add(new OneWomanArmy(this));
+        _abilities.Add(new EndSpear(this));
+        _abilities.Add(new NullRay(this));
     }
 }

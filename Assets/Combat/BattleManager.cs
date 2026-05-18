@@ -14,7 +14,7 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
     public readonly Queue<Creature> DeathPool = new();
-
+    
     [SerializeField] public Board player;
     [SerializeField] private Board enemy;
     [SerializeField] private GameObject trailAttackPrefab;
@@ -51,8 +51,8 @@ public class BattleManager : MonoBehaviour
         enemy.StartBattle();
         tickCooldown.Start();
         
-        foreach (var creature in enemy.GetGrid())
-            creature?.ApplyStatus(Status.StatusEffect.Burn, 40);
+        //foreach (var creature in enemy.GetGrid())
+        //    creature?.ApplyStatus(Status.StatusEffect.Burn, 40);
         
         foreach (var creature in player.GetGrid())
             creature?.DoOnStart(player, enemy);
@@ -86,7 +86,7 @@ public class BattleManager : MonoBehaviour
         HandleDeaths();
     }
     
-    public Creature GetTarget(Creature attacker)
+    public Creature[] GetTarget(Creature attacker)
     {
         var isPlayerAttacking = attacker.playerSide;
         var attackingBoard = isPlayerAttacking ? player : enemy;
@@ -97,11 +97,11 @@ public class BattleManager : MonoBehaviour
         switch (attacker.battleClass)
         {
             case BattleClass.Meele:
-                return targetBoard.GetMeleeTargetAt(y);
+                return new[] {targetBoard.GetMeleeTargetAt(y)};
             case BattleClass.Flank: // TODO
                 return null;
             case BattleClass.AOE: // TODO
-                return null;
+                return targetBoard.GetAOETargets();
         }
 
         return null;
@@ -125,6 +125,20 @@ public class BattleManager : MonoBehaviour
         trail.target = to;
 
         trail.element = from.element;
+
+        foreach (var creature in player.GetGrid())
+        {
+            if (creature == null) continue;
+            foreach (var ability in creature.abilities)
+                ability.OnSkillUsed(from, to);
+        }
+
+        foreach (var creature in enemy.GetGrid())
+        {
+            if (creature == null) continue;
+            foreach (var ability in creature.abilities)
+                ability.OnSkillUsed(from, to);
+        }
     }
     
 

@@ -488,5 +488,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ac6802f8504e7ab3c7759f028b73f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LifeBarComponent
-  creature: {fileID: 0}
+  creature: {fileID: 1238991620326821479}
   rend: {fileID: 4027620639113749699}

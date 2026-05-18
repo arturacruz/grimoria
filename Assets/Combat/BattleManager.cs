@@ -15,7 +15,7 @@ public class BattleManager : MonoBehaviour
     public static BattleManager Instance;
     public readonly Queue<Creature> DeathPool = new();
 
-    [SerializeField] private Board player;
+    [SerializeField] public Board player;
     [SerializeField] private Board enemy;
     [SerializeField] private GameObject trailAttackPrefab;
     [SerializeField] private GameObject nextSceneButton;
@@ -23,6 +23,11 @@ public class BattleManager : MonoBehaviour
     
     public bool battleOngoing;
     private BattleResult result = BattleResult.None;
+
+    public bool IsCreatureInPlayerGrid(Creature creature)
+    {
+        return player.ContainsCreature(creature);
+    }
     
     private void Awake()
     {
@@ -45,6 +50,9 @@ public class BattleManager : MonoBehaviour
         player.StartBattle();
         enemy.StartBattle();
         tickCooldown.Start();
+        
+        foreach (var creature in enemy.GetGrid())
+            creature?.ApplyStatus(Status.StatusEffect.Burn, 40);
         
         foreach (var creature in player.GetGrid())
             creature?.DoOnStart(player, enemy);

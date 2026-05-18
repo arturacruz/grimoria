@@ -4,6 +4,7 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
     public GridComponent grid;
+    public uint money;
 
     private void Awake()
     {

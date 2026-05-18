@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
+
     public GameObject grid;
     public List<GameObject> creatures;
-    public uint money;
+    public uint money = 100;
+
 
     private void Awake()
     {
@@ -31,6 +33,28 @@ public class InventoryManager : MonoBehaviour
             if (grid != null)
                 DontDestroyOnLoad(grid);
         }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public bool TrySpend(uint amount)
+    {
+        if (money < amount)
+            return false;
+
+        money -= amount;
+        return true;
+    }
+
+    public void AddMoney(uint amount)
+    {
+        money += amount;
+    }
+
+    public uint GetPrice(Creature creature)
+    {
+        return ((uint)creature.rarity + 1u) * 50u;
     }
 
     public bool Contains(Creature creature)

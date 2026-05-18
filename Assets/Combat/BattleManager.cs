@@ -144,6 +144,14 @@ public class BattleManager : MonoBehaviour
             return;
         
         battleOngoing = false;
+        
+        //novo -mudar caso de problema
+        if (result == BattleResult.Win)
+        {
+            InventoryManager.Instance.AddMoney(50);
+        }
+        //termina aqui
+        
         nextSceneButton.SetActive(true);
         Debug.Log("battle ended");
     }

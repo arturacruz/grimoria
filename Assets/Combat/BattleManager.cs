@@ -15,7 +15,7 @@ public class BattleManager : MonoBehaviour
     public static BattleManager Instance;
     public readonly Queue<Creature> DeathPool = new();
 
-    [SerializeField] private Board player;
+    [SerializeField] public Board player;
     [SerializeField] private Board enemy;
     [SerializeField] private GameObject trailAttackPrefab;
     [SerializeField] private GameObject nextSceneButton;

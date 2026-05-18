@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -10,11 +11,20 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            var first = FindObjectsByType<InventoryManager>(FindObjectsSortMode.InstanceID);
+            foreach (var f in first)
+            {
+                Debug.Log(f.gameObject);
+            }
+        }
         if (Instance != null && Instance != this)
-            Destroy(this);
+            Destroy(gameObject);
         else
         {
             Instance = this;
+            SceneManager.sceneLoaded += OnSceneLoaded;
             DontDestroyOnLoad(this);
             if (grid != null)
                 DontDestroyOnLoad(grid);
@@ -36,11 +46,24 @@ public class InventoryManager : MonoBehaviour
         creatures.Remove(creature.gameObject);
     }
 
-    public void Init(bool visible)
+    public void Show(bool visible)
     {
         foreach (var c in creatures)
-            c.GetComponent<SpriteRenderer>().enabled = visible;
+        { 
+            foreach (var rend in c.GetComponentsInChildren<SpriteRenderer>()) rend.enabled = visible;
+            c.gameObject.layer = visible ? 0 : 2;
+        }
 
-        grid.GetComponent<SpriteRenderer>().enabled = visible;
+        foreach (var g in grid.GetComponents<SpriteRenderer>()) g.enabled = visible;
+        grid.layer = visible ? 0 : 2;
+        gameObject.layer = visible ? 0 : 2;
     }
+    
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        var isScene = scene.name == "CombatScene" || scene.name == "StoreScene" || scene.name == "Reward";
+        Show(isScene);
+    }
+
 }

@@ -73,7 +73,7 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
             Destroy(gameObject);
             return;
         }
-        var isScene = scene.name == "CombatScene" || scene.name == "StoreScene";
+        var isScene = scene.name == "CombatScene" || scene.name == "StoreScene" || scene.name == "Reward";
         ChangeChildrenSortingLayer(isScene);
     }
 

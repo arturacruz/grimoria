@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public enum Rarity
 {
-    Common, Rare, Epic
+    Common, Rare, Epic, Legendary
 }
 
 public enum Tag
@@ -20,6 +20,7 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
         Rarity.Common => "Common",
         Rarity.Rare => "Rare",
         Rarity.Epic => "Epic",
+        Rarity.Legendary => "Legendary",
         _ => "Error"
     };
     public string GetTagAsString() => tag switch

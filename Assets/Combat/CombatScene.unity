@@ -184,6 +184,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf9dbb232e5c8c84f932a22f8c98a041, type: 3}
+--- !u!1 &104573053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104573055}
+  - component: {fileID: 104573054}
+  m_Layer: 0
+  m_Name: BoardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &104573054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104573053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb30b72e89b407893bae95a9935b0d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoardManager
+  creatures: []
+  board: {fileID: 1253457153}
+--- !u!4 &104573055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104573053}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.86356, y: -4.52808, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1253457155}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &162283045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,7 +1798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridComponent
   boardPreset: {fileID: 11400000, guid: 4ba2ef5a4f735f1e2a01280d62f8fb12, type: 2}
   isInventory: 0
-  isPlayerBoard: 0
+  isPlayerBoard: 1
   tilePrefab: {fileID: 6915690929748932554, guid: da39cb09116fe114c90600346a38bd1e, type: 3}
 --- !u!4 &1253457155
 Transform:
@@ -1762,11 +1809,11 @@ Transform:
   m_GameObject: {fileID: 1253457153}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.2699995, y: 1.29, z: 0}
+  m_LocalPosition: {x: 0.5935607, y: 5.81808, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 104573055}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1253457156
 MonoBehaviour:
@@ -2618,7 +2665,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1143255445}
   - {fileID: 951518637}
-  - {fileID: 1253457155}
   - {fileID: 1243254916}
   - {fileID: 1975067436}
   - {fileID: 1250087194}
@@ -2630,3 +2676,4 @@ SceneRoots:
   - {fileID: 899806186}
   - {fileID: 2143725312}
   - {fileID: 1093493517}
+  - {fileID: 104573055}

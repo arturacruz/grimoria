@@ -63,7 +63,6 @@ public class BoardManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("change scene");
         var isScene = scene.name == "CombatScene";
         Show(isScene);
         if (isScene)

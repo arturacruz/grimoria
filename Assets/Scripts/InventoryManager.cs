@@ -33,9 +33,6 @@ public class InventoryManager : MonoBehaviour
             if (grid != null)
                 DontDestroyOnLoad(grid);
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public bool TrySpend(uint amount)

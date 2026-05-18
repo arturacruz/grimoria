@@ -12,7 +12,7 @@ public class Ghoul : Creature
     public override byte width => 1;
     public override HealthComponent health => _health;
     public override Cooldown cooldown => _cooldown;
-    public override string description => "Just a ghoul.";
+    public override string description => "A strong and foul sentient creature, smarter than the average minion.";
     public override Element element => _element;
     public override List<Ability> abilities => _abilities;
 
@@ -23,9 +23,9 @@ public class Ghoul : Creature
 
     private void Awake()
     {
-        _cooldown = new Cooldown(6f);
+        _cooldown = new Cooldown(4f);
         _health = new HealthComponent(100);
         _element = new Blood(this);
-        _abilities.Add(new BiteAbility(this));
+        _abilities.Add(new RavenousClaw(this));
     }
 }

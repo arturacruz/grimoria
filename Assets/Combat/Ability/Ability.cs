@@ -8,6 +8,7 @@ public abstract class Ability : IBattleBehaviour
     public abstract string description { get; }
     public abstract uint damage { get; }
     public uint currentDamage;
+    public uint bonusDamage;
     public abstract void DoOnStart(Board allies, Board enemies);
 
     protected uint GetDamageDescriptionValue
@@ -15,17 +16,17 @@ public abstract class Ability : IBattleBehaviour
         get
         {
             if (owner.GetStatusAmount(Status.StatusEffect.Weak) > 0)
-                return (uint) (damage * 0.8);
-            return damage;
+                return (uint) ((damage + bonusDamage) * 0.8);
+            return damage + bonusDamage;
         }
     }
 
     public void DoAbility(Board allies, Board enemies)
     {
         if (owner.GetStatusAmount(Status.StatusEffect.Weak) > 0)
-            currentDamage = (uint)(damage * 0.8);
+            currentDamage = (uint)((damage + bonusDamage) * 0.8);
         else
-            currentDamage = damage;
+            currentDamage = damage + bonusDamage;
         var targets = DoOnActivate(allies, enemies);
         owner.element.DoAbility(targets, currentDamage);
     }

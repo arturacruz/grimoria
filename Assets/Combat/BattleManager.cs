@@ -115,6 +115,8 @@ public class BattleManager : MonoBehaviour
         var trail = obj.GetComponent<TrailComponent>();
         trail.damage = damage;
         trail.target = to;
+
+        trail.element = from.element;
     }
     
 

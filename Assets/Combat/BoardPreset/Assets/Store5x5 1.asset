@@ -18,7 +18,6 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
-    - {fileID: 0}
   - creatures:
     - {fileID: 0}
     - {fileID: 0}
@@ -30,10 +29,8 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 5458056381093757432, guid: c7b1c84e9ce70e093962fe37d8990154, type: 3}
-    - {fileID: 0}
   - creatures:
     - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
-    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -42,4 +39,3 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
     - {fileID: 0}
-    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}

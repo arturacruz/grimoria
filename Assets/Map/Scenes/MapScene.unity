@@ -624,6 +624,7 @@ MonoBehaviour:
   start_sprite: {fileID: -7869276962658758280, guid: e7f497450561f6a2a87b0f146db0ea85, type: 3}
   material_casa: {fileID: 2100000, guid: 81716f04442ea959697162e1f2e04faa, type: 2}
   player: {fileID: 1296990109}
+  active: 0
 --- !u!4 &963012160
 Transform:
   m_ObjectHideFlags: 0

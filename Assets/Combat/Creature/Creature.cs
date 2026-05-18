@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum Rarity
 {
@@ -43,6 +44,38 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
     public bool playerSide = true;
     public uint[] statusEffects = new uint[Status.Amount];
     private bool dead;
+    
+    private bool isInInventory => InventoryManager.Instance != null 
+                                  && InventoryManager.Instance.Contains(this);
+
+    private bool isInBoard => BattleManager.Instance != null
+                              && BattleManager.Instance.IsCreatureInPlayerGrid(this);
+
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+    
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (!isInInventory && !isInBoard)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        var isScene = scene.name == "CombatScene" || scene.name == "StoreScene";
+        ChangeChildrenSortingLayer(isScene);
+    }
 
     public void DoOnStart(Board allies, Board enemies)
     {
@@ -51,6 +84,14 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
             ability?.DoOnStart(allies, enemies);
         
         cooldown.Restart();
+    }
+    
+    private void ChangeChildrenSortingLayer(bool show)
+    {
+        foreach (var rend in transform.GetComponentsInChildren<SpriteRenderer>())
+        {
+            rend.enabled = show;
+        }
     }
 
     public uint GetStatusAmount(Status.StatusEffect effect)

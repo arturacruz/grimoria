@@ -13,6 +13,8 @@ public class GridComponent : MonoBehaviour
     public Creature[,] grid { get; private set; }
     public bool[,] occupances { get; private set; }
     private bool isEnemy;
+    [SerializeField] private bool isInventory;
+    [SerializeField] private bool isPlayerBoard;
 
     [SerializeField] private GameObject tilePrefab;
     private float tileSize = 2f;
@@ -166,5 +168,10 @@ public class GridComponent : MonoBehaviour
         for (var y = 0; y < height; y++)
             for (var x = 0; x < width; x++)
                 occupances[y + i, x + j] = placed;
+
+        if (!isInventory) return;
+        
+        if (placed) InventoryManager.Instance.AddToInventory(creature);
+        else InventoryManager.Instance.RemoveFromInventory(creature);
     }
 }

@@ -23,6 +23,11 @@ public class BattleManager : MonoBehaviour
     
     public bool battleOngoing;
     private BattleResult result = BattleResult.None;
+
+    public bool IsCreatureInPlayerGrid(Creature creature)
+    {
+        return player.ContainsCreature(creature);
+    }
     
     private void Awake()
     {

@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Reward/Reward.unity
     guid: 16b54de25c9018d44a20476ea0d96b61
+  - enabled: 1
+    path: Assets/MainMenu/MainMenu.unity
+    guid: 2ef30e5a9df4c5b4fa1c006a09fd79c1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

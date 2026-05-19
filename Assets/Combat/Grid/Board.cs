@@ -18,6 +18,7 @@ public class Board : MonoBehaviour
 
     public void StartBattle()
     {
+        creaturesAlive = 0;
         foreach (var c in gridComponent.grid)
         {
             if (c == null) continue;

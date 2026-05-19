@@ -687,10 +687,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099782b603c14110b54cc3b6bac661ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleManager
+  attackAudioSource: {fileID: 0}
+  attackClip: {fileID: 0}
   player: {fileID: 1253457156}
   enemy: {fileID: 1243254917}
   trailAttackPrefab: {fileID: 2978883355105925024, guid: ee6368af6a8d8f44bb62fa68e421f687, type: 3}
   nextSceneButton: {fileID: 1069149012}
+  isBoss: 0
   battleOngoing: 0
 --- !u!4 &614311747
 Transform:
@@ -2313,7 +2316,7 @@ GameObject:
   - component: {fileID: 1839413772}
   m_Layer: 0
   m_Name: CameraDistortion
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2640,6 +2643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf1dea88c2f41f89ff0762d5e5523f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  battles: 0
   SelectedCreature: {fileID: 0}
   HoveringCreature: {fileID: 0}
   CanBePlaced: 0

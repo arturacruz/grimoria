@@ -8,6 +8,7 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     private bool isMouseOver => GameManager.Instance.HoveringCreature == parent;
     [SerializeField] private GameObject parent;
+    private Camera camera;
 
     private bool isPlayer => parent.GetComponent<Creature>().playerSide;
 
@@ -31,15 +32,24 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         get => GameManager.Instance.CanBePlaced;
         set => GameManager.Instance.CanBePlaced = value;
     }
-    
+
+    private void Start()
+    {
+
+        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
+
 
     private void Update()
     {
         if (!isSelected || !isPlayer)
             return;
+
+        if (camera == null)
+            return;
         canBePlaced = false;
 
-        var mousePos = Camera.main.ScreenToWorldPoint(
+        var mousePos = camera.ScreenToWorldPoint(
             Mouse.current.position.ReadValue()
         );
         

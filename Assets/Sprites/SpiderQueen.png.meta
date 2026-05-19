@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 46436e517fbce7e46b8954379adc9224
+guid: 71855be0aac0a2f0eb78a2ac56dd8e3a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3873087697204469031
-    second: spider_0
+      213: -6182943474418200580
+    second: SpiderQueen_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spider_0
+      name: SpiderQueen_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72ddec77db8ffb530800000000000000
-      internalID: 3873087697204469031
+      spriteID: cffcbfc2ba5c13aa0800000000000000
+      internalID: -6182943474418200580
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      spider_0: 3873087697204469031
+      SpiderQueen_0: -6182943474418200580
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

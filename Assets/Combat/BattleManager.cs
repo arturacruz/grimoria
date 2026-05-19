@@ -203,16 +203,16 @@ public class BattleManager : MonoBehaviour
         if (isBoss)
         {
             if (result == BattleResult.Win)
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene("Victory");
             else
-                SceneManager.LoadScene(5);
+                SceneManager.LoadScene("GameOver");
         }
         else
         {
             if (result == BattleResult.Win)
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene("Reward");
             else
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene("MapScene");
         }
     }
 }

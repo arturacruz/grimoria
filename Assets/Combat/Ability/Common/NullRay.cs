@@ -5,7 +5,7 @@ public class NullRay : Ability
     public override string abilityName => "Null Ray";
     public override string description => $"Whenever an enemy uses a skill, deals {damage} damage.";
     // DO NOT USE DAMAGE FOR ACTUAL DAMAGE. Use currentDamage
-    public override uint damage => 3;
+    public override uint damage => 2;
 
     public NullRay(Creature creature)
     {

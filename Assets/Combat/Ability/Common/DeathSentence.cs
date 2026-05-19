@@ -5,7 +5,7 @@ public class DeathSentence: Ability
     public override string abilityName => "DeathSentence";
     public override string description => $"Applies {damage} ruin.";
     // DO NOT USE DAMAGE FOR ACTUAL DAMAGE. Use currentDamage
-    public override uint damage => 12;
+    public override uint damage => 10;
 
     public DeathSentence(Creature creature)
     {

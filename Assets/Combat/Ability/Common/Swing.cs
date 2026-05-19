@@ -3,9 +3,9 @@ using UnityEngine;
 public class Swing: Ability
 {
     public override string abilityName => "Swing";
-    public override string description => $"Deal {GetDamageDescriptionValue} damage (20% of max HP). Gains HP equal to damage dealt.";
+    public override string description => $"Deal {GetDamageDescriptionValue} damage ({1/10f:P} of max HP). Gains HP equal to damage dealt.";
     // DO NOT USE DAMAGE FOR ACTUAL DAMAGE. Use currentDamage
-    public override uint damage => owner.health.maxHealth / 5;
+    public override uint damage => owner.health.maxHealth / 10;
 
     public Swing(Creature creature)
     {

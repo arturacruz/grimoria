@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3253684fabe4c87b246afa0f7ec5be9, type: 3}
-  m_Name: Store5x5
+  m_Name: Reward4x4 5
   m_EditorClassIdentifier: Assembly-CSharp::Combat.BoardPreset.BoardPresetObject
   preset:
   - creatures:
@@ -33,8 +33,3 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
-  - creatures:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}

@@ -10,31 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3253684fabe4c87b246afa0f7ec5be9, type: 3}
-  m_Name: Store5x5
+  m_Name: Store5x5 8
   m_EditorClassIdentifier: Assembly-CSharp::Combat.BoardPreset.BoardPresetObject
   preset:
   - creatures:
-    - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}
+    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
     - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
+  - creatures:
+    - {fileID: 0}
+    - {fileID: 5458056381093757432, guid: c7b1c84e9ce70e093962fe37d8990154, type: 3}
     - {fileID: 0}
     - {fileID: 0}
   - creatures:
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 5458056381093757432, guid: b69268d6a9995124ba73d0b896f2d455, type: 3}
+    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
     - {fileID: 0}
   - creatures:
+    - {fileID: 0}
+    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
     - {fileID: 0}
     - {fileID: 7673771211780011300, guid: a00e45fbea49477488be2e0e12dea3a2, type: 3}
-    - {fileID: 0}
-    - {fileID: 0}
-  - creatures:
-    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
-  - creatures:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}

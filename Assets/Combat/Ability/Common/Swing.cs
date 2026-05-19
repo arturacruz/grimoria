@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class WickedShot: Ability
+public class Swing: Ability
 {
-    public override string abilityName => "Wicked Shot";
-    public override string description => $"Deal {GetDamageDescriptionValue} damage. Loses {GetDamageDescriptionValue / 2} HP.";
+    public override string abilityName => "Swing";
+    public override string description => $"Deal {GetDamageDescriptionValue} damage (20% of max HP). Gains HP equal to damage dealt.";
     // DO NOT USE DAMAGE FOR ACTUAL DAMAGE. Use currentDamage
-    public override uint damage => 16;
+    public override uint damage => owner.health.maxHealth / 5;
 
-    public WickedShot(Creature creature)
+    public Swing(Creature creature)
     {
         owner = creature;
     }
@@ -18,7 +18,8 @@ public class WickedShot: Ability
     {
         var target = BattleManager.Instance.GetTarget(owner);
         BattleManager.Instance.SpawnAttack(owner, target[0], currentDamage);
-        owner.TakeDamage(currentDamage / 2);
+        owner.health.maxHealth += currentDamage;
+        owner.health.health += (int)currentDamage;
         return target;
     }
 }

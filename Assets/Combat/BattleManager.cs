@@ -46,6 +46,7 @@ public class BattleManager : MonoBehaviour
 
     public void StartBattle()
     {
+        if (battleOngoing) return;
         Debug.Log("start battle");
         player.StartBattle();
         enemy.StartBattle();

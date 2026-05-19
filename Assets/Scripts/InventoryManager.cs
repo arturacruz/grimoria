@@ -40,13 +40,16 @@ public class InventoryManager : MonoBehaviour
         if (money < amount)
             return false;
 
-        money -= amount;
         return true;
     }
 
     public void AddMoney(uint amount)
     {
         money += amount;
+    }
+    public void RemoveMoney(uint amount)
+    {
+        money -= amount;
     }
 
     public uint GetPrice(Creature creature)
@@ -58,6 +61,7 @@ public class InventoryManager : MonoBehaviour
     {
         return creatures.Contains(creature.gameObject);
     }
+    
 
     public void AddToInventory(Creature creature)
     {

@@ -15,7 +15,7 @@ public class GridComponent : MonoBehaviour
     private bool isEnemy;
     [SerializeField] private bool isInventory;
     [SerializeField] private bool isPlayerBoard;
-
+    [SerializeField] private bool isShop;
     [SerializeField] private GameObject tilePrefab;
     private float tileSize = 2f;
     private GameObject selectedCreature => GameManager.Instance.SelectedCreature;
@@ -154,7 +154,7 @@ public class GridComponent : MonoBehaviour
         // If this placing was outside this grid, do nothing
         if (!IsPositionInGrid(creatureTilePos))
             return;
-
+        
         int i = creatureTilePos.y, j = creatureTilePos.x;
         
         var creature = selectedCreature.GetComponent<Creature>();
@@ -175,5 +175,11 @@ public class GridComponent : MonoBehaviour
         else if (isPlayerBoard)
             if (placed) BoardManager.Instance.AddToBoardManager(creature);
             else BoardManager.Instance.RemoveFromBoardManager(creature);
+        else if (isShop)
+        {
+            var price = InventoryManager.Instance.GetPrice(creature);
+            if(placed) InventoryManager.Instance.AddMoney(price/2);
+            else  InventoryManager.Instance.RemoveMoney(price);
+        }
     }
 }

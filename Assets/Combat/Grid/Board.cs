@@ -53,11 +53,14 @@ public class Board : MonoBehaviour
 
         gridComponent.grid[pos.y, pos.x] = null;
         for (var y = 0; y < creature.height; y++)
-        for (var x = 0; x < creature.width; x++)
-            gridComponent.occupances[pos.y + y, pos.x + x] = false;
+            for (var x = 0; x < creature.width; x++)
+                gridComponent.occupances[pos.y + y, pos.x + x] = false;
         creaturesAlive--;
-
-        foreach (var rend in creature.gameObject.GetComponentsInChildren<SpriteRenderer>()) rend.enabled = false;
+        
+        if(gridComponent.isPlayerBoard)
+            BoardManager.Instance.RemoveFromBoardManager(creature);
+        Destroy(creature.gameObject);
+            
         return creaturesAlive == 0;
     }
 

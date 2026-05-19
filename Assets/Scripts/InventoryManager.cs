@@ -13,7 +13,6 @@ public class InventoryManager : MonoBehaviour
     public List<GameObject> creatures;
     public uint money = 100;
 
-
     private void Awake()
     {
         if (Instance != null)
@@ -64,7 +63,6 @@ public class InventoryManager : MonoBehaviour
         return creatures.Contains(creature.gameObject);
     }
     
-
     public void AddToInventory(Creature creature)
     {
         creatures.Add(creature.gameObject);
@@ -90,7 +88,6 @@ public class InventoryManager : MonoBehaviour
         foreach (var c in GetComponentsInChildren<TextMeshProUGUI>()) c.alpha = visible ? 1 : 0;
         gameObject.layer = visible ? 0 : 2;
     }
-    
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

@@ -693,7 +693,7 @@ MonoBehaviour:
   enemy: {fileID: 1243254917}
   trailAttackPrefab: {fileID: 2978883355105925024, guid: ee6368af6a8d8f44bb62fa68e421f687, type: 3}
   nextSceneButton: {fileID: 1069149012}
-  isBoss: 0
+  isBoss: 1
   battleOngoing: 0
 --- !u!4 &614311747
 Transform:

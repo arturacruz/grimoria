@@ -16,6 +16,8 @@ public class BattleManager : MonoBehaviour
     public static BattleManager Instance;
     [SerializeField] private AudioSource attackAudioSource;
     [SerializeField] private AudioClip attackClip;
+    [SerializeField] private AudioSource burnAudioSource;
+    [SerializeField] private AudioClip burnClip;
     public readonly Queue<Creature> DeathPool = new();
     public readonly UnityEvent ApplyBurn = new();
 
@@ -99,10 +101,18 @@ public class BattleManager : MonoBehaviour
         if (tickCooldown.IsDone())
         {
             foreach (var creature in player.GetGrid())
-                creature?.DoOnTick();
+            {
+                if (creature == null) continue;
+                if (creature.DoOnTick() && burnAudioSource != null && burnClip != null)
+                    burnAudioSource.PlayOneShot(burnClip);
+            }
 
             foreach (var creature in enemy.GetGrid())
-                creature?.DoOnTick();
+            {
+                if (creature == null) continue;
+                if (creature.DoOnTick() && burnAudioSource != null && burnClip != null)
+                    burnAudioSource.PlayOneShot(burnClip);
+            }
             
             tickCooldown.Restart();
         }
@@ -121,9 +131,9 @@ public class BattleManager : MonoBehaviour
         switch (attacker.battleClass)
         {
             case BattleClass.Meele:
-                return new[] {targetBoard.GetMeleeTargetAt(y)};
+                return targetBoard.GetMeleeTargetAt(y);
             case BattleClass.Flank: // TODO
-               return new[] {targetBoard.GetFlankTargetAt(y)};
+               return targetBoard.GetFlankTargetAt(y);
             case BattleClass.AOE: // TODO
                 return targetBoard.GetAOETargets();
         }

@@ -92,7 +92,7 @@ public class Board : MonoBehaviour
         return creatures;
     }
 
-    public Creature GetMeleeTargetAt(int y)
+    public Creature[] GetMeleeTargetAt(int y)
     {
         // Offsets so that, if the creature can't find a target at the same line,
         // it starts alternating between the above and lower lines, until it finds an enemy
@@ -105,21 +105,26 @@ public class Board : MonoBehaviour
             else offsets[i] = i;
             negate = !negate;
         }
+        
+        Debug.Log($"offset: {string.Join(", ", offsets)}");
+
+        var newY = y;
 
         foreach (var offset in offsets)
         {
+            newY += offset;
             for (var x = width - 1; x >= 0; x--)
             {
-                var creature = GetCreatureAt(x, y + offset);
+                var creature = GetCreatureAt(x, newY);
                 if (creature != null)
-                    return creature;
+                    return new []{ creature };
             }
         }
 
-        return null;
+        return new Creature[] { };
     }
     
-    public Creature GetFlankTargetAt(int y)
+    public Creature[] GetFlankTargetAt(int y)
     {
         // Offsets so that, if the creature can't find a target at the same line,
         // it starts alternating between the above and lower lines, until it finds an enemy
@@ -132,18 +137,21 @@ public class Board : MonoBehaviour
             else offsets[i] = i;
             negate = !negate;
         }
+        
+        var newY = y;
 
         foreach (var offset in offsets)
         {
+            newY += offset;
             for (var x = 0; x < width; x++)
             {
-                var creature = GetCreatureAt(x, y + offset);
+                var creature = GetCreatureAt(x, newY);
                 if (creature != null)
-                    return creature;
+                    return new []{creature};
             }
         }
 
-        return null;
+        return new Creature[]{};
     }
 
 

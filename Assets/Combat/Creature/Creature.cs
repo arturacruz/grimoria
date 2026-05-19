@@ -63,6 +63,9 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
             if (a == null) continue;
             a.bonusDamage = 0;
         }
+
+        for (var i = 0; i < statusEffects.Length; i++)
+            statusEffects[i] = 0;
     }
 
     private void Start()
@@ -176,13 +179,16 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
     }
     
 
-    public void DoOnTick()
+    public bool DoOnTick()
     {
         if (GetStatusAmount(Status.StatusEffect.Burn) is uint value and > 0)
         {
             TakeDamage(value);
             LowerStatusAmount(Status.StatusEffect.Burn);
+            return true;
         }
+
+        return false;
     }
 
     private void CheckForRuin()

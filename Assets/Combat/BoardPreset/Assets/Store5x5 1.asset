@@ -17,25 +17,25 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
+    - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}
   - creatures:
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 5458056381093757432, guid: c7b1c84e9ce70e093962fe37d8990154, type: 3}
+    - {fileID: 5458056381093757432, guid: b69268d6a9995124ba73d0b896f2d455, type: 3}
     - {fileID: 0}
-    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
+    - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}
   - creatures:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 5458056381093757432, guid: c7b1c84e9ce70e093962fe37d8990154, type: 3}
+    - {fileID: 5458056381093757432, guid: b69268d6a9995124ba73d0b896f2d455, type: 3}
   - creatures:
-    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
+    - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
   - creatures:
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
+    - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}
     - {fileID: 0}

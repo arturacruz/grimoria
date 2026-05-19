@@ -21,6 +21,7 @@ public class EndSpear : Ability
         var targets = BattleManager.Instance.GetTarget(owner);
         foreach (var target in targets)
         {
+            if (target == null) continue;
             BattleManager.Instance.SpawnAttack(owner, target, currentDamage);
             target.ApplyStatus(Status.StatusEffect.Ruin, 1);
         }

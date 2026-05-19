@@ -63,7 +63,7 @@ public class BoardManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        var isScene = scene.name == "CombatScene";
+        var isScene = scene.name == "CombatScene"; //|| scene.name == "BossScene";
         Show(isScene);
         if (isScene)
         {

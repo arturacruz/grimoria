@@ -71,11 +71,14 @@ public class MapInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         Casa casa_click = gameObject.GetComponent<Casa>();
         if (MapGenerator.casa_atual.lista_casa.Contains(casa_click) && casa_click.tipo_casa != CategoriaCasa.Visitada) {
             CategoriaCasa tipo_casa = casa_click.tipo_casa;
-            if (tipo_casa == CategoriaCasa.Combate || tipo_casa == CategoriaCasa.Boss)
+            if (tipo_casa == CategoriaCasa.Boss)
+            {
+                SceneManager.LoadScene("BossScene");
+            }
+            else if (tipo_casa == CategoriaCasa.Combate)
             {
                 SceneManager.LoadScene("CombatScene");
             }
-
             else if (tipo_casa == CategoriaCasa.Shop)
             {
                 SceneManager.LoadScene("StoreScene");

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RandomBoardPresetSelector : MonoBehaviour
 {
-    [SerializeField] private BoardPresetList presetList;
+    public BoardPresetList presetList;
 
     private void Awake()
     {

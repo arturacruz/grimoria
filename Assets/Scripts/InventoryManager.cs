@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Combat.BoardPreset;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
+    [SerializeField] private BoardPresetObject defaultPreset;
 
     public GameObject grid;
     public List<GameObject> creatures;
@@ -92,7 +94,7 @@ public class InventoryManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        var isScene = scene.name == "CombatScene" || scene.name == "StoreScene" || scene.name == "Reward";
+        var isScene = scene.name == "CombatScene" || scene.name == "StoreScene" || scene.name == "Reward" || scene.name == "BossScene";
         Show(isScene);
     }
 

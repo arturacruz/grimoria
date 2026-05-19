@@ -1,18 +1,16 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
 
-public class Knight: Creature
+public sealed class Reaper: Creature
 {
-    public override string name => "Knight";
-    public override Rarity rarity => Rarity.Rare;
+    public override string name => "Reaper";
+    public override Rarity rarity => Rarity.Epic;
     public override Tag tag => Tag.Undead;
-    public override BattleClass battleClass => BattleClass.Meele;
+    public override BattleClass battleClass => BattleClass.Flank;
     public override byte height => 2;
     public override byte width => 1;
     public override HealthComponent health => _health;
     public override Cooldown cooldown => _cooldown;
-    public override string description => "A slow undead warrior that deals powerful blows.";
+    public override string description => "The personification of death itself.";
     public override Element element => _element;
     public override List<Ability> abilities => _abilities;
 
@@ -23,10 +21,10 @@ public class Knight: Creature
 
     private void Awake()
     {
-        _cooldown = new Cooldown(10f);
-        _health = new HealthComponent(250);
-        _element = new Void(this);
-        _abilities.Add(new Swing(this));
-        _abilities.Add(new Protector(this));
+        _cooldown = new Cooldown(4.5f);
+        _health = new HealthComponent(200);
+        _element = new Death(this);
+        _abilities.Add(new Harvest(this));
+        _abilities.Add(new DeathSentence(this));
     }
 }

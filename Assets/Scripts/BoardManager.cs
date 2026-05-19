@@ -52,7 +52,9 @@ public class BoardManager : MonoBehaviour
     {
         foreach (var c in creatures)
         { 
+            c.GetComponent<Creature>().Restart();
             foreach (var rend in c.GetComponentsInChildren<SpriteRenderer>()) rend.enabled = visible;
+            
             c.gameObject.layer = visible ? 0 : 2;
         }
 

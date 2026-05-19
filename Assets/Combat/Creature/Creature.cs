@@ -52,6 +52,19 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
     private bool isInBoard => BoardManager.Instance != null
                               && BoardManager.Instance.Contains(this);
 
+    public void Restart()
+    {
+        health.health = (int) health.ogHealth;
+        health.maxHealth = health.ogHealth;
+        cooldown.timeSeconds = cooldown.ogTimeSeconds;
+        cooldown.started = false;
+        foreach (var a in abilities)
+        {
+            if (a == null) continue;
+            a.bonusDamage = 0;
+        }
+    }
+
     private void Start()
     {
         DontDestroyOnLoad(gameObject);

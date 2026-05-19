@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class HealthComponent
 {
+    public uint ogHealth;
     public uint maxHealth;
     public int health;
     
     public HealthComponent(uint maxHealth)
     {
+        ogHealth = maxHealth;
         this.maxHealth = maxHealth;
         health = (int) maxHealth;
     }

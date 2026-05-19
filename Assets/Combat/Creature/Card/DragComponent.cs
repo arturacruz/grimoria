@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
@@ -66,33 +67,49 @@ public class DragComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (otherCreatureSelected 
-            || !isPlayer 
-            || (BattleManager.Instance !=null && BattleManager.Instance.battleOngoing))
+        if (otherCreatureSelected
+            || !isPlayer
+            || (BattleManager.Instance != null && BattleManager.Instance.battleOngoing))
             return;
-        
-        if (isMouseOver)
+
+        if (!isMouseOver)
         {
-            if (!canBePlaced && isSelected)
+            isSelected = false;
+            ChangeChildrenSortingLayer(false);
+            return;
+        }
+
+        var creature = parent.GetComponent<Creature>();
+
+        bool isStoreScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "StoreScene";
+        bool isShopCard = isStoreScene
+                          && InventoryManager.Instance != null
+                          && !InventoryManager.Instance.Contains(creature);
+
+        // Só bloqueia quando está tentando PEGAR a carta da loja.
+        if (!isSelected && isShopCard)
+        {
+            uint price = InventoryManager.Instance.GetPrice(creature);
+            if (InventoryManager.Instance.money < price)
                 return;
-            
-            // Order of invoking event has to be this, or else the creature will be null
-            if (isSelected)
-            {
-                GameManager.Instance.PlaceCreature.Invoke(true);
-                isSelected = false;
-            }
-            else
-            {
-                isSelected = true;
-                GameManager.Instance.PlaceCreature.Invoke(false);
-            }
+        }
+
+        if (!canBePlaced && isSelected)
+            return;
+
+        if (isSelected)
+        {
+            GameManager.Instance.PlaceCreature.Invoke(true);
+            isSelected = false;
         }
         else
-            isSelected = false;
+        {
+            isSelected = true;
+            GameManager.Instance.PlaceCreature.Invoke(false);
+        }
+
         ChangeChildrenSortingLayer(isSelected);
     }
-
     public void OnPointerExit(PointerEventData eventData)
     {
         GameManager.Instance.HoveringCreature = null;

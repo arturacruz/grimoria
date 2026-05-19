@@ -13,6 +13,8 @@ enum BattleResult
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
+    [SerializeField] private AudioSource attackAudioSource;
+    [SerializeField] private AudioClip attackClip;
     public readonly Queue<Creature> DeathPool = new();
     public readonly UnityEvent ApplyBurn = new();
     
@@ -71,8 +73,8 @@ public class BattleManager : MonoBehaviour
         enemy.StartBattle();
         tickCooldown.Start();
         
-        foreach (var creature in enemy.GetGrid())
-            creature?.ApplyStatus(Status.StatusEffect.Burn, 100);
+        //foreach (var creature in enemy.GetGrid())
+          //  creature?.ApplyStatus(Status.StatusEffect.Burn, 100);
         
         foreach (var creature in player.GetGrid())
             creature?.DoOnStart(player, enemy);
@@ -145,6 +147,9 @@ public class BattleManager : MonoBehaviour
         trail.target = to;
 
         trail.element = from.element;
+        
+        if (attackAudioSource != null && attackClip != null)
+            attackAudioSource.PlayOneShot(attackClip);
 
         foreach (var creature in player.GetGrid())
         {

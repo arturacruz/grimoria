@@ -17,7 +17,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
+    - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}
   - creatures:
     - {fileID: 0}
     - {fileID: 0}
@@ -37,4 +37,4 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 1238991620326821479, guid: 5624c272131fdde469314280a601e439, type: 3}
+    - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}

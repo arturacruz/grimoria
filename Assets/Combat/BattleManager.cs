@@ -14,6 +14,7 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
     public readonly Queue<Creature> DeathPool = new();
+    public readonly UnityEvent ApplyBurn = new();
     
     [SerializeField] public Board player;
     [SerializeField] private Board enemy;
@@ -36,6 +37,24 @@ public class BattleManager : MonoBehaviour
         Instance = this;
         nextSceneButton.SetActive(false);
         tickCooldown = new Cooldown(0.5f);
+        ApplyBurn.AddListener(OnApplyBurn);
+    }
+
+    private void OnApplyBurn()
+    {
+        foreach (var c in player.GetGrid())
+        {
+            if (c == null) continue;
+            foreach (var ab in c.abilities)
+                ab.OnBurnApplied();
+        }
+        
+        foreach (var c in enemy.GetGrid())
+        {
+            if (c == null) continue;
+            foreach (var ab in c.abilities)
+                ab.OnBurnApplied();
+        }
     }
 
     private void FixedUpdate()
@@ -99,7 +118,7 @@ public class BattleManager : MonoBehaviour
             case BattleClass.Meele:
                 return new[] {targetBoard.GetMeleeTargetAt(y)};
             case BattleClass.Flank: // TODO
-                return null;
+               return new[] {targetBoard.GetFlankTargetAt(y)};
             case BattleClass.AOE: // TODO
                 return targetBoard.GetAOETargets();
         }

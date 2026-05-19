@@ -3,7 +3,7 @@ using UnityEngine;
 public class EndSpear : Ability
 {
     public override string abilityName => "End Spear";
-    public override string description => $"Deals {damage} damage to all enemies.";
+    public override string description => $"Deals {damage} damage and applies 1 ruin to all enemies.";
     // DO NOT USE DAMAGE FOR ACTUAL DAMAGE. Use currentDamage
     public override uint damage => 6;
 
@@ -20,7 +20,10 @@ public class EndSpear : Ability
     {
         var targets = BattleManager.Instance.GetTarget(owner);
         foreach (var target in targets)
+        {
             BattleManager.Instance.SpawnAttack(owner, target, currentDamage);
+            target.ApplyStatus(Status.StatusEffect.Ruin, 1);
+        }
         return targets;
     }
 }

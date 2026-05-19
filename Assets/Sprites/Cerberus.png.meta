@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 98de19a2593b7e74f8d2928d4417664c
+guid: 0a9b7b357a536c94aa9a1d836d60dd17
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6515602111186535438
-    second: Ghoul_0
+      213: 5007182176019046389
+    second: Cerberus_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ghoul_0
+      name: Cerberus_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2048
-        height: 2732
+        width: 1024
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e040f0759911c6a50800000000000000
-      internalID: 6515602111186535438
+      spriteID: 5ff584fe8a51d7540800000000000000
+      internalID: 5007182176019046389
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9609c452f18a56a4f8190daf377dee10
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Ghoul_0: 6515602111186535438
+      Cerberus_0: 5007182176019046389
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

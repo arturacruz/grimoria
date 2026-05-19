@@ -36,6 +36,8 @@ public abstract class Ability : IBattleBehaviour
         var targets = OnSkill(from, to);
         owner.element.DoAbility(targets, currentDamage);
     }
+    
+    public virtual void OnBurnApplied() {}
 
     public virtual Creature[] OnSkill(Creature from, Creature to)
     {

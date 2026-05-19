@@ -55,7 +55,7 @@ public class GridComponent : MonoBehaviour
 
                 var creature = boardPreset.preset[y].creatures[x];
                 if (creature == null) continue;
-
+                
                 PlaceCreature(x, y, creature);
             }
         }
@@ -90,7 +90,7 @@ public class GridComponent : MonoBehaviour
         {
             for (var x = 0; x < creature.width; x++)
             {
-                var newTilePos = tileMousePos + new Vector2Int(x, y);
+                var newTilePos = tileMousePos + new Vector2Int(- x, y);
                 if (!IsPositionInGrid(newTilePos) || IsPositionOccupied(newTilePos))
                     return;
             }
@@ -139,7 +139,7 @@ public class GridComponent : MonoBehaviour
         grid[y, x] = c; 
         for (var i = 0; i < creature.height; i++)
             for (var j = 0; j < creature.width; j++)
-                occupances[y + i, x + j] = true;
+                occupances[y + i, x + -j] = true;
     }
     
     private bool IsPositionInGrid(Vector2Int tilePos)
@@ -167,7 +167,7 @@ public class GridComponent : MonoBehaviour
         grid[i, j] = init;
         for (var y = 0; y < height; y++)
             for (var x = 0; x < width; x++)
-                occupances[y + i, x + j] = placed;
+                occupances[y + i, -x + j] = placed;
 
         if (isInventory)
             if (placed) InventoryManager.Instance.AddToInventory(creature);

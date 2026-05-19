@@ -57,7 +57,8 @@ public class Board : MonoBehaviour
             gridComponent.occupances[pos.y + y, pos.x + x] = false;
         creaturesAlive--;
 
-        foreach (var rend in creature.gameObject.GetComponentsInChildren<SpriteRenderer>()) rend.enabled = false;
+        BoardManager.Instance.RemoveFromBoardManager(creature);
+        Destroy(creature.gameObject);
         return creaturesAlive == 0;
     }
 

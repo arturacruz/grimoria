@@ -44,7 +44,7 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
     public abstract List<Ability> abilities { get; }
     public bool playerSide = true;
     public uint[] statusEffects = new uint[Status.Amount];
-    private bool dead;
+    public bool dead;
     
     private bool isInInventory => InventoryManager.Instance != null 
                                   && InventoryManager.Instance.Contains(this);
@@ -54,6 +54,8 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
 
     public void Restart()
     {
+        dead = false;
+        gameObject.layer = 0;
         health.health = (int) health.ogHealth;
         health.maxHealth = health.ogHealth;
         cooldown.timeSeconds = cooldown.ogTimeSeconds;
@@ -63,6 +65,7 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
             if (a == null) continue;
             a.bonusDamage = 0;
         }
+        cooldown.Restart();
     }
 
     private void Start()

@@ -21,8 +21,8 @@ public class Zit : Creature
 
     private void Awake()
     {
-        _cooldown = new Cooldown(4f);
-        _health = new HealthComponent(280);
+        _cooldown = new Cooldown(5f);
+        _health = new HealthComponent(250);
         _element = new Death(this);
         _abilities.Add(new EndSpear(this));
         _abilities.Add(new NullRay(this));

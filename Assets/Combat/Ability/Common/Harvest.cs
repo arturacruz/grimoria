@@ -5,7 +5,7 @@ public class Harvest: Ability
     public override string abilityName => "Harvest";
     public override string description => $"Deals {damage} for each ruin stack in the target. Heals equal to that amount.";
     // DO NOT USE DAMAGE FOR ACTUAL DAMAGE. Use currentDamage
-    public override uint damage => 2;
+    public override uint damage => 1;
 
     public Harvest(Creature creature)
     {

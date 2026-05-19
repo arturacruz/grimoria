@@ -21,7 +21,7 @@ public sealed class Reaper: Creature
 
     private void Awake()
     {
-        _cooldown = new Cooldown(4.5f);
+        _cooldown = new Cooldown(6f);
         _health = new HealthComponent(200);
         _element = new Death(this);
         _abilities.Add(new Harvest(this));

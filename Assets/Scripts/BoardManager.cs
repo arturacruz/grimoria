@@ -51,8 +51,8 @@ public class BoardManager : MonoBehaviour
     public void Show(bool visible)
     {
         foreach (var c in creatures)
-        { 
-            c.GetComponent<Creature>().Restart();
+        {
+            if (c == null) continue;
             foreach (var rend in c.GetComponentsInChildren<SpriteRenderer>()) rend.enabled = visible;
             
             c.gameObject.layer = visible ? 0 : 2;

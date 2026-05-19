@@ -194,13 +194,14 @@ public class BattleManager : MonoBehaviour
 
     public void GoToNextScene()
     {
+        battleOngoing = false;
         GameManager.Instance.battles++;
         if (isBoss)
         {
             if (result == BattleResult.Win)
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene("Victory");
             else
-                SceneManager.LoadScene(5);
+                SceneManager.LoadScene("GameOver");
         }
         else
         {

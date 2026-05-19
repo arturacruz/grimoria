@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    public uint battles;
     public static GameManager Instance;
     public GameObject SelectedCreature;
     public GameObject HoveringCreature;

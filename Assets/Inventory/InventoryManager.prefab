@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9f20bdeb7d42d0979ac3bc192c6eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
+  defaultPreset: {fileID: 11400000, guid: 0c32c4e459805bb42a9056690e403894, type: 2}
   grid: {fileID: 725537549853804352}
   creatures: []
   money: 0
@@ -451,7 +452,7 @@ PrefabInstance:
     - target: {fileID: 4142520016797510652, guid: b590f7d68e6b97b4695b484678917c0c, type: 3}
       propertyPath: boardPreset
       value: 
-      objectReference: {fileID: 11400000, guid: b2b75ab98ac70bb519b109681f7d1f34, type: 2}
+      objectReference: {fileID: 11400000, guid: 0c32c4e459805bb42a9056690e403894, type: 2}
     - target: {fileID: 4142520016797510652, guid: b590f7d68e6b97b4695b484678917c0c, type: 3}
       propertyPath: isInventory
       value: 1

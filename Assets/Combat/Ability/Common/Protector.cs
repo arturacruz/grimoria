@@ -5,7 +5,7 @@ public class Protector: Ability
     public override string abilityName => "Protector";
     public override string description => $"Whenever your team uses a skill, gains {GetDamageDescriptionValue} HP.";
     // DO NOT USE DAMAGE FOR ACTUAL DAMAGE. Use currentDamage
-    public override uint damage => 10;
+    public override uint damage => 8;
 
     public Protector(Creature creature)
     {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Combat.BoardPreset;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -17,11 +18,12 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private AudioClip attackClip;
     public readonly Queue<Creature> DeathPool = new();
     public readonly UnityEvent ApplyBurn = new();
-    
+
     [SerializeField] public Board player;
     [SerializeField] private Board enemy;
     [SerializeField] private GameObject trailAttackPrefab;
     [SerializeField] private GameObject nextSceneButton;
+    [SerializeField] public bool isBoss;
     private Cooldown tickCooldown;
     
     public bool battleOngoing;
@@ -197,9 +199,20 @@ public class BattleManager : MonoBehaviour
 
     public void GoToNextScene()
     {
-        if (result == BattleResult.Win)
-            SceneManager.LoadScene(3);
+        GameManager.Instance.battles++;
+        if (isBoss)
+        {
+            if (result == BattleResult.Win)
+                SceneManager.LoadScene(3);
+            else
+                SceneManager.LoadScene(5);
+        }
         else
-            SceneManager.LoadScene(0);
+        {
+            if (result == BattleResult.Win)
+                SceneManager.LoadScene(3);
+            else
+                SceneManager.LoadScene(0);
+        }
     }
 }

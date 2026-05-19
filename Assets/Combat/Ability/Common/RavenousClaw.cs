@@ -5,7 +5,7 @@ public class RavenousClaw : Ability
     public override string abilityName => "Ravenous Claw";
     public override string description => $"Deals {GetDamageDescriptionValue} damage and gains that amount as HP and damage.";
     // DO NOT USE DAMAGE FOR ACTUAL DAMAGE. Use currentDamage
-    public override uint damage => 5;
+    public override uint damage => 2;
 
     public RavenousClaw(Creature creature)
     {

@@ -52,7 +52,9 @@ public class BoardManager : MonoBehaviour
     {
         foreach (var c in creatures)
         { 
+            c.GetComponent<Creature>().Restart();
             foreach (var rend in c.GetComponentsInChildren<SpriteRenderer>()) rend.enabled = visible;
+            
             c.gameObject.layer = visible ? 0 : 2;
         }
 
@@ -63,7 +65,7 @@ public class BoardManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        var isScene = scene.name == "CombatScene";
+        var isScene = scene.name == "CombatScene"; //|| scene.name == "BossScene";
         Show(isScene);
         if (isScene)
         {

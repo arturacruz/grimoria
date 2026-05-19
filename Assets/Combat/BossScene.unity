@@ -691,7 +691,6 @@ MonoBehaviour:
   enemy: {fileID: 1243254917}
   trailAttackPrefab: {fileID: 2978883355105925024, guid: ee6368af6a8d8f44bb62fa68e421f687, type: 3}
   nextSceneButton: {fileID: 1069149012}
-  isBoss: 0
   battleOngoing: 0
 --- !u!4 &614311747
 Transform:
@@ -1198,10 +1197,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 475049725545610786, guid: 089189f4a42bd78439a106130116f97e, type: 3}
-      propertyPath: defaultPreset
-      value: 
-      objectReference: {fileID: 11400000, guid: 0c32c4e459805bb42a9056690e403894, type: 2}
     - target: {fileID: 2957359260645592858, guid: 089189f4a42bd78439a106130116f97e, type: 3}
       propertyPath: m_Name
       value: InventoryManager
@@ -1627,7 +1622,6 @@ GameObject:
   - component: {fileID: 1243254916}
   - component: {fileID: 1243254915}
   - component: {fileID: 1243254917}
-  - component: {fileID: 1243254918}
   m_Layer: 0
   m_Name: EnemyGrid
   m_TagString: Untagged
@@ -1647,7 +1641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f1b61b4392d454e8e7d626eab62457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridComponent
-  boardPreset: {fileID: 11400000, guid: 687597a23179e1b4fb64e77a6fd9ab98, type: 2}
+  boardPreset: {fileID: 11400000, guid: 2362b6ab41411b1478952cacf8ba364f, type: 2}
   isInventory: 0
   isPlayerBoard: 0
   isShop: 0
@@ -1682,19 +1676,6 @@ MonoBehaviour:
   gridComponent: {fileID: 1243254915}
   reflect: 1
   creaturesAlive: 0
---- !u!114 &1243254918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243254914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2751f605cd315c0489fd03d83b930fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RandomBoardPresetSelector
-  presetList: {fileID: 11400000, guid: 836032afd9711854f8ae1dafe334bd9d, type: 2}
 --- !u!1 &1250087192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,7 +1797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f1b61b4392d454e8e7d626eab62457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridComponent
-  boardPreset: {fileID: 11400000, guid: b81bc13b788b68847bbf07a0ad71eda8, type: 2}
+  boardPreset: {fileID: 11400000, guid: 471d8fa0e3e6f384ab17b74c58b92d8e, type: 2}
   isInventory: 0
   isPlayerBoard: 1
   isShop: 0
@@ -2659,7 +2640,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf1dea88c2f41f89ff0762d5e5523f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  battles: 0
   SelectedCreature: {fileID: 0}
   HoveringCreature: {fileID: 0}
   CanBePlaced: 0

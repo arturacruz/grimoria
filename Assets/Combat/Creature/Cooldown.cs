@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class Cooldown
 {
+    public float ogTimeSeconds;
     public float timeSeconds;
     private float startTime;
     public bool started;
 
     public Cooldown(float timeSeconds)
     {
+        ogTimeSeconds = timeSeconds;
         this.timeSeconds = timeSeconds;
         Restart();
     }

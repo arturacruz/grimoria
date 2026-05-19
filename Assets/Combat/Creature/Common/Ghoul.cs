@@ -23,7 +23,7 @@ public class Ghoul : Creature
 
     private void Awake()
     {
-        _cooldown = new Cooldown(4f);
+        _cooldown = new Cooldown(6f);
         _health = new HealthComponent(100);
         _element = new Blood(this);
         _abilities.Add(new RavenousClaw(this));

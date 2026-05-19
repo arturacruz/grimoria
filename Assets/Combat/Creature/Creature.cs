@@ -112,6 +112,8 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
 
     public void ApplyStatus(Status.StatusEffect effect, uint value)
     {
+        if (effect == Status.StatusEffect.Burn)
+            BattleManager.Instance.ApplyBurn.Invoke();
         OnApplyStatus(effect, value);
     }
 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 98de19a2593b7e74f8d2928d4417664c
+guid: 2295ae3a63776644a870cc610852610e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6515602111186535438
-    second: Ghoul_0
+      213: 5256148441944684035
+    second: Spider_Queen_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ghoul_0
+      name: Spider_Queen_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2048
-        height: 2732
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e040f0759911c6a50800000000000000
-      internalID: 6515602111186535438
+      spriteID: 306f5d0e82791f840800000000000000
+      internalID: 5256148441944684035
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Ghoul_0: 6515602111186535438
+      Spider_Queen_0: 5256148441944684035
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

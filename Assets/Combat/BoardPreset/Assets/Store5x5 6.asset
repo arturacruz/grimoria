@@ -15,7 +15,7 @@ MonoBehaviour:
   preset:
   - creatures:
     - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 2212336586560451940, guid: 2424414f6366e184286ee43ad4834b34, type: 3}
     - {fileID: 0}
     - {fileID: 1238991620326821479, guid: 7f2b5027f2cc1b1559a2e67fb2b1a993, type: 3}
   - creatures:

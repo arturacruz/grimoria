@@ -21,7 +21,7 @@ MonoBehaviour:
   - creatures:
     - {fileID: 0}
     - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 2212336586560451940, guid: 2424414f6366e184286ee43ad4834b34, type: 3}
     - {fileID: 0}
   - creatures:
     - {fileID: 0}

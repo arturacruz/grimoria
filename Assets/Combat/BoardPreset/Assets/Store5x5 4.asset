@@ -30,7 +30,7 @@ MonoBehaviour:
     - {fileID: 7673771211780011300, guid: a00e45fbea49477488be2e0e12dea3a2, type: 3}
   - creatures:
     - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 4873559681982507895, guid: 80cea9df406f81641bfbdf991b1b8683, type: 3}
     - {fileID: 4873559681982507895, guid: 80cea9df406f81641bfbdf991b1b8683, type: 3}
     - {fileID: 0}
   - creatures:

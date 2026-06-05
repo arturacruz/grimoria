@@ -1,18 +1,19 @@
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PercorrerMapa : MonoBehaviour
 {
-    private float scrollSpeed = 0.7f;
+    [SerializeField] private float dragSpeed = 0.025f;
     private float minY;
     private float maxY;
+    private Vector2 lastPointerPosition;
+    private bool dragging;
     public MapGenerator map;
 
     void Start()
     {
-        maxY = map.GetRoomDrawPosition(0, map.floors - 1).y - 3f;
-        minY = map.GetRoomDrawPosition(0, 0).y + 3f;
+        if (!ResolveMap())
+            return;
 
         Vector3 pos = transform.position;
         
@@ -24,17 +25,53 @@ public class PercorrerMapa : MonoBehaviour
         {
             pos.y = minY;
         }
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
         transform.position = pos;
     }
     void Update()
     {
-        float scroll = Mouse.current.scroll.ReadValue().y;
+        if (!ResolveMap())
+            return;
+
+        if (Pointer.current == null)
+            return;
+
+        if (Pointer.current.press.wasPressedThisFrame)
+        {
+            lastPointerPosition = Pointer.current.position.ReadValue();
+            dragging = true;
+            return;
+        }
+
+        if (!Pointer.current.press.isPressed)
+        {
+            dragging = false;
+            return;
+        }
+
+        var pointerPosition = Pointer.current.position.ReadValue();
+        var movement = dragging ? (lastPointerPosition.y - pointerPosition.y) * dragSpeed : 0f;
+        lastPointerPosition = pointerPosition;
+        dragging = true;
 
         Vector3 pos = transform.position;
-        pos.y += scroll * scrollSpeed;
+        pos.y += movement;
 
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
         transform.position = pos;
+    }
+
+    private bool ResolveMap()
+    {
+        if (map == null)
+            map = MapGenerator.Instance;
+
+        if (map == null)
+            return false;
+
+        maxY = map.GetRoomBasePosition(0, map.floors - 1).y - 3f;
+        minY = map.GetRoomBasePosition(0, 0).y + 3f;
+        return true;
     }
 }

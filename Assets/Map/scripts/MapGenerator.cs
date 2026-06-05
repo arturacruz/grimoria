@@ -54,6 +54,18 @@ public class MapGenerator : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void DestroyForNewRun()
+    {
+        if (Instance == this)
+            Instance = null;
+        if (Player == player)
+            Player = null;
+        if (casa_atual != null && casa_atual.transform.IsChildOf(transform))
+            casa_atual = null;
+
+        Destroy(gameObject);
+    }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -148,11 +160,20 @@ public class MapGenerator : MonoBehaviour
 
     public Vector2 GetRoomDrawPosition(int x, int y)
     {
-        float xPos = (x - (columns - 1) / 2f) * horizontalSpacing;
-        float yPos = (y - (floors - 1) / 2f) * verticalSpacing;
+        var basePosition = GetRoomBasePosition(x, y);
+        float xPos = basePosition.x;
+        float yPos = basePosition.y;
 
         xPos += Random.Range(-randomOffset, randomOffset);
         yPos += Random.Range(-randomOffset, randomOffset);
+
+        return new Vector2(xPos, yPos);
+    }
+
+    public Vector2 GetRoomBasePosition(int x, int y)
+    {
+        float xPos = (x - (columns - 1) / 2f) * horizontalSpacing;
+        float yPos = (y - (floors - 1) / 2f) * verticalSpacing;
 
         return new Vector2(xPos, yPos);
     }

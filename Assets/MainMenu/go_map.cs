@@ -16,6 +16,7 @@ public class go_map : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     }
 
     public void OnPointerDown(PointerEventData eventData) {
+        GameManager.ResetRunState();
         SceneManager.LoadScene("MapScene");
         // print("Teste 777");
         // Debug.Log("CLICK");

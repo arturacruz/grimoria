@@ -13,7 +13,10 @@ public class StartButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerDown(PointerEventData eventData)
     {
         if (isMouseOver)
-            SceneManager.LoadScene(0);
+        {
+            GameManager.ResetRunState();
+            SceneManager.LoadScene("MapScene");
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

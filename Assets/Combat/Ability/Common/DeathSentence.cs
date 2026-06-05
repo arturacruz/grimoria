@@ -20,6 +20,9 @@ public class DeathSentence: Ability
     protected override Creature[] DoOnActivate(Board allies, Board enemies)
     {
         var target = BattleManager.Instance.GetTarget(owner);
+        if (target.Length == 0 || target[0] == null)
+            return target;
+
         target[0].ApplyStatus(Status.StatusEffect.Ruin, currentDamage);
         return target;
     }

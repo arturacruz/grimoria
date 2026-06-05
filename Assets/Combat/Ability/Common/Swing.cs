@@ -17,7 +17,7 @@ public class Swing: Ability
     protected override Creature[] DoOnActivate(Board allies, Board enemies)
     {
         var target = BattleManager.Instance.GetTarget(owner);
-        if (target.Length == 0)
+        if (target.Length == 0 || target[0] == null)
             return target;
         BattleManager.Instance.SpawnAttack(owner, target[0], currentDamage);
         owner.health.maxHealth += currentDamage;

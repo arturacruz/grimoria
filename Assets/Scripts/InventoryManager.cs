@@ -30,10 +30,30 @@ public class InventoryManager : MonoBehaviour
         {
             Instance = this;
             SceneManager.sceneLoaded += OnSceneLoaded;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
             if (grid != null)
                 DontDestroyOnLoad(grid);
         }
+    }
+
+    public void DestroyForNewRun()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (grid != null)
+            Destroy(grid);
+
+        foreach (var creature in creatures)
+        {
+            if (creature != null)
+                Destroy(creature);
+        }
+
+        creatures.Clear();
+        if (Instance == this)
+            Instance = null;
+
+        Destroy(gameObject);
     }
 
     public bool TrySpend(uint amount)
@@ -41,6 +61,7 @@ public class InventoryManager : MonoBehaviour
         if (money < amount)
             return false;
 
+        money -= amount;
         return true;
     }
 
@@ -50,6 +71,12 @@ public class InventoryManager : MonoBehaviour
     }
     public void RemoveMoney(uint amount)
     {
+        if (money < amount)
+        {
+            money = 0;
+            return;
+        }
+
         money -= amount;
     }
 
@@ -62,9 +89,21 @@ public class InventoryManager : MonoBehaviour
     {
         return creatures.Contains(creature.gameObject);
     }
+
+    public bool HasCreatures()
+    {
+        foreach (var creature in creatures)
+            if (creature != null)
+                return true;
+
+        return false;
+    }
     
     public void AddToInventory(Creature creature)
     {
+        if (creatures.Contains(creature.gameObject))
+            return;
+
         creatures.Add(creature.gameObject);
     }
 
@@ -93,6 +132,13 @@ public class InventoryManager : MonoBehaviour
     {
         var isScene = scene.name == "CombatScene" || scene.name == "StoreScene" || scene.name == "Reward" || scene.name == "BossScene";
         Show(isScene);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        if (Instance == this)
+            Instance = null;
     }
 
 }

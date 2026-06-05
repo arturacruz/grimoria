@@ -11,29 +11,36 @@ public abstract class Ability : IBattleBehaviour
     public uint bonusDamage;
     public abstract void DoOnStart(Board allies, Board enemies);
 
-    protected uint GetDamageDescriptionValue
+    protected uint DamageValue
     {
         get
         {
             if (owner.GetStatusAmount(Status.StatusEffect.Weak) > 0)
-                return (uint) ((damage + bonusDamage) * 0.8);
+                return (uint)((damage + bonusDamage) * 0.8f);
             return damage + bonusDamage;
         }
     }
 
+    protected uint GetDamageDescriptionValue
+    {
+        get => DamageValue;
+    }
+
     public void DoAbility(Board allies, Board enemies)
     {
-        if (owner.GetStatusAmount(Status.StatusEffect.Weak) > 0)
-            currentDamage = (uint)((damage + bonusDamage) * 0.8);
-        else
-            currentDamage = damage + bonusDamage;
+        currentDamage = DamageValue;
         var targets = DoOnActivate(allies, enemies);
+        if (targets == null)
+            targets = new Creature[] { };
         owner.element.DoAbility(targets, currentDamage);
     }
 
     public void OnSkillUsed(Creature from, Creature to)
     {
+        currentDamage = DamageValue;
         var targets = OnSkill(from, to);
+        if (targets == null)
+            targets = new Creature[] { };
         owner.element.DoAbility(targets, currentDamage);
     }
     

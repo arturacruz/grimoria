@@ -16,8 +16,8 @@ public class BurningGuard: Ability
 
     public override void OnBurnApplied()
     {
-        owner.health.maxHealth += currentDamage;
-        owner.health.health += (int) currentDamage;
+        owner.health.maxHealth += DamageValue;
+        owner.health.health += (int) DamageValue;
     }
 
     protected override Creature[] DoOnActivate(Board allies, Board enemies)

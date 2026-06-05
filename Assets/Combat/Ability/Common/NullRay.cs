@@ -18,7 +18,7 @@ public class NullRay : Ability
 
     public override Creature[] OnSkill(Creature from, Creature to)
     {
-        if (from.playerSide)
+        if (from != null && from.playerSide != owner.playerSide)
         {
             BattleManager.Instance.SpawnAttack(owner, from, currentDamage);
             return new[] { from };

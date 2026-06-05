@@ -26,7 +26,7 @@ public class OneWomanArmy : Ability
             }
         }
 
-        amount *= currentDamage;
+        amount *= DamageValue;
         owner.health.maxHealth += amount;
         owner.health.health += (int) amount;
         

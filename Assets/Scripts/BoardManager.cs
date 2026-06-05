@@ -27,10 +27,30 @@ public class BoardManager : MonoBehaviour
         {
             Instance = this;
             SceneManager.sceneLoaded += OnSceneLoaded;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
             if (board != null)
                 DontDestroyOnLoad(board);
         }
+    }
+
+    public void DestroyForNewRun()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (board != null)
+            Destroy(board);
+
+        foreach (var creature in creatures)
+        {
+            if (creature != null)
+                Destroy(creature);
+        }
+
+        creatures.Clear();
+        if (Instance == this)
+            Instance = null;
+
+        Destroy(gameObject);
     }
     
     public bool Contains(Creature creature)
@@ -40,6 +60,9 @@ public class BoardManager : MonoBehaviour
     
     public void AddToBoardManager(Creature creature)
     {
+        if (creatures.Contains(creature.gameObject))
+            return;
+
         creatures.Add(creature.gameObject);
     }
 
@@ -72,5 +95,12 @@ public class BoardManager : MonoBehaviour
         {
             BattleManager.Instance.player = board.GetComponent<Board>();
         }
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        if (Instance == this)
+            Instance = null;
     }
 }

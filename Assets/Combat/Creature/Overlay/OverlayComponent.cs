@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class OverlayComponent : MonoBehaviour
 {
+    [SerializeField] private Vector2 playerOffset = new(6, 0);
+    [SerializeField] private Vector2 enemyOffset = new(-5, 0);
+    [SerializeField] private Vector2 screenPadding = new(0.4f, 0.4f);
+
     [SerializeField] private SpriteRenderer[] backgrounds;
     [SerializeField] private Image[] images;
     [SerializeField] private TextMeshProUGUI creatureName;
@@ -38,13 +42,64 @@ public class OverlayComponent : MonoBehaviour
 
     private Vector3 GetPosition(Creature creature)
     {
-        var offset = creature.playerSide ? new Vector2(6, 0) : new Vector2(-5, 0);
-        return creature.gameObject.transform.position + (Vector3) offset;
+        var offset = creature.playerSide ? playerOffset : enemyOffset;
+        var position = creature.gameObject.transform.position + (Vector3) offset;
+
+        var bounds = GetOverlayBounds();
+        if (Camera.main == null || !bounds.HasValue)
+            return position;
+
+        var camera = Camera.main;
+        var camHeight = camera.orthographicSize;
+        var camWidth = camHeight * camera.aspect;
+        var camPos = camera.transform.position;
+
+        var halfSize = bounds.Value.extents;
+        var minX = camPos.x - camWidth + halfSize.x + screenPadding.x;
+        var maxX = camPos.x + camWidth - halfSize.x - screenPadding.x;
+        var minY = camPos.y - camHeight + halfSize.y + screenPadding.y;
+        var maxY = camPos.y + camHeight - halfSize.y - screenPadding.y;
+
+        if (position.x + halfSize.x > camPos.x + camWidth - screenPadding.x)
+            position.x = creature.gameObject.transform.position.x - Mathf.Abs(offset.x);
+        else if (position.x - halfSize.x < camPos.x - camWidth + screenPadding.x)
+            position.x = creature.gameObject.transform.position.x + Mathf.Abs(offset.x);
+
+        position.x = Mathf.Clamp(position.x, minX, maxX);
+        position.y = Mathf.Clamp(position.y, minY, maxY);
+        return position;
+    }
+
+    private Bounds? GetOverlayBounds()
+    {
+        var hasBounds = false;
+        var bounds = new Bounds(transform.position, Vector3.zero);
+
+        foreach (var background in backgrounds)
+        {
+            if (background == null)
+                continue;
+
+            if (!hasBounds)
+            {
+                bounds = background.bounds;
+                hasBounds = true;
+            }
+            else
+            {
+                bounds.Encapsulate(background.bounds);
+            }
+        }
+
+        return hasBounds ? bounds : null;
     }
 
     private void FixedUpdate()
     {
-        var creature = GameManager.Instance.HoveringCreature;
+        var creature = GameManager.Instance.LockedDescriptionCreature != null
+            ? GameManager.Instance.LockedDescriptionCreature
+            : GameManager.Instance.HoveringCreature;
+
         if (creature == null || GameManager.Instance.SelectedCreature == creature)
         {
             SetVisibility(false);

@@ -14,10 +14,10 @@ public class Protector: Ability
     
     public override Creature[] OnSkill(Creature from, Creature to)
     {
-        if (from.playerSide)
+        if (from != null && from.playerSide == owner.playerSide)
         {
-            owner.health.maxHealth += currentDamage;
-            owner.health.health += (int)currentDamage;
+            owner.health.maxHealth += DamageValue;
+            owner.health.health += (int)DamageValue;
         }
 
         return new Creature[] { };
@@ -28,6 +28,9 @@ public class Protector: Ability
     protected override Creature[] DoOnActivate(Board allies, Board enemies)
     {
         var target = BattleManager.Instance.GetTarget(owner);
+        if (target.Length == 0 || target[0] == null)
+            return target;
+
         BattleManager.Instance.SpawnAttack(owner, target[0], currentDamage);
         return target;
     }

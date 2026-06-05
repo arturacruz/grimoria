@@ -38,12 +38,25 @@ public class BattleManager : MonoBehaviour
     
     private void Awake()
     {
-        if (Instance != null)
-            Destroy(this);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
-        nextSceneButton.SetActive(false);
+        if (nextSceneButton != null)
+            nextSceneButton.SetActive(false);
         tickCooldown = new Cooldown(0.5f);
         ApplyBurn.AddListener(OnApplyBurn);
+    }
+
+    public void DestroyForNewRun()
+    {
+        if (Instance == this)
+            Instance = null;
+
+        Destroy(gameObject);
     }
 
     private void OnApplyBurn()
@@ -75,6 +88,19 @@ public class BattleManager : MonoBehaviour
         Debug.Log("start battle");
         player.StartBattle();
         enemy.StartBattle();
+
+        if (player.creaturesAlive == 0)
+        {
+            EndBattle(BattleResult.Defeat);
+            return;
+        }
+
+        if (enemy.creaturesAlive == 0)
+        {
+            EndBattle(BattleResult.Win);
+            return;
+        }
+
         tickCooldown.Start();
         
         //foreach (var creature in enemy.GetGrid())
@@ -95,7 +121,7 @@ public class BattleManager : MonoBehaviour
             creature?.DoAbility(player, enemy);
 
         foreach (var creature in enemy.GetGrid())
-            creature?.DoAbility(player, enemy);
+            creature?.DoAbility(enemy, player);
 
         // Tick logic
         if (tickCooldown.IsDone())
@@ -138,7 +164,7 @@ public class BattleManager : MonoBehaviour
                 return targetBoard.GetAOETargets();
         }
 
-        return null;
+        return new Creature[] { };
     }
     
     private void HandleDeaths()
@@ -152,9 +178,18 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnAttack(Creature from, Creature to, uint damage)
     {
+        if (from == null || to == null || trailAttackPrefab == null)
+            return;
+
         var fromc = from.gameObject;
         var obj = Instantiate(trailAttackPrefab, fromc.transform.position, fromc.transform.rotation);
         var trail = obj.GetComponent<TrailComponent>();
+        if (trail == null)
+        {
+            Destroy(obj);
+            return;
+        }
+
         trail.damage = damage;
         trail.target = to;
 
@@ -187,9 +222,17 @@ public class BattleManager : MonoBehaviour
     private void KillCreature(Creature creature)
     {
         if (creature.playerSide && player.DestroyCreature(creature))
-            result = BattleResult.Defeat;
+            EndBattle(BattleResult.Defeat);
         else if (!creature.playerSide && enemy.DestroyCreature(creature))
-            result = BattleResult.Win;
+            EndBattle(BattleResult.Win);
+    }
+
+    private void EndBattle(BattleResult newResult)
+    {
+        if (result != BattleResult.None)
+            return;
+
+        result = newResult;
 
         if (result == BattleResult.None)
             return;
@@ -203,7 +246,8 @@ public class BattleManager : MonoBehaviour
         }
         //termina aqui
         
-        nextSceneButton.SetActive(true);
+        if (nextSceneButton != null)
+            nextSceneButton.SetActive(true);
         Debug.Log("battle ended");
     }
 
@@ -221,6 +265,8 @@ public class BattleManager : MonoBehaviour
         {
             if (result == BattleResult.Win)
                 SceneManager.LoadScene("Reward");
+            else if (InventoryManager.Instance == null || !InventoryManager.Instance.HasCreatures())
+                SceneManager.LoadScene("GameOver");
             else
                 SceneManager.LoadScene("MapScene");
         }

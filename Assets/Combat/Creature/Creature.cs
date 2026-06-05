@@ -54,6 +54,7 @@ public abstract class Creature : MonoBehaviour, IBattleBehaviour
 
     public void Restart()
     {
+        dead = false;
         health.health = (int) health.ogHealth;
         health.maxHealth = health.ogHealth;
         cooldown.timeSeconds = cooldown.ogTimeSeconds;

@@ -63,13 +63,18 @@ public class GridComponent : MonoBehaviour
         GameManager.Instance.PlaceCreature.AddListener(OnPlaceCreature);
     }
 
-    private Vector2Int GetMouseTilePosition()
+    private bool TryGetPointerTilePosition(out Vector2Int tilePosition)
     {
-        var mousePos = Camera.main.ScreenToWorldPoint(
-            Mouse.current.position.ReadValue()
+        tilePosition = Vector2Int.zero;
+        if (Pointer.current == null || Camera.main == null)
+            return false;
+
+        var pointerPos = Camera.main.ScreenToWorldPoint(
+            Pointer.current.position.ReadValue()
         );
 
-        return GetTilePosition(mousePos);
+        tilePosition = GetTilePosition(pointerPos);
+        return true;
     }
 
     private void Update()
@@ -79,7 +84,9 @@ public class GridComponent : MonoBehaviour
         if (selectedCreature == null)
             return;
         
-        var tileMousePos = GetMouseTilePosition();
+        if (!TryGetPointerTilePosition(out var tileMousePos))
+            return;
+
         var creature = selectedCreature.GetComponent<Creature>();
 
         // If the creature is not on this grid
@@ -126,12 +133,33 @@ public class GridComponent : MonoBehaviour
         return occupances[tilePos.y, tilePos.x];
     }
 
+    private bool CanCreatureFitAt(Vector2Int anchor, Creature creature, bool checkOccupancy)
+    {
+        for (var y = 0; y < creature.height; y++)
+        {
+            for (var x = 0; x < creature.width; x++)
+            {
+                var tile = anchor + new Vector2Int(-x, y);
+                if (!IsPositionInGrid(tile))
+                    return false;
+                if (checkOccupancy && IsPositionOccupied(tile))
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
     private void PlaceCreature(int x, int y, Creature creature)
     {
+        var anchor = new Vector2Int(x, y);
+        if (!CanCreatureFitAt(anchor, creature, true))
+            return;
+
         var creatureSizeOffset = new Vector2Int(creature.width - 1, creature.height - 1);
         var obj = Instantiate(
             creature.gameObject,
-            GetWorldPosition(new Vector2Int(x, y)) - creatureSizeOffset,
+            GetWorldPosition(anchor) - creatureSizeOffset,
             transform.rotation);
         var c = obj.GetComponent<Creature>();
 
@@ -139,10 +167,32 @@ public class GridComponent : MonoBehaviour
         grid[y, x] = c; 
         for (var i = 0; i < creature.height; i++)
             for (var j = 0; j < creature.width; j++)
-                occupances[y + i, x + -j] = true;
+                occupances[y + i, x - j] = true;
         
         if (isInventory)
             InventoryManager.Instance.AddToInventory(c);
+    }
+
+    public bool ContainsCreature(Creature creature)
+    {
+        foreach (var c in grid)
+            if (c != null && c.Equals(creature))
+                return true;
+
+        return false;
+    }
+
+    public bool TryPlaceExistingCreatureAtWorldPosition(Creature creature, Vector3 worldPosition)
+    {
+        if (creature == null)
+            return false;
+
+        var tilePosition = GetTilePosition(worldPosition);
+        if (!CanCreatureFitAt(tilePosition, creature, false))
+            return false;
+
+        SetCreatureAt(tilePosition, creature, true);
+        return true;
     }
     
     private bool IsPositionInGrid(Vector2Int tilePos)
@@ -152,26 +202,32 @@ public class GridComponent : MonoBehaviour
 
     private void OnPlaceCreature(bool placed)
     {
+        if (selectedCreature == null)
+            return;
+
         var creatureTilePos = GetTilePosition(selectedCreature.transform.position);
 
         // If this placing was outside this grid, do nothing
         if (!IsPositionInGrid(creatureTilePos))
             return;
         
-        int i = creatureTilePos.y, j = creatureTilePos.x;
-        
         var creature = selectedCreature.GetComponent<Creature>();
-        byte width = creature.width, height = creature.height;
 
-        Creature init = null;
-        if (placed)
-            init = creature;
+        if (!CanCreatureFitAt(creatureTilePos, creature, false))
+            return;
 
-        grid[i, j] = init;
-        for (var y = 0; y < height; y++)
-            for (var x = 0; x < width; x++)
+        SetCreatureAt(creatureTilePos, creature, placed);
+    }
+
+    private void SetCreatureAt(Vector2Int anchor, Creature creature, bool placed)
+    {
+        int i = anchor.y, j = anchor.x;
+
+        grid[i, j] = placed ? creature : null;
+        for (var y = 0; y < creature.height; y++)
+            for (var x = 0; x < creature.width; x++)
                 occupances[y + i, -x + j] = placed;
-
+        
         if (isInventory)
             if (placed) InventoryManager.Instance.AddToInventory(creature);
             else InventoryManager.Instance.RemoveFromInventory(creature);
@@ -180,9 +236,12 @@ public class GridComponent : MonoBehaviour
             else BoardManager.Instance.RemoveFromBoardManager(creature);
         else if (isShop)
         {
+            if (GameManager.Instance.SuppressShopTransactions)
+                return;
+
             var price = InventoryManager.Instance.GetPrice(creature);
             if(placed) InventoryManager.Instance.AddMoney(price/2);
-            else  InventoryManager.Instance.RemoveMoney(price);
+            else InventoryManager.Instance.TrySpend(price);
         }
     }
 }

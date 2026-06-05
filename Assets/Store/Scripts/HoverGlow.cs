@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Store.Scripts
 {
-    public class HoverGlow : MonoBehaviour
+    public class HoverGlow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public GameObject glowObject;
         public Texture2D handCursor;
@@ -15,13 +16,34 @@ namespace Store.Scripts
 
         void OnMouseEnter()
         {
-            if (glowObject != null)
-                glowObject.SetActive(true);
-
-            Cursor.SetCursor(handCursor, Vector2.zero, CursorMode.Auto);
+            ShowGlow();
         }
 
         void OnMouseExit()
+        {
+            HideGlow();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            ShowGlow();
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            HideGlow();
+        }
+
+        private void ShowGlow()
+        {
+            if (glowObject != null)
+                glowObject.SetActive(true);
+
+            if (handCursor != null)
+                Cursor.SetCursor(handCursor, Vector2.zero, CursorMode.Auto);
+        }
+
+        private void HideGlow()
         {
             if (glowObject != null)
                 glowObject.SetActive(false);

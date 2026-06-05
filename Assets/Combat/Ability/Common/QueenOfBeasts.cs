@@ -20,9 +20,9 @@ public class QueenOfBeasts: Ability
     {
         foreach (var ally in allies.GetGrid())
         {
-            if (ally == null && ally != owner) continue;
+            if (ally == null || ally == owner || ally.tag != Tag.Beast) continue;
             foreach (var ability in ally.abilities)
-                ability.bonusDamage += currentDamage;
+                ability.bonusDamage += DamageValue;
         }
         return new Creature[] { };
     }

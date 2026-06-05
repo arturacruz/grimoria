@@ -94,12 +94,21 @@ public class TrailComponent : MonoBehaviour
     private void FixedUpdate()
     {
         if (target == null)
+        {
+            Destroy(gameObject);
             return;
+        }
+
+        if (rb == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         Vector2 dir = target.transform.position - transform.position;
         rb.linearVelocity = dir.normalized * speed * Time.fixedDeltaTime;
 
-        if (Math.Abs(dir.x) < 0.4f)
+        if (dir.sqrMagnitude < 0.16f)
         {
             target.TakeDamage(damage);
             target = null;
